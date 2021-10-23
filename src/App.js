@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container, NavDropdown, Modal, Button, Row, Col, Form, /* input */ } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Modal, Button, /* Row, Col, */ Form, /* input */ } from 'react-bootstrap';
 import './App.css';
 import React, { useState/* , useEffect  */ } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,62 +24,10 @@ function App() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  /*   const [carros, setCarros] = useState([])
-  
-    useEffect(() => {
-      const getCarros = () => {
-        //URL PARA REALIZAR LA PETICION
-        fetch('http://localhost:9000/api')
-          .then(res => res.json())
-          .then(res => setCarros(res))
-      }
-      getCarros()
-    }, []) */
 
   return (
 
     <div className="App" >
-
-      {/* <header class="header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-    </nav>
-  </header> */}
-
-
-
 
       <header class="header" >
         <div>
@@ -95,66 +43,68 @@ function App() {
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto" >
-                  <Nav.Link href="/registro" >Cartelera </Nav.Link>
-                  <Nav.Link href="/salida" > Lista de reservas </Nav.Link>
+                  <Nav.Link href="/cartelera" >Cartelera </Nav.Link>
+                  <Nav.Link href="/reservas" > Lista de reservas </Nav.Link>
                   <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" >
-                    <NavDropdown.Item href="/parqueados" > Administra peliculas
+                    <NavDropdown.Item href="/agregar" > Agregar películas
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="/buscar" > Consultar por placa </NavDropdown.Item>
+                    <NavDropdown.Item href="/eliminar" > Eliminar películas</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/parqueados" > Mostrar parqueadero </NavDropdown.Item>
+                    <NavDropdown.Item href="/historial" > Historial </NavDropdown.Item>
                   </NavDropdown >
                 </Nav>
                 <Nav>
-                  <Nav.Link href="#deets" onClick={handleShow} > <BiLogIn /> Ingresar </Nav.Link>
+                  <Nav.Link href="#deets" onClick={handleShow} > <BiLogIn /> Registrarse </Nav.Link>
                   <>
                     <Modal show={show}
                       onHide={handleClose} >
 
                       <Modal.Header closeButton >
-                        <Modal.Title > Iniciar Secion </Modal.Title> </Modal.Header>
+                        <Modal.Title > Registro </Modal.Title> </Modal.Header>
                       <Modal.Body >
-                        <Form >
-                          <Form.Group as={Row}
-                            className="mb-3"
-                            controlId="formHorizontalEmail" >
-                            <Form.Label column sm={3} >
-                              Email </Form.Label> <Col sm={9} >  <Form.Control type="email"
-                                placeholder="Email" />
-                            </Col> </Form.Group >
+                        <Form>
+                          <Form.Label>Tipo de documento</Form.Label>
+                          <Form.Select aria-label="Default select example">
+                            <option>Selecciona tu tipo de documento</option>
+                            <option value="cc">Cédula de Ciudadanía</option>
+                            <option value="ps">Pasaporte</option>
+                            <option value="ti">Tarjeta de identidad</option>
+                          </Form.Select>
+                          <br></br>
+                          <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Número de documento:</Form.Label>
+                            <Form.Control type="number" placeholder="Ingresa tú número de documento" />
+                          </Form.Group>
 
-                          < Form.Group as={Row}
-                            className="mb-3"
-                            controlId="formHorizontalPassword" >
-                            <Form.Label column sm={3} >Contraseña </Form.Label> <Col sm={9} >
-                              <Form.Control type="password"
-                                placeholder="Contraseña" />
-                            </Col> </Form.Group > <fieldset>
-                            <Form.Group as={Row} className="mb-3" >
-                              <Form.Label as="legend" column sm={3} >
-                                Tipo de usuario </Form.Label> <Col sm={9} >
-                                <Form.Check type="radio"
-                                  label="Administrador"
-                                  name="formHorizontalRadios"
-                                  id="formHorizontalRadios1" />
-                                <Form.Check type="radio"
-                                  label="Empleado"
-                                  name="formHorizontalRadios"
-                                  id="formHorizontalRadios2" />
-                              </Col> </Form.Group > </fieldset> <Form.Group as={Row} className="mb-3" controlId="formHorizontalCheck" >
-                            <Col sm={{ span: 9, offset: 3 }}>
-                              <Form.Check label="Recuerdame" />
-                            </Col> </Form.Group >
-                        </Form> </Modal.Body > <Modal.Footer >
+                          <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Correo electronico:</Form.Label>
+                            <Form.Control type="email" placeholder="Ingresa tu email" />
+
+                          </Form.Group>
+
+                          <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Contraseña:</Form.Label>
+                            <Form.Control type="password" placeholder="Ingresa tu contraseña" />
+                            <Form.Text className="text-muted">
+                              La contraseña debe tener mayúsculas, minúsculas y números.
+                            </Form.Text>
+                          </Form.Group>
+                          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                            <Form.Check type="checkbox" label="Quiero recibir correos" />
+                          </Form.Group>
+                        </Form>
+                      </Modal.Body >
+                      <Modal.Footer >
                         <Button variant="secondary" onClick={handleClose} >
-                          Cancelar </Button> <Button variant="primary" onClick={handleClose} >
-                          Ingresar </Button> </Modal.Footer >
-                    </Modal> </>
-                </Nav> </Navbar.Collapse >
-
-
+                          Cancelar </Button>
+                        <Button variant="primary" onClick={handleClose} type="submit">
+                          Ingresar </Button>
+                      </Modal.Footer >
+                    </Modal>
+                  </>
+                </Nav>
+              </Navbar.Collapse >
             </Container>
-
           </Navbar >
         </div>
         <div>
@@ -171,7 +121,7 @@ function App() {
         </div>
       </header>
       <body >
-        
+
 
       </body>
       <footer class="text-center text-lg-start bg-light text-muted" >
