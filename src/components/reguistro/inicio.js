@@ -4,13 +4,10 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import entra from '../images/logo.png';
-import { /* Navbar, Nav, NavDropdown, Modal, */ /* Row, Col, */ Form, /* input */ } from 'react-bootstrap';
-/* import sale from '../images/logo.png';
-import consul from '../images/logo.png';
-import parque from '../images/logo.png'; */
+import { Form} from 'react-bootstrap';
+
 function Inicio() {
     return (
         <Container>
