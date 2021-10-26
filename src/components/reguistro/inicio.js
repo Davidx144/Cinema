@@ -36,7 +36,7 @@ function Inicio() {
                                 <Form.Check type="checkbox" label="Recuerdame" />
                             </Form.Group>
                             <Button variant="primary" type="submit">
-                                Submit
+                                Ingresar
                             </Button>
                         </Form>
                     </Card.Body >
