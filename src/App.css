@@ -80,6 +80,7 @@ body {
 }
 .header .navbar {
   background-color: transparent !important;
+  /* position: fixed; */
 }
 
 .Modal.Footer{

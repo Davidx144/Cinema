@@ -10,7 +10,7 @@ function NavbarP() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
+        <Navbar collapseOnSelect  expand="lg" bg="dark" variant="dark" position= "fixed">
             <Container >
                 <Navbar.Brand href="/" >
                     <img alt=""
