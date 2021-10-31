@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Container, NavDropdown, Modal, Button, /* Row, Col, */ Form, /* input */ } from 'react-bootstrap';
-import icono from "../images/logoP.png";
+import icono from "../../assert/logoP.png";
 import React, { useState } from "react";
 import { BiLogIn } from 'react-icons/bi';
 
@@ -88,4 +88,5 @@ function NavbarP() {
         </Navbar >
     )
 }
+
 export default NavbarP;

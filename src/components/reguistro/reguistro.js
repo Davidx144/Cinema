@@ -1,4 +1,4 @@
-import '../reguistro/inicio.css';
+import '../reguistro/reguistro.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 /* import React from 'react'; */
 import React, { Component, useState, state } from "react";
@@ -8,7 +8,7 @@ import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import { Form } from 'react-bootstrap';
-import entra from '../images/logo.png';
+import entra from '../../assert/logo.png';
 
 const App = () => {
     let [Fullname, setFullname] = useState({

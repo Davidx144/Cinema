@@ -8,7 +8,7 @@ import {
   Route,
 } from "react-router-dom";
 import { createBrowserHistory } from 'history';
-import Inicio from './components/reguistro/inicio';
+import Reguistro from './components/reguistro/reguistro';
 import Footer from "./components/footer/footer";
 import NavbarP from './components/navbar/navbar';
 export const browserHistory = createBrowserHistory({ basename: "/iniciooo" });
@@ -23,11 +23,11 @@ function App() {
           <nav className="navbar-dark navbar-expand-sm navbar App-navbar sticky-top bg-dark" id="nav" />
           <Router history={browserHistory} basename={'/'}>
             <Switch>
-              <Route exact path="/" component={Inicio} />
-              <Route exact path="/registro" component={Inicio} />
-              <Route exact path="/salida" component={Inicio} />
-              <Route exact path="/parqueados" component={Inicio} />
-              <Route exact path="/buscar" component={Inicio} />
+              <Route exact path="/" component={Reguistro} />
+              <Route exact path="/registro" component={Reguistro} />
+              <Route exact path="/salida" component={Reguistro} />
+              <Route exact path="/parqueados" component={Reguistro} />
+              <Route exact path="/buscar" component={Reguistro} />
             </Switch>
           </Router>
         </div>
