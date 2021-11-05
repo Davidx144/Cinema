@@ -1,5 +1,10 @@
+
 .carousel {
-    background: #30059c; }
+    background: #3c12a7;
+    /* opacity:0.5; */
+   }
+   
+    
     .carousel .carousel-item {
       height: 400px; }
 /*       @media (max-width: 800px){
