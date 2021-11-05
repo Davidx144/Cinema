@@ -11,6 +11,7 @@ import { createBrowserHistory } from 'history';
 import Reguistro from './components/reguistro/reguistro';
 import Footer from "./components/footer/footer";
 import NavbarP from './components/navbar/navbar';
+import Inicio from './components/inicio/inicio';
 export const browserHistory = createBrowserHistory({ basename: "/iniciooo" });
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           <nav className="navbar-dark navbar-expand-sm navbar App-navbar sticky-top bg-dark" id="nav" />
           <Router history={browserHistory} basename={'/'}>
             <Switch>
-              <Route exact path="/" component={Reguistro} />
+              <Route exact path="/" component={Inicio} />
               <Route exact path="/registro" component={Reguistro} />
               <Route exact path="/salida" component={Reguistro} />
               <Route exact path="/parqueados" component={Reguistro} />
