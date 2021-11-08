@@ -28,6 +28,7 @@
     "reactstrap": "^8.10.0",
     "sass": "^1.43.3",
     "styled-components": "^5.3.3",
+    "sweetalert": "^2.1.2",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^1.0.1"
   },

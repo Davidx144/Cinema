@@ -8,6 +8,9 @@ import Container from 'react-bootstrap/Container';
 /* import Card from 'react-bootstrap/Card' */
 import Row from 'react-bootstrap/Row';
 /* import Button from 'react-bootstrap/Button'; */
+import swal from 'sweetalert';
+
+
 import Carousel from 'react-bootstrap/Carousel'
 import peli1 from "../../assert/peli1.jpg";
 import peli2 from "../../assert/peli2.jpg";

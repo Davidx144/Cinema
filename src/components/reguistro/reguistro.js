@@ -25,9 +25,9 @@ const App = () => {
     const expresiones = {
         usuario: /^[a-zA-Z0-9_-]{4,16}$/, // Letras, numeros, guion y guion_bajo
         nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-        password: /^.{5,50}$/, // 5 a 50 digitos.
+        password: /(?=.*[0-9]{1})(?=.*[a-z]{1})(?=.*[A-Z]{1})[a-zA-Z0-9]{5,50}$/, // 5 a 50 digitos obligatorio minus mayus numeros.
         correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-        documento: /^\d{1,20}$/ // 1 a 20 numeros.
+        documento: /^\d{1,30}$/ // 1 a 20 numeros.
     }
 
     const validarPassword2 = () => {
@@ -44,14 +44,36 @@ const App = () => {
         }
     }
 
+
+    /*     const [usuarioReguistro, setUsuarioR] = useState({
+            Nombre: "",
+            Apellido: "",
+            TipoDocumento: "cedula",
+            Documento: "",
+            Correo: "",
+            Password: "",
+            TipoUsuario: "usuario"
+        })
+        const handleChange = e => {
+            setUsuarioR({
+                ...usuarioReguistro,
+                [e.target.name]: e.target.value
+            })
+        };
+        // let { Nombre, Apellido, TipoDocumento, Documento, Correo, Contrasena, TipoUsuario } = usuarioReguistro 
+        let { Nombre, Apellido, TipoDocumento, Documento, Correo, Password } = usuarioReguistro
+    */
     const onChangeTerminos = (e) => {
         cambiarTerminos(e.target.checked);
     }
 
+
     const onSubmit = (e) => {
         e.preventDefault();
+
+
+        /* let { Nombre, Apellido, TipoDocumento, Documento, Correo, Password } = usuarioReguistro;  */
         if (
-            /* usuario.valido === 'true' && */
             apellido.valido === 'true' &&
             nombre.valido === 'true' &&
             password.valido === 'true' &&
@@ -60,6 +82,44 @@ const App = () => {
             documento.valido === 'true' &&
             terminos
         ) {
+
+            console.log('ENVIADOOO');
+            console.log({
+                nombre,
+                apellido,
+                password,
+                correo,
+                documento,
+            });
+/*             var self = this;
+            // On submit of the form, send a POST request with the data to the server.
+            fetch('http://localhost:9001/api', {
+                method: 'POST',
+                data: {
+                    nombre: self.refs.nombre,
+                    apellido: self.refs.apellido
+                }
+            })
+                .then(function (response) {
+                    return response.json()
+                }).then(function (body) {
+                    console.log(body);
+                }); */
+
+
+
+
+
+            /*             const requestInit = {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(usuarioReguistro)
+                        }
+                        fetch('http://localhost:9001/api', requestInit)
+                            .then(res => res.text())
+                            .then(res => console.log(res)) */
+
+
             cambiarFormularioValido(true);
             cambiarUsuario({ campo: '', valido: '' });
             cambiarNombre({ campo: '', valido: null });
@@ -80,39 +140,18 @@ const App = () => {
         <main>
 
             <Formulario action="" onSubmit={onSubmit}>
-                {/*                 <div>
-                    <div col-12>
-                        <Form.Group className="mb-3" controlId="formBasicTipoDoc" Required>
-                            <Form.Label className="aaa">Tipo de documento</Form.Label>
-                            <Form.Select aria-label="Default select example" >
-                                <option>Selecciona tu tipo de documento</option>
-                                <option value="cc">Cédula de Ciudadanía</option>
-                                <option value="ps">Pasaporte</option>
-                                <option value="ti">Tarjeta de identidad</option>
-                            </Form.Select>
-                        </Form.Group>
-                    </div>
-                </div>
-                <div>
-                    <div col-12 estado={apellido} expresionRegular={expresiones.nombre} Required>
-                        <Form.Group className="mb-3" controlId="formBasicDoc" >
-                            <Form.Label className="aaa">Número de documento:</Form.Label>
-                            <Form.Control type="number" placeholder="Ingresa tú número de documento" estado={apellido} expresionRegular={expresiones.nombre} Required />
-                        </Form.Group>
-                    </div>
-                </div> */}
-
                 <div >
                     <Label  >Tipo de documento
                         <div className="doc">
                             <select
+                                /* value={TipoDocumento} */
                                 placeholder="Tipo de documento"
                                 type="select"
                                 name="select"
                                 id="select"
                                 className="select"
-                                /* checked={terminos} */
-                                /* onChange={onChangeTerminos} */
+                            /* checked={terminos} */
+                            /* onChange={onChangeTerminos} */
                             >
                                 <option>Selecciona tu tipo de documento</option>
                                 <option value="cc">Cédula de Ciudadanía</option>
@@ -125,7 +164,9 @@ const App = () => {
                 </div>
 
                 <Input
+                    /* onChange={handleChange} */
                     estado={documento}
+                    /* value={Documento} */
                     cambiarEstado={cambiarDocumento}
                     tipo="text"
                     label="Número de documento"
@@ -137,7 +178,9 @@ const App = () => {
 
 
                 <Input
+                    /* onChange={handleChange} */
                     estado={nombre}
+                    /* value={Nombre} */
                     cambiarEstado={cambiarNombre}
                     tipo="text"
                     label="Nombres"
@@ -148,7 +191,9 @@ const App = () => {
                 />
 
                 <Input
+                    /* onChange={handleChange} */
                     estado={apellido}
+                    /* value={Apellido} */
                     cambiarEstado={cambiarApellido}
                     tipo="text"
                     label="Apellidos"
@@ -158,22 +203,10 @@ const App = () => {
                     expresionRegular={expresiones.nombre}
                 />
 
-
-
-                {/*                 <div>
-                    <Label htmlFor="">prueba</Label>
-                    <div>
-                        <select className="cars" id="cars">
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="opel">Opel</option>
-                            <option value="audi">Audi</option>
-                        </select>
-                    </div>
-                </div> */}
-
                 <Input
+                    /* onChange={handleChange} */
                     estado={correo}
+                    /* value={Correo} */
                     cambiarEstado={cambiarCorreo}
                     tipo="correo"
                     label="Correo Electrónico"
@@ -182,31 +215,19 @@ const App = () => {
                     leyendaError="El correo solo puede contener letras, numeros, puntos, guiones y guion bajo."
                     expresionRegular={expresiones.correo}
                 />
-
-{/*                 <Input
-                    estado={usuario}
-                    cambiarEstado={cambiarUsuario}
-                    tipo="text"
-                    label="Usuario"
-                    placeholder="john123"
-                    name="usuario"
-                    leyendaError="El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo."
-                    expresionRegular={expresiones.usuario}
-                /> */}
-
-
-
-
                 <Input
+                    /* onChange={handleChange} */
                     estado={password}
+                    /* campo={Password} */
                     cambiarEstado={cambiarPassword}
                     tipo="password"
                     label="Contraseña"
                     name="passwordU"
-                    leyendaError="La contraseña tiene que ser minimo de 5 caracteres    "
+                    leyendaError="La contraseña tiene que ser minimo de 5 caracteres, mayusculas, minusculas y numeros.    "
                     expresionRegular={expresiones.password}
                 />
                 <Input
+                    /* onChange={handleChange} */
                     estado={password2}
                     cambiarEstado={cambiarPassword2}
                     tipo="password"
