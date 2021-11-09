@@ -105,6 +105,13 @@ const ContenedorTerminos = styled.div`
 	}
 `;
 
+const ContenedorCorreo = styled.div`
+	grid-column: span 2;
+	@media (max-width: 800px){
+		grid-column: span 1;
+	}
+`;
+
 const ContenedorBotonCentrado = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -161,6 +168,7 @@ export {
 	LeyendaError,
 	IconoValidacion,
 	ContenedorTerminos,
+	ContenedorCorreo,
 	ContenedorBotonCentrado,
 	Boton,
 	MensajeExito,

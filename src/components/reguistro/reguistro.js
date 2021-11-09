@@ -2,7 +2,7 @@ import '../reguistro/reguistro.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 /* import styled from 'styled-components'; */
 import React, { useState } from 'react';
-import { Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError } from './elementos/Formularios';
+import { Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError, ContenedorCorreo } from './elementos/Formularios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from './componentes/Input';
@@ -10,12 +10,13 @@ import Input from './componentes/Input';
 
 
 const App = () => {
-    const [usuario, cambiarUsuario] = useState({ campo: '', valido: null });
+    /* const [usuario, cambiarUsuario] = useState({ campo: '', valido: null }); */
     const [nombre, cambiarNombre] = useState({ campo: '', valido: null });
     const [password, cambiarPassword] = useState({ campo: '', valido: null });
     const [password2, cambiarPassword2] = useState({ campo: '', valido: null });
     const [correo, cambiarCorreo] = useState({ campo: '', valido: null });
     const [documento, cambiarDocumento] = useState({ campo: '', valido: null });
+    const [tipoDocumento, cambiarTipoDocumento] = useState({ campo: '', valido: null });
     const [terminos, cambiarTerminos] = useState(false);
     const [formularioValido, cambiarFormularioValido] = useState(null);
     const [apellido, cambiarApellido] = useState({ campo: '', valido: null });
@@ -68,6 +69,76 @@ const App = () => {
     }
 
 
+    const onSubmitt = (e) => {
+        /* e.preventDefault(); */
+        console.log(nombre.campo);
+        console.log(apellido.campo);
+        console.log(correo.campo);
+        console.log(documento.campo);
+        console.log({
+            nombre,
+            apellido,
+            correo,
+
+            /*             password,
+                        correo,
+                        documento, */
+        });
+        /* var self = this; */
+        var no = nombre.campo;
+        var ap = apellido.campo;
+        var doc = documento.campo;
+        var co = correo.campo;
+        var pass = password.campo;
+        var user={
+            nombre:no,
+            apellido:ap,
+            documento:doc,
+            correo:co,
+            contrasena:pass,
+            tipoUsuario:'usuario',
+            tipoDocumento:'cedula'
+        };
+        
+        const requestInit = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(user)
+        }
+        fetch('http://localhost:9001/api', requestInit)
+            .then(res => res.text())
+            .then(res => console.log(res))
+
+
+/*         const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title: 'React POST Request Example' })
+        };
+        fetch('http://localhost:9001/api', requestOptions)
+            .then(response => response.json())
+            .then(data => this.setState({nombre,ap,doc,co,pass })); */
+    }
+            // On submit of the form, send a POST request with the data to the server.
+/*             fetch('http://localhost:9001/api', {
+                method: 'POST',
+                data: {no,ap,doc,co,pass
+                    nombre: {no},
+                    apellido: {ap},
+                    tipoDocumento:{},
+                    documento: {doc},
+                    correo: {co},
+                    contrasena: {pass},
+                    tipoUsuario:{},
+                }
+            })
+                .then(function (response) {
+                    return response.json()
+                }).then(function (body) {
+                    console.log(body);
+                });
+    } */
+
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -82,29 +153,17 @@ const App = () => {
             documento.valido === 'true' &&
             terminos
         ) {
-
+            onSubmitt(nombre.campo,apellido.campo)
             console.log('ENVIADOOO');
-            console.log({
+/*             console.log({
                 nombre,
                 apellido,
                 password,
                 correo,
                 documento,
-            });
-/*             var self = this;
-            // On submit of the form, send a POST request with the data to the server.
-            fetch('http://localhost:9001/api', {
-                method: 'POST',
-                data: {
-                    nombre: self.refs.nombre,
-                    apellido: self.refs.apellido
-                }
-            })
-                .then(function (response) {
-                    return response.json()
-                }).then(function (body) {
-                    console.log(body);
-                }); */
+            }); */
+
+            
 
 
 
@@ -121,13 +180,14 @@ const App = () => {
 
 
             cambiarFormularioValido(true);
-            cambiarUsuario({ campo: '', valido: '' });
+            /* cambiarUsuario({ campo: '', valido: '' }); */
             cambiarNombre({ campo: '', valido: null });
             cambiarApellido({ campo: '', valido: null });
             cambiarPassword({ campo: '', valido: null });
             cambiarPassword2({ campo: '', valido: 'null' });
             cambiarCorreo({ campo: '', valido: null });
             cambiarDocumento({ campo: '', valido: null });
+            cambiarTipoDocumento({campo: '', valido: null});
 
             // ... 
         } else {
@@ -144,7 +204,8 @@ const App = () => {
                     <Label  >Tipo de documento
                         <div className="doc">
                             <select
-                                /* value={TipoDocumento} */
+                                /* value={tipoDocumento} */
+                                estado={tipoDocumento}
                                 placeholder="Tipo de documento"
                                 type="select"
                                 name="select"
@@ -203,18 +264,21 @@ const App = () => {
                     expresionRegular={expresiones.nombre}
                 />
 
-                <Input
-                    /* onChange={handleChange} */
-                    estado={correo}
-                    /* value={Correo} */
-                    cambiarEstado={cambiarCorreo}
-                    tipo="correo"
-                    label="Correo Electrónico"
-                    placeholder="john@correo.com"
-                    name="correo"
-                    leyendaError="El correo solo puede contener letras, numeros, puntos, guiones y guion bajo."
-                    expresionRegular={expresiones.correo}
-                />
+                <ContenedorCorreo>
+                    <Input
+                        /* onChange={handleChange} */
+                        estado={correo}
+                        /* value={Correo} */
+                        cambiarEstado={cambiarCorreo}
+                        tipo="correo"
+                        label="Correo Electrónico"
+                        placeholder="john@correo.com"
+                        name="correo"
+                        leyendaError="El correo solo puede contener letras, numeros, puntos, guiones y guion bajo."
+                        expresionRegular={expresiones.correo}
+                    />
+                </ContenedorCorreo>
+
                 <Input
                     /* onChange={handleChange} */
                     estado={password}
@@ -260,10 +324,12 @@ const App = () => {
                     </p>
                 </MensajeError>}
                 <ContenedorBotonCentrado>
-                    <Boton type="submit">Enviar</Boton>
+                    <Boton type="submit" /* onClick={handleClose} */>Enviar</Boton>
                     {formularioValido === true && <MensajeExito>Formulario enviado exitosamente!</MensajeExito>}
                 </ContenedorBotonCentrado>
+                <br></br>
             </Formulario>
+
         </main>
     );
 }
