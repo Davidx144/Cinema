@@ -1,7 +1,7 @@
 import './inicio.css'
 import 'bootstrap/dist/js/bootstrap.min.js';
 /* import React from 'react'; */
-import React/* , { Component, useState, state }  */from "react";
+import React/* , { Component, useState, state }  */ from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 /* import img from 'react-bootstrap/img' */
 import Container from 'react-bootstrap/Container';
@@ -16,12 +16,12 @@ import peli1 from "../../assert/peli1.jpg";
 import peli2 from "../../assert/peli2.jpg";
 import peli3 from "../../assert/peli3.jpg";
 
+import { components } from 'react-select';
 /* import { Form } from 'react-bootstrap';
 import entra from '../../assert/logo.png'; */
 
 const Inicio = () => {
     return (
-
         <Container>
             <Row Col-8 className="corru">
                 <Carousel>
@@ -62,7 +62,6 @@ const Inicio = () => {
                 </Carousel>
 
             </Row></Container >
-
     );
 }
 

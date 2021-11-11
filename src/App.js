@@ -12,6 +12,8 @@ import Reguistro from './components/reguistro/reguistro';
 import Footer from "./components/footer/footer";
 import NavbarP from './components/navbar/navbar';
 import Inicio from './components/inicio/inicio';
+import Home from './components/Home/Home';
+
 export const browserHistory = createBrowserHistory({ basename: "/iniciooo" });
 function App() {
   return (
@@ -34,8 +36,13 @@ function App() {
         </div>
       </header>
       <body >
-
-
+        <br></br>
+        <Router history={browserHistory} basename={'/'}>
+          <Switch>
+            <Route exact path="/" component={Home} />
+          </Switch>
+        </Router>
+        <br></br>
       </body>
       <footer class="text-center text-lg-start bg-light text-muted" >
         <Footer></Footer>

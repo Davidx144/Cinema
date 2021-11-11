@@ -2,10 +2,11 @@ import '../reguistro/reguistro.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 /* import styled from 'styled-components'; */
 import React, { useState } from 'react';
-import { Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError, ContenedorCorreo } from './elementos/Formularios';
+import { Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError, ContenedorCorreo, ContenedorSelec } from './elementos/Formularios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from './componentes/Input';
+import Select from 'react-select'
 /* import { Navbar, Nav, Container, NavDropdown, Modal, Button, Row, Col, Form,  input } from 'react-bootstrap'; */
 
 
@@ -28,7 +29,7 @@ const App = () => {
         nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
         password: /(?=.*[0-9]{1})(?=.*[a-z]{1})(?=.*[A-Z]{1})[a-zA-Z0-9]{5,50}$/, // 5 a 50 digitos obligatorio minus mayus numeros.
         correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-        documento: /^\d{1,30}$/ // 1 a 20 numeros.
+        documento: /^\d{1,30}$/ // 1 a 30 numeros.
     }
 
     const validarPassword2 = () => {
@@ -45,61 +46,39 @@ const App = () => {
         }
     }
 
-
-    /*     const [usuarioReguistro, setUsuarioR] = useState({
-            Nombre: "",
-            Apellido: "",
-            TipoDocumento: "cedula",
-            Documento: "",
-            Correo: "",
-            Password: "",
-            TipoUsuario: "usuario"
-        })
-        const handleChange = e => {
-            setUsuarioR({
-                ...usuarioReguistro,
-                [e.target.name]: e.target.value
-            })
-        };
-        // let { Nombre, Apellido, TipoDocumento, Documento, Correo, Contrasena, TipoUsuario } = usuarioReguistro 
-        let { Nombre, Apellido, TipoDocumento, Documento, Correo, Password } = usuarioReguistro
-    */
     const onChangeTerminos = (e) => {
         cambiarTerminos(e.target.checked);
     }
 
 
     const onSubmitt = (e) => {
-        /* e.preventDefault(); */
         console.log(nombre.campo);
         console.log(apellido.campo);
         console.log(correo.campo);
         console.log(documento.campo);
+        console.log(tipoDocumento);
+
         console.log({
             nombre,
             apellido,
             correo,
-
-            /*             password,
-                        correo,
-                        documento, */
         });
-        /* var self = this; */
         var no = nombre.campo;
         var ap = apellido.campo;
         var doc = documento.campo;
         var co = correo.campo;
         var pass = password.campo;
-        var user={
-            nombre:no,
-            apellido:ap,
-            documento:doc,
-            correo:co,
-            contrasena:pass,
-            tipoUsuario:'usuario',
-            tipoDocumento:'cedula'
+        var tDoc = tipoDocumento.campo;
+        var user = {
+            nombre: no,
+            apellido: ap,
+            documento: doc,
+            correo: co,
+            contrasena: pass,
+            tipoUsuario: 'usuario',
+            tipoDocumento: tDoc,
         };
-        
+
         const requestInit = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -110,34 +89,34 @@ const App = () => {
             .then(res => console.log(res))
 
 
-/*         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: 'React POST Request Example' })
-        };
-        fetch('http://localhost:9001/api', requestOptions)
-            .then(response => response.json())
-            .then(data => this.setState({nombre,ap,doc,co,pass })); */
+        /*         const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title: 'React POST Request Example' })
+                };
+                fetch('http://localhost:9001/api', requestOptions)
+                    .then(response => response.json())
+                    .then(data => this.setState({nombre,ap,doc,co,pass })); */
     }
-            // On submit of the form, send a POST request with the data to the server.
-/*             fetch('http://localhost:9001/api', {
-                method: 'POST',
-                data: {no,ap,doc,co,pass
-                    nombre: {no},
-                    apellido: {ap},
-                    tipoDocumento:{},
-                    documento: {doc},
-                    correo: {co},
-                    contrasena: {pass},
-                    tipoUsuario:{},
-                }
-            })
-                .then(function (response) {
-                    return response.json()
-                }).then(function (body) {
-                    console.log(body);
-                });
-    } */
+    // On submit of the form, send a POST request with the data to the server.
+    /*             fetch('http://localhost:9001/api', {
+                    method: 'POST',
+                    data: {no,ap,doc,co,pass
+                        nombre: {no},
+                        apellido: {ap},
+                        tipoDocumento:{},
+                        documento: {doc},
+                        correo: {co},
+                        contrasena: {pass},
+                        tipoUsuario:{},
+                    }
+                })
+                    .then(function (response) {
+                        return response.json()
+                    }).then(function (body) {
+                        console.log(body);
+                    });
+        } */
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -153,17 +132,17 @@ const App = () => {
             documento.valido === 'true' &&
             terminos
         ) {
-            onSubmitt(nombre.campo,apellido.campo)
+            onSubmitt(nombre.campo, apellido.campo)
             console.log('ENVIADOOO');
-/*             console.log({
-                nombre,
-                apellido,
-                password,
-                correo,
-                documento,
-            }); */
+            /*             console.log({
+                            nombre,
+                            apellido,
+                            password,
+                            correo,
+                            documento,
+                        }); */
 
-            
+
 
 
 
@@ -187,7 +166,7 @@ const App = () => {
             cambiarPassword2({ campo: '', valido: 'null' });
             cambiarCorreo({ campo: '', valido: null });
             cambiarDocumento({ campo: '', valido: null });
-            cambiarTipoDocumento({campo: '', valido: null});
+            cambiarTipoDocumento({ campo: '', valido: null });
 
             // ... 
         } else {
@@ -195,13 +174,17 @@ const App = () => {
         }
 
     }
-
+    const options = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+    ]
     return (
         <main>
 
             <Formulario action="" onSubmit={onSubmit}>
                 <div >
-                    <Label  >Tipo de documento
+                <Label  >Tipo de documento
                         <div className="doc">
                             <select
                                 /* value={tipoDocumento} */
@@ -222,7 +205,33 @@ const App = () => {
                             </select>
                         </div>
                     </Label>
+{/*                     <Label  >Tipo de documento
+
+
+
+                        <Input
+                            estado={tipoDocumento}
+                            cambiarEstado={cambiarTipoDocumento}
+                            placeholder="Tipo de documento"
+                            type="select"
+                            name="select"
+                            id="select"
+                            className="select"
+                            options={options}
+                        />
+
+                    </Label> */}
                 </div>
+
+                {/*                 <Select
+                    placeholder="Tipo de documento"
+                    type="select"
+                    name="select"
+                    id="select"
+                    className="select"
+                    options={options}
+                /> */}
+
 
                 <Input
                     /* onChange={handleChange} */
@@ -236,7 +245,15 @@ const App = () => {
                     leyendaError="El documento solo puede contener numeros."
                     expresionRegular={expresiones.documento}
                 />
+                {/*                 <Select
 
+                    placeholder="Tipo de documento"
+                    type="select"
+                    name="select"
+                    id="select"
+                    className="select"
+                    inputValue={options}
+                /> */}
 
                 <Input
                     /* onChange={handleChange} */

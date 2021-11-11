@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+/* import { ContenedorSelec } from './elementos/Formularios'; */
 
 const colores = {
 	borde: "#0075FF",
@@ -112,6 +113,13 @@ const ContenedorCorreo = styled.div`
 	}
 `;
 
+const ContenedorSelec = styled.select`
+	grid-column: span 2;
+	@media (max-width: 800px){
+		grid-column: span 1;
+	}
+`;
+
 const ContenedorBotonCentrado = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -169,6 +177,7 @@ export {
 	IconoValidacion,
 	ContenedorTerminos,
 	ContenedorCorreo,
+	ContenedorSelec,
 	ContenedorBotonCentrado,
 	Boton,
 	MensajeExito,
