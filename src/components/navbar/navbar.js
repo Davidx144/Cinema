@@ -52,7 +52,7 @@ function NavbarP() {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto" >
-                        <Nav.Link href="/cartelera" >Cartelera </Nav.Link>
+                        <Nav.Link href="#carteleraHome" >Cartelera </Nav.Link>
                         <Nav.Link href="/reservas" > Lista de reservas </Nav.Link>
                         <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" >
                             <NavDropdown.Item href="/agregar" > Agregar películas

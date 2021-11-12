@@ -58,7 +58,7 @@ function Home() {
 
 
       <div>
-        <div>
+        <div id="carteleraHome">
           {/* Filtro */}
           <p>Hola</p>
         </div>
@@ -101,7 +101,7 @@ function showListedElements() {
       <Listcards img={houses} lugar="Loma de los bernal" tipo="casa" precio="350'000.000" fuente="Fincaraiz.com" />
       <Listcards img={houses} lugar="Loma de los bernal" tipo="casa" precio="350'000.000" fuente="Fincaraiz.com" />
       <Listcards img={houses} lugar="Loma de los bernal" tipo="casa" precio="350'000.000" fuente="Fincaraiz.com" />
-      <Listcards img={houses} lugar="Loma de los bernal" tipo="casa" precio="350'000.000" fuente="Fincaraiz.com" />
+      <Listcards img={houses} lugar="Loma de los bernal" tipo="casa" precio="350'000.000" fuente="Eternals de Marvel Studios, sigue a un grupo de héroes más allá de las estrellas que han protegido a la Tierra desde el principio de los tiempos" />
     </div>
 
   )
