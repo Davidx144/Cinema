@@ -181,31 +181,31 @@ const App = () => {
     ]
     return (
         <main>
+            <div className="container ">
+                <Formulario action="" onSubmit={onSubmit}>
+                    <div >
+                        <Label  >Tipo de documento
+                            <div className="doc">
+                                <select
+                                    /* value={tipoDocumento} */
+                                    estado={tipoDocumento}
+                                    placeholder="Tipo de documento"
+                                    type="select"
+                                    name="select"
+                                    id="select"
+                                    className="select"
+                                /* checked={terminos} */
+                                /* onChange={onChangeTerminos} */
+                                >
+                                    <option>Selecciona tu tipo de documento</option>
+                                    <option value="cc">Cédula de Ciudadanía</option>
+                                    <option value="ps">Pasaporte</option>
+                                    <option value="ti">Tarjeta de identidad</option>
 
-            <Formulario action="" onSubmit={onSubmit}>
-                <div >
-                <Label  >Tipo de documento
-                        <div className="doc">
-                            <select
-                                /* value={tipoDocumento} */
-                                estado={tipoDocumento}
-                                placeholder="Tipo de documento"
-                                type="select"
-                                name="select"
-                                id="select"
-                                className="select"
-                            /* checked={terminos} */
-                            /* onChange={onChangeTerminos} */
-                            >
-                                <option>Selecciona tu tipo de documento</option>
-                                <option value="cc">Cédula de Ciudadanía</option>
-                                <option value="ps">Pasaporte</option>
-                                <option value="ti">Tarjeta de identidad</option>
-
-                            </select>
-                        </div>
-                    </Label>
-{/*                     <Label  >Tipo de documento
+                                </select>
+                            </div>
+                        </Label>
+                        {/*                     <Label  >Tipo de documento
 
 
 
@@ -221,9 +221,9 @@ const App = () => {
                         />
 
                     </Label> */}
-                </div>
+                    </div>
 
-                {/*                 <Select
+                    {/*                 <Select
                     placeholder="Tipo de documento"
                     type="select"
                     name="select"
@@ -233,19 +233,19 @@ const App = () => {
                 /> */}
 
 
-                <Input
-                    /* onChange={handleChange} */
-                    estado={documento}
-                    /* value={Documento} */
-                    cambiarEstado={cambiarDocumento}
-                    tipo="text"
-                    label="Número de documento"
-                    placeholder="Coloca tu numero de documento"
-                    name="documento"
-                    leyendaError="El documento solo puede contener numeros."
-                    expresionRegular={expresiones.documento}
-                />
-                {/*                 <Select
+                    <Input
+                        /* onChange={handleChange} */
+                        estado={documento}
+                        /* value={Documento} */
+                        cambiarEstado={cambiarDocumento}
+                        tipo="text"
+                        label="Número de documento"
+                        placeholder="Coloca tu numero de documento"
+                        name="documento"
+                        leyendaError="El documento solo puede contener numeros."
+                        expresionRegular={expresiones.documento}
+                    />
+                    {/*                 <Select
 
                     placeholder="Tipo de documento"
                     type="select"
@@ -255,98 +255,98 @@ const App = () => {
                     inputValue={options}
                 /> */}
 
-                <Input
-                    /* onChange={handleChange} */
-                    estado={nombre}
-                    /* value={Nombre} */
-                    cambiarEstado={cambiarNombre}
-                    tipo="text"
-                    label="Nombres"
-                    placeholder="Coloque su nombre"
-                    name="nombre"
-                    leyendaError="El nombre solo puede contener letras y espacios."
-                    expresionRegular={expresiones.nombre}
-                />
-
-                <Input
-                    /* onChange={handleChange} */
-                    estado={apellido}
-                    /* value={Apellido} */
-                    cambiarEstado={cambiarApellido}
-                    tipo="text"
-                    label="Apellidos"
-                    placeholder="Coloque su apellido"
-                    name="apellido"
-                    leyendaError="El apellido solo puede contener letras y espacios."
-                    expresionRegular={expresiones.nombre}
-                />
-
-                <ContenedorCorreo>
                     <Input
                         /* onChange={handleChange} */
-                        estado={correo}
-                        /* value={Correo} */
-                        cambiarEstado={cambiarCorreo}
-                        tipo="correo"
-                        label="Correo Electrónico"
-                        placeholder="john@correo.com"
-                        name="correo"
-                        leyendaError="El correo solo puede contener letras, numeros, puntos, guiones y guion bajo."
-                        expresionRegular={expresiones.correo}
+                        estado={nombre}
+                        /* value={Nombre} */
+                        cambiarEstado={cambiarNombre}
+                        tipo="text"
+                        label="Nombres"
+                        placeholder="Coloque su nombre"
+                        name="nombre"
+                        leyendaError="El nombre solo puede contener letras y espacios."
+                        expresionRegular={expresiones.nombre}
                     />
-                </ContenedorCorreo>
 
-                <Input
-                    /* onChange={handleChange} */
-                    estado={password}
-                    /* campo={Password} */
-                    cambiarEstado={cambiarPassword}
-                    tipo="password"
-                    label="Contraseña"
-                    name="passwordU"
-                    leyendaError="La contraseña tiene que ser minimo de 5 caracteres, mayusculas, minusculas y numeros.    "
-                    expresionRegular={expresiones.password}
-                />
-                <Input
-                    /* onChange={handleChange} */
-                    estado={password2}
-                    cambiarEstado={cambiarPassword2}
-                    tipo="password"
-                    label="Repetir Contraseña"
-                    name="password2"
-                    leyendaError="Ambas contraseñas deben ser iguales."
-                    funcion={validarPassword2}
-                />
+                    <Input
+                        /* onChange={handleChange} */
+                        estado={apellido}
+                        /* value={Apellido} */
+                        cambiarEstado={cambiarApellido}
+                        tipo="text"
+                        label="Apellidos"
+                        placeholder="Coloque su apellido"
+                        name="apellido"
+                        leyendaError="El apellido solo puede contener letras y espacios."
+                        expresionRegular={expresiones.nombre}
+                    />
 
-
-
-
-
-                <ContenedorTerminos>
-                    <Label>
-                        <input
-                            type="checkbox"
-                            name="terminos"
-                            id="terminos"
-                            checked={terminos}
-                            onChange={onChangeTerminos}
+                    <ContenedorCorreo>
+                        <Input
+                            /* onChange={handleChange} */
+                            estado={correo}
+                            /* value={Correo} */
+                            cambiarEstado={cambiarCorreo}
+                            tipo="correo"
+                            label="Correo Electrónico"
+                            placeholder="john@correo.com"
+                            name="correo"
+                            leyendaError="El correo solo puede contener letras, numeros, puntos, guiones y guion bajo."
+                            expresionRegular={expresiones.correo}
                         />
-                        Acepto los Terminos y Condiciones
-                    </Label>
-                </ContenedorTerminos>
-                {formularioValido === false && <MensajeError>
-                    <p>
-                        <FontAwesomeIcon icon={faExclamationTriangle} />
-                        <b>Error:</b> Por favor rellena el formulario correctamente.
-                    </p>
-                </MensajeError>}
-                <ContenedorBotonCentrado>
-                    <Boton type="submit" /* onClick={handleClose} */>Enviar</Boton>
-                    {formularioValido === true && <MensajeExito>Formulario enviado exitosamente!</MensajeExito>}
-                </ContenedorBotonCentrado>
-                <br></br>
-            </Formulario>
+                    </ContenedorCorreo>
 
+                    <Input
+                        /* onChange={handleChange} */
+                        estado={password}
+                        /* campo={Password} */
+                        cambiarEstado={cambiarPassword}
+                        tipo="password"
+                        label="Contraseña"
+                        name="passwordU"
+                        leyendaError="La contraseña tiene que ser minimo de 5 caracteres, mayusculas, minusculas y numeros.    "
+                        expresionRegular={expresiones.password}
+                    />
+                    <Input
+                        /* onChange={handleChange} */
+                        estado={password2}
+                        cambiarEstado={cambiarPassword2}
+                        tipo="password"
+                        label="Repetir Contraseña"
+                        name="password2"
+                        leyendaError="Ambas contraseñas deben ser iguales."
+                        funcion={validarPassword2}
+                    />
+
+
+
+
+
+                    <ContenedorTerminos>
+                        <Label>
+                            <input
+                                type="checkbox"
+                                name="terminos"
+                                id="terminos"
+                                checked={terminos}
+                                onChange={onChangeTerminos}
+                            />
+                            Acepto los Terminos y Condiciones
+                        </Label>
+                    </ContenedorTerminos>
+                    {formularioValido === false && <MensajeError>
+                        <p>
+                            <FontAwesomeIcon icon={faExclamationTriangle} />
+                            <b>Error:</b> Por favor rellena el formulario correctamente.
+                        </p>
+                    </MensajeError>}
+                    <ContenedorBotonCentrado>
+                        <Boton type="submit" /* onClick={handleClose} */>Enviar</Boton>
+                        {formularioValido === true && <MensajeExito>Formulario enviado exitosamente!</MensajeExito>}
+                    </ContenedorBotonCentrado>
+                    <br></br>
+                </Formulario>
+            </div>
         </main>
     );
 }
