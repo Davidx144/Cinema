@@ -34,7 +34,7 @@ function footer() {
                                 ¡Si tienes alguna sugerencia no dudes en contactarnos!
                             </p>
                             <div>
-                                <img class="logoIcono" src={icono}></img>
+                                <img class="logoIcono" src={icono}/>
                             </div >
                         </div >
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4" >
