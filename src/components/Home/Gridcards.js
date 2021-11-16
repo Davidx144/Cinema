@@ -3,15 +3,16 @@ import bootstrapMin from 'bootstrap/dist/js/bootstrap.min';
 
 const Gridcards = props => {
     return (
+        /* col-sm-12 col-lg-6 */
         <div class="col-sm-3">
-            <div class="grid">
+            <div class="grid h-100">
                 <img class="card-img-top" src={props.img} alt="Card cap"/>
                 <div class="card-body bg-dark">
-                    <h4 class="card-text text-align-left"><strong>Lugar:</strong> {props.lugar}</h4>
-                    <p class="card-text text-align-left"><strong>Tipo:</strong> {props.tipo}</p>
-                    <p class="card-text text-align-left"><strong>Precio:</strong> {props.precio}</p>
-                    <p class="card-text text-align-left"><strong>Fuente:</strong> {props.fuente}</p>
-                    <a href="/" class="btn btn-primary">Más información</a>
+                    <h5 class="card-text text-align-left"><strong>Titulo:</strong> {props.Titulo}</h5>
+                    <p class="card-text text-align-left"><strong>Genero:</strong> {props.Genero}</p>
+                    <p class="card-text text-align-left"><strong>Duracion:</strong> {props.Duracion}</p>
+                    <p class="card-text text-align-left"><strong>Formato:</strong> {props.Formato}</p>
+                    <a href="/" class="btn btn-primary">Reservar</a>
                 </div>
             </div>
             <br></br>

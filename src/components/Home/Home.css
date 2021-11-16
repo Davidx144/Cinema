@@ -19,6 +19,31 @@ body {
     background: linear-gradient(0deg, rgba(34, 100, 195, 0.3984944319524685) 0%, rgba(148, 30, 30, 0.6225840678068102) 100%);
 }
 
+
+/* body.custom-shape-divider-bottom-1636836538 important{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg) !important;
+}
+
+body.custom-shape-divider-bottom-1636836538 svg {
+    position: relative;
+    display: block;
+    width: calc(224% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider-bottom-1636836538 .shape-fill {
+    fill: #B83123;
+} */
+
+
+
+
 body.custom-shape-divider-top-1636681532 {
     position: absolute;
     top: 0;
@@ -54,6 +79,12 @@ body.custom-shape-divider-top-1636681532 svg {
         height: 65px;
     }
 }
+
+
+
+
+
+
 
 
 
@@ -129,9 +160,11 @@ input[type=number] {
 }
 
 .listCard {
-    width: 800px;
-    height: 800px;
+    width: 700px;
+    height: 700px;
     max-width: 810px;
+    /*     display: flex;
+    flex-wrap: wrap; */
     /* grid-template-columns: 1fr 1fr; */
     /*     @media (max-width: 800px){
         grid-template-columns: 1fr;
@@ -145,12 +178,73 @@ input[type=number] {
     position: relative;
     align-items: center;
     margin: auto;
+    /*     display: flex;
+    flex-wrap: wrap; */
 }
 
 .btn .btn-primary {
     align-items: center;
     text-align: center;
+    /*     display: flex;
+    flex-wrap: wrap; */
+    /* position: bottom; */
+
 }
+
+.grid {
+    /*     width: 300px;
+    height: 450px;
+    margin: auto;
+    align-content: center;
+    display:block; */
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.terms {
+    /* display: flex; */
+    margin: auto;
+    background-color: rgba(214, 116, 116, 0.575);
+    border-radius: 20px;
+    min-width: 320px;
+    padding: 1 rem;
+    /* width: 25% */
+/*     gap: 10 px;
+    padding: 1 rem; */
+    /*     align-items: center;
+    text-align: center; */
+    /* width: auto; */
+}
+
+
+.space {
+    margin: 10px;
+
+}
+
+/* .terms.col-4.mb-6.d-lg-block{
+    width: 25%;
+} */
+
+/* .terms.col-4.mb-6.d-lg-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10 px;
+    padding: 10 px;
+    margin: auto;
+    align-items: center;
+    border-radius: 10px;
+} */
+
+/*   .form-range{
+      min-width: 200px;
+  } */
+
+/* .card-img-top{
+    width: 300px;
+    height: 200px;
+} */
 
 /* @media (max-width: 800px) {
     .card {

@@ -8,7 +8,7 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from './componentes/Input';
 import Select from 'react-select'
 /* import { Navbar, Nav, Container, NavDropdown, Modal, Button, Row, Col, Form,  input } from 'react-bootstrap'; */
-
+import mongoose from 'mongoose';
 
 const App = () => {
     /* const [usuario, cambiarUsuario] = useState({ campo: '', valido: null }); */
@@ -68,8 +68,9 @@ const App = () => {
         var doc = documento.campo;
         var co = correo.campo;
         var pass = password.campo;
+        var pass2 = password2.campo;
         var tDoc = tipoDocumento.campo;
-        var user = {
+/*         var user = {
             nombre: no,
             apellido: ap,
             documento: doc,
@@ -77,17 +78,25 @@ const App = () => {
             contrasena: pass,
             tipoUsuario: 'usuario',
             tipoDocumento: tDoc,
+        }; */
+        var user = {
+            firstname: "no",
+            lastname: "ap",
+            email: "co",
+            password: "pass",
+            password2: "pass2",
+            document: "doc",
+            documentType: "Cedula",
+            userType: "usuario"
         };
-
         const requestInit = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
         }
-        fetch('http://localhost:9001/api', requestInit)
+            fetch('http://localhost:3002/api/register', requestInit)
             .then(res => res.text())
             .then(res => console.log(res))
-
 
         /*         const requestOptions = {
                     method: 'POST',
