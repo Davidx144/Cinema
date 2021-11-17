@@ -80,12 +80,12 @@ const App = () => {
             tipoDocumento: tDoc,
         }; */
         var user = {
-            firstname: "no",
-            lastname: "ap",
-            email: "co",
-            password: "pass",
-            password2: "pass2",
-            document: "doc",
+            firstname: no,
+            lastname: ap,
+            email: co,
+            password: pass,
+            password2: pass2,
+            document: doc,
             documentType: "Cedula",
             userType: "usuario"
         };
@@ -94,7 +94,7 @@ const App = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
         }
-            fetch('http://localhost:3002/api/register', requestInit)
+            fetch('http://localhost:3001/api/register', requestInit)
             .then(res => res.text())
             .then(res => console.log(res))
 

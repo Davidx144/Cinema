@@ -167,10 +167,10 @@ const Reservas = () => {
                     <table class="table table-striped">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Phone Number</th>
-                                <th scope="col">Email</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Horario</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Valor</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
