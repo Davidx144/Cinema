@@ -94,7 +94,7 @@ const App = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
         }
-            fetch('http://localhost:3001/api/register', requestInit)
+            fetch('http://localhost:9001/api', requestInit)
             .then(res => res.text())
             .then(res => console.log(res))
 
