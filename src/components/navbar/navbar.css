@@ -1,0 +1,21 @@
+.Modal.Title{
+    position: relative;
+    text-align: center;
+}
+.modal-header{
+    position: relative;
+    text-align: center;
+    margin:auto;
+}
+.botones{
+    position: relative;
+    text-align: center;
+    margin: auto;
+}
+
+/* #Modal.Footer{
+    position: relative;
+    text-align: center;
+    margin:auto;
+}
+ */

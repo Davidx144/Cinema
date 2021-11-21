@@ -1,0 +1,36 @@
+https://www.youtube.com/watch?v=tli5n_NqQW8
+Guia formulario
+https://github.com/falconmasters/validacion-formularios-react
+validacion
+
+https://styled-components.com/docs/basics#installation
+npm install --save styled-components
+Usare styled-components para manejar mejor el css
+
+https://fonts.google.com/
+para cambiar entre tipos de letras, luego se le da en importar 
+se copia el @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); en el css
+y el font-family: 'Roboto', sans-serif; en el componente que se quiera
+
+Las costantes se pueden poner antes o despues del return
+comienzan con letra mayus
+
+un componente empiesa como una funcion
+esta es la estructura
+
+const App = () => {
+
+    return (
+        <main>
+            <form action="">
+                <label htmlFor=""> Usuario </label>
+                <input type="text" placeholder="usuario"></input>
+                <p>pie de formuluario</p>
+            </form>
+        </main>
+    );
+}
+
+const Formulario = style.form'
+    background: #ccc'
+export default App;

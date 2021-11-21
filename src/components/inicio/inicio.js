@@ -1,71 +1,68 @@
-import '../inicio/inicio.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card'
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './inicio.css'
 import 'bootstrap/dist/js/bootstrap.min.js';
-import entra from '../images/logo.png';
-import sale from '../images/logo.png';
-import consul from '../images/logo.png';
-import parque from '../images/logo.png';
-function Inicio() {
+/* import React from 'react'; */
+import React/* , { Component, useState, state }  */ from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+/* import img from 'react-bootstrap/img' */
+import Container from 'react-bootstrap/Container';
+/* import Card from 'react-bootstrap/Card' */
+import Row from 'react-bootstrap/Row';
+/* import Button from 'react-bootstrap/Button'; */
+import swal from 'sweetalert';
+
+
+import Carousel from 'react-bootstrap/Carousel'
+import peli1 from "../../assert/peli1.jpg";
+import peli2 from "../../assert/peli2.jpg";
+import peli3 from "../../assert/peli3.jpg";
+
+import { components } from 'react-select';
+/* import { Form } from 'react-bootstrap';
+import entra from '../../assert/logo.png'; */
+
+const Inicio = () => {
     return (
-        <a>aaaaa</a>
-/*         <Container>
-            <Row Col-8 className="cards">
-                <Card className="cards"
-                    style={{ width: '18rem' }} >
-                    <Card.Img variant="top"
-                        src={entra} />
-                    <Card.Body >
-                        <Card.Title > Registrar Ingreso
-                        </Card.Title>
-                        <Card.Text >
-                            Aquí puedes registrar los vehículos que ingresan, teniendo en cuenta tan solo el número de su placa.
-                        </Card.Text>
-                        <Button variant="primary" href="../registro">
-                            Ingreso
-                        </Button></Card.Body >
-                </Card>
-                <Card className="cards" style={{ width: '18rem' }} >
-                    <Card.Img variant="top" src={sale} />
-                    <Card.Body >
-                        <Card.Title > Registrar Salida
-                        </Card.Title>
-                        <Card.Text >
+        <Container>
+            <Row Col-8 className="corru">
+                <Carousel>
+                    <Carousel.Item interval={4000}>
+                        <img
+                            className="d-block w-100"
+                            src={peli1}
+                            alt="First slide"
 
-                            Aquí deberás registrar la salida de los vehículos, da clic para ver cuento debes cobrarle al usuario.
-                        </Card.Text>
-                        < Button variant="primary" href="../salida"> Salida </Button>
-                    </Card.Body>
-                </Card>
-                <Card className="cards" style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={parque} />
-                    <Card.Body>
-                        <Card.Title>
-                            Vehículos Parqueados </Card.Title>
-                        <Card.Text>En esta parte podrás consultar todos los vehículos que se encuentran actualmente en el parqueadero.
-                        </Card.Text> <Button variant="primary" href="../parqueados"> Parqueados
-                        </Button>
-                    </Card.Body>
-                </Card>
-                <Card className="cards" style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={consul} />
-                    <Card.Body >
-                        <Card.Title > Buscar por placa
-                        </Card.Title>
-                        <Card.Text >
-                            En esta sesión podrás consultar por un vehículo en especifico usando la placa de este como identificador único.
-                        </Card.Text>
-                        <Button variant="primary" href="../buscar" >
-                            Buscar </Button>
-                    </Card.Body >
-                </Card>
-            </Row></Container > */
+                        />
+                        <Carousel.Caption>
+                            <h3>Eternals</h3>
+                            <p>"Eternals" de Marvel Studios, sigue a un grupo de héroes más allá de las estrellas que han protegido a la Tierra desde el principio de los tiempos.</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item interval={4000}>
+                        <img
+                            className="d-block w-100"
+                            src={peli2}
+                            alt="Second slide"
+                        />
+                        <Carousel.Caption>
+                            <h3>Venom: Let There Be Carnage</h3>
+                            <p>Eddie y Venom están luchando por coexistir cuando el simbionte más grande y malo se une con Cletus Kasady</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item interval={4000}>
+                        <img
+                            className="d-block w-100"
+                            src={peli3}
+                            alt="Third slide"
+                        />
+                        <Carousel.Caption>
+                            <h3>Dune</h3>
+                            <p>Arrakis, el planeta del desierto, feudo de la familia Harkonnen desde hace generaciones, queda en manos de la Casa de los Atreides</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                </Carousel>
 
-            
-    )
+            </Row></Container >
+    );
 }
+
 export default Inicio;

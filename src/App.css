@@ -52,8 +52,8 @@
   filter: blur(15px);
   transform: scale(1.2,1.4);
 }
-body {
-  background-image: url("/src/components/images/cinema.jpg");
+.body {
+  background-image: url("/src/assert/cinema.jpg");
   background-color: #cccccc;
   background-repeat: no-repeat;
   background-position: center;
@@ -74,14 +74,17 @@ body {
 }
 
 .header {
-  background: url("/src/components/images/cinema.jpg") no-repeat center;
+  background: url("../src/assert/cinema.jpg") no-repeat center;
   background-size: cover;
   min-height: 100vh;
 }
 .header .navbar {
   background-color: transparent !important;
+  /* position: fixed; */
 }
 
 .Modal.Footer{
   position: center;
 }
+
+
