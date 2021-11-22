@@ -39,6 +39,39 @@ function NavbarP() {
         console.log(value);
     }
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+ {
+            console.log(e);
+            var co = e.correo;
+            var pass = e.contresena;
+
+            var user = {
+                email: co,
+                password: pass,
+            };
+            console.log(user);
+
+
+            const caragarUsuario = JSON.stringify(user);
+            console.log(caragarUsuario);
+            const v = fetch('/api/login', {
+                /* const v = fetch('http://localhost:3002/api/register', { */
+
+                method: "POST",
+                body: caragarUsuario,
+                headers:
+                    { "Content-Type": "application/json" },
+            });
+
+        }
+
+
+    }
+
+
+
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" position="fixed">
             <Container >
@@ -71,7 +104,7 @@ function NavbarP() {
                                 <Modal.Header closeButton >
                                     <Modal.Title > Inicia Sección o Registrate </Modal.Title> </Modal.Header>
                                 <Modal.Body >
-                                    <Form>
+                                    <Form onSubmit={onSubmit}>
                                         {/* <Form.Label>Tipo de documento</Form.Label>
                                         <Form.Select aria-label="Default select example">
                                             <option>Selecciona tu tipo de documento</option>
@@ -85,13 +118,13 @@ function NavbarP() {
                                             <Form.Control type="number" placeholder="Ingresa tú número de documento" />
                                         </Form.Group> */}
 
-                                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                                            <Form.Label>Correo electronico:</Form.Label>
+                                        <Form.Group className="mb-3" controlId="correo">
+                                            <Form.Label value="correo" class="correo" controlId="correo">Correo electronico:</Form.Label>
                                             <Form.Control type="email" placeholder="Ingresa tu email" />
 
                                         </Form.Group>
 
-                                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                                        <Form.Group className="mb-3" controlId="contresena">
                                             <Form.Label>Contraseña:</Form.Label>
                                             <Form.Control type="password" placeholder="Ingresa tu contraseña" />
                                             {/* <Form.Text className="text-muted">
@@ -104,7 +137,7 @@ function NavbarP() {
                                         <Form.Group className="d-grid gap-2 col-6 mx-auto" controlId="formBasicButton">
                                             <Button variant="secondary" onClick={handleClose} >
                                                 Cancelar </Button>
-                                            <Button variant="primary" /* onClick={handleClose} */ type="submit">
+                                            <Button variant="primary" /* onClick={onSubmit} */ type="submit">
                                                 Ingresar </Button>
                                         </Form.Group>
                                     </Form>

@@ -107,22 +107,42 @@ const App = () => {
 
             const caragarUsuario = JSON.stringify(user);
             console.log(caragarUsuario);
+/*             try {
+                const v = fetch('/api/register', {
+                    
+
+                    method: "POST",
+                    body: caragarUsuario,
+                    headers:
+                        { "Content-Type": "application/json" },
+                });
+            } catch (error) {
+                console.log("Ya existe el usuario")
+            } */
+
+
             const v = fetch('/api/register', {
+                /* const v = fetch('http://localhost:3002/api/register', { */
+
                 method: "POST",
                 body: caragarUsuario,
                 headers:
                     { "Content-Type": "application/json" },
             });
 
+            
 
-/*             axios.get(v)
-                .catch(function (error) {
-                    if ((error.response.status) === 400) {
-                        console.log("El usuario ya existe")
-                    } else {
-                        console.log("todo bien")
-                    }
-                }); */
+
+
+
+            /*             axios.get(v)
+                            .catch(function (error) {
+                                if ((error.response.status) === 400) {
+                                    console.log("El usuario ya existe")
+                                } else {
+                                    console.log("todo bien")
+                                }
+                            }); */
             /*                     }else if ((error.response.status) === 400){
                                     console.log("todo bien")
                                 } */
@@ -152,7 +172,7 @@ const App = () => {
             cambiarTipoDocumento({ campo: '', valido: null });
 
             /* err(v); */
-
+             validar();                           
 
             // ... 
         } else {
@@ -163,44 +183,48 @@ const App = () => {
 
     }
 
-/* 
-    const err = (v) => {
-        const v = fetch('/api/register', {
-            method: "GET",
-        });
+    const validar = () =>{
 
-        axios.get(v)
-            .catch(function (error) {
-                if ((error.response.status) === 400) {
-                    console.log("El usuario ya existe")
-                } else {
-                    console.log("todo bien")
-                }
+    }
+
+    /* 
+        const err = (v) => {
+            const v = fetch('/api/register', {
+                method: "GET",
             });
-    } */
-
-
-
-
-
-
-
-    /*     axios.get ('http://localhost:3002/api/register')
-            .catch(function (error) {
-                if (error.response) {
-                    // Request made and server responded
-                    console.log(error.response.data);
-                    console.log(error.response.status);
-                    console.log(error.response.headers);
-                } else if (error.request) {
-                    // The request was made but no response was received
-                    console.log(error.request);
-                } else {
-                    // Something happened in setting up the request that triggered an Error
-                    console.log('Error', error.message);
-                }
     
-            }); */
+            axios.get(v)
+                .catch(function (error) {
+                    if ((error.response.status) === 400) {
+                        console.log("El usuario ya existe")
+                    } else {
+                        console.log("todo bien")
+                    }
+                });
+        } */
+
+
+
+
+
+
+
+    /*         axios.get ('http://localhost:3002/api/register')
+                .catch(function (error) {
+                    if (error.response.status===400) {
+                        // Request made and server responded
+                         console.log(error.response.data); 
+                        console.log("ususario ya existente");
+                         console.log(error.response.headers); 
+                    } else if (error.request) {
+                        // The request was made but no response was received
+                        console.log(error.request);
+                    } else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.log('Error', error.message);
+                    }
+        
+                }); */
 
 
 
@@ -224,7 +248,7 @@ const App = () => {
                                     name="select"
                                     id="select"
                                     className="select"
-                                    /* value="a" */
+                                /* value="a" */
                                 >
                                     <option value="cc">Cédula de Ciudadanía</option>
                                     <option value="ps">Pasaporte</option>
