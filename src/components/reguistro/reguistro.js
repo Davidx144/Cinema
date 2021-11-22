@@ -6,6 +6,8 @@ import { Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from './componentes/Input';
+import axios from 'axios';
+
 import Select from 'react-select'
 /* import { Navbar, Nav, Container, NavDropdown, Modal, Button, Row, Col, Form,  input } from 'react-bootstrap'; */
 import mongoose from 'mongoose';
@@ -63,69 +65,7 @@ const App = () => {
             apellido,
             correo,
         });
-        var no = nombre.campo;
-        var ap = apellido.campo;
-        var doc = documento.campo;
-        var co = correo.campo;
-        var pass = password.campo;
-        var pass2 = password2.campo;
-        var tDoc = tipoDocumento.campo;
-/*         var user = {
-            nombre: no,
-            apellido: ap,
-            documento: doc,
-            correo: co,
-            contrasena: pass,
-            tipoUsuario: 'usuario',
-            tipoDocumento: tDoc,
-        }; */
-        var user = {
-            firstname: no,
-            lastname: ap,
-            email: co,
-            password: pass,
-            password2: pass2,
-            document: doc,
-            documentType: "Cedula",
-            userType: "usuario"
-        };
-        const requestInit = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(user)
-        }
-            fetch('http://localhost:9001/api', requestInit)
-            .then(res => res.text())
-            .then(res => console.log(res))
-
-        /*         const requestOptions = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ title: 'React POST Request Example' })
-                };
-                fetch('http://localhost:9001/api', requestOptions)
-                    .then(response => response.json())
-                    .then(data => this.setState({nombre,ap,doc,co,pass })); */
     }
-    // On submit of the form, send a POST request with the data to the server.
-    /*             fetch('http://localhost:9001/api', {
-                    method: 'POST',
-                    data: {no,ap,doc,co,pass
-                        nombre: {no},
-                        apellido: {ap},
-                        tipoDocumento:{},
-                        documento: {doc},
-                        correo: {co},
-                        contrasena: {pass},
-                        tipoUsuario:{},
-                    }
-                })
-                    .then(function (response) {
-                        return response.json()
-                    }).then(function (body) {
-                        console.log(body);
-                    });
-        } */
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -141,30 +81,64 @@ const App = () => {
             documento.valido === 'true' &&
             terminos
         ) {
-            onSubmitt(nombre.campo, apellido.campo)
+            /* onSubmitt(nombre.campo, apellido.campo) */
             console.log('ENVIADOOO');
-            /*             console.log({
-                            nombre,
-                            apellido,
-                            password,
-                            correo,
-                            documento,
-                        }); */
 
 
 
+            var no = nombre.campo;
+            var ap = apellido.campo;
+            var doc = documento.campo;
+            var co = correo.campo;
+            var pass = password.campo;
+            var pass2 = password2.campo;
+            var tDoc = tipoDocumento.campo;
+            var user = {
+                firstname: no,
+                lastname: ap,
+                email: co,
+                password: pass,
+                password2: pass2,
+                document: doc,
+                documentType: "Cedula",
+                userType: "usuario"
+            };
 
 
+            const caragarUsuario = JSON.stringify(user);
+            console.log(caragarUsuario);
+            const v = fetch('/api/register', {
+                method: "POST",
+                body: caragarUsuario,
+                headers:
+                    { "Content-Type": "application/json" },
+            });
 
 
-            /*             const requestInit = {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(usuarioReguistro)
-                        }
-                        fetch('http://localhost:9001/api', requestInit)
-                            .then(res => res.text())
-                            .then(res => console.log(res)) */
+/*             axios.get(v)
+                .catch(function (error) {
+                    if ((error.response.status) === 400) {
+                        console.log("El usuario ya existe")
+                    } else {
+                        console.log("todo bien")
+                    }
+                }); */
+            /*                     }else if ((error.response.status) === 400){
+                                    console.log("todo bien")
+                                } */
+
+            /*                     if (error.response) {
+                                    // Request made and server responded
+                                    console.log("usuario no reguistrado");
+                                    console.log(error.response.status);
+                                     console.log(error.response.headers); 
+                                } else if (error.request) {
+                                    // The request was made but no response was received
+                                    console.log(error.request);
+                                } else {
+                                    // Something happened in setting up the request that triggered an Error
+                                    console.log('Error', error.message);
+                                } */
 
 
             cambiarFormularioValido(true);
@@ -177,12 +151,59 @@ const App = () => {
             cambiarDocumento({ campo: '', valido: null });
             cambiarTipoDocumento({ campo: '', valido: null });
 
+            /* err(v); */
+
+
             // ... 
         } else {
             cambiarFormularioValido(false);
         }
 
+
+
     }
+
+/* 
+    const err = (v) => {
+        const v = fetch('/api/register', {
+            method: "GET",
+        });
+
+        axios.get(v)
+            .catch(function (error) {
+                if ((error.response.status) === 400) {
+                    console.log("El usuario ya existe")
+                } else {
+                    console.log("todo bien")
+                }
+            });
+    } */
+
+
+
+
+
+
+
+    /*     axios.get ('http://localhost:3002/api/register')
+            .catch(function (error) {
+                if (error.response) {
+                    // Request made and server responded
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    console.log('Error', error.message);
+                }
+    
+            }); */
+
+
+
     const options = [
         { value: 'chocolate', label: 'Chocolate' },
         { value: 'strawberry', label: 'Strawberry' },
@@ -203,10 +224,8 @@ const App = () => {
                                     name="select"
                                     id="select"
                                     className="select"
-                                /* checked={terminos} */
-                                /* onChange={onChangeTerminos} */
+                                    /* value="a" */
                                 >
-                                    <option>Selecciona tu tipo de documento</option>
                                     <option value="cc">Cédula de Ciudadanía</option>
                                     <option value="ps">Pasaporte</option>
                                     <option value="ti">Tarjeta de identidad</option>
