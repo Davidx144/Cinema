@@ -8,20 +8,20 @@ import peli7 from '../../assert/peliculas/peli7.jpg';
 import peli8 from '../../assert/peliculas/peli8.jpg';
 import peli9 from '../../assert/peliculas/peli9.jpg';
 
-import input from 'react-bootstrap'
+/* import input from 'react-bootstrap' */
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 /* import { Pagination } from '@material-ui/lab'; */
 import Gridcards from './Gridcards';
 import Listcards from './Listcards';
-import { Pagination } from 'react-bootstrap';
+/* import { Pagination } from 'react-bootstrap';
 import { Row, Div, Select } from 'react-bootstrap';
-import selected from 'bootstrap'
+import selected from 'bootstrap' */
 import { MDBRange } from 'mdb-react-ui-kit';
 function Home() {
 
-  const styles = {
+/*   const styles = {
 
     styleFormFilter: {
       border: "1px solid grey",
@@ -47,15 +47,15 @@ function Home() {
       textAlign: "center",
       fontWeight: "bold",
     },
-  };
+  }; */
 
-  const [buttonFilter] = useState("Aplicar filtros");
+/*   const [buttonFilter] = useState("Aplicar filtros"); */
   const [buttonName, setButtonName] = useState("Cuadricula");
   const [showListView, setShowListView] = useState(true);
 
-  function applyFilters() {
+/*   function applyFilters() {
     console.log("Cualquier filtro")
-  }
+  } */
 
   function changeView() {
     setShowListView(!showListView)

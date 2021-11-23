@@ -1,18 +1,15 @@
 import './navbar.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container, NavDropdown, Modal, Button, Row, Col, Form, /* input */ } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Modal, Button, Form } from 'react-bootstrap';
 import icono from "../../assert/logoP.png";
 import { BiLogIn } from 'react-icons/bi';
 import '../reguistro/reguistro.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 /* import React from 'react'; */
-import React, { Component, useState, state } from "react";
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Card from 'react-bootstrap/Card'
-import entra from '../../assert/logo.png';
-import { Input, Label, FormGroup, FormText, FormFeedback } from 'reactstrap';
 
-
+import { Label } from 'reactstrap';
 
 function NavbarP() {
     const [show, setShow] = useState(false);
@@ -21,50 +18,52 @@ function NavbarP() {
     const handleShow = () => setShow(true);
 
 
-    let [Fullname, setFullname] = useState({
-        fname: '',
-        lname: ''
-    })
+    /*     let [Fullname, setFullname] = useState({
+            fname: '',
+            lname: ''
+        }) */
 
-    const handleChange = (event) => {
-        let value = event.target.value;
-        let name = event.target.name;
-
-        setFullname((prevalue) => {
-            return {
-                ...prevalue,   // Spread Operator               
-                [name]: value
-            }
-        })
-        console.log(value);
-    }
+    /*     const handleChange = (event) => {
+            let value = event.target.value;
+            let name = event.target.name;
+    
+            setFullname((prevalue) => {
+                return {
+                    ...prevalue,   // Spread Operator               
+                    [name]: value
+                }
+            })
+            console.log(value);
+        } */
 
     const onSubmit = (e) => {
         e.preventDefault();
- {
-            console.log(e);
-            var co = e.correo;
-            var pass = e.contresena;
 
-            var user = {
-                email: co,
-                password: pass,
-            };
-            console.log(user);
+        /* console.log(correo.campo); */
+
+        console.log(e);
+        var co = e.correo;
+        var pass = e.contresena;
+
+        var user = {
+            email: co,
+            password: pass,
+        };
+        console.log(user);
 
 
-            const caragarUsuario = JSON.stringify(user);
-            console.log(caragarUsuario);
-            const v = fetch('/api/login', {
-                /* const v = fetch('http://localhost:3002/api/register', { */
+        /*             const caragarUsuario = JSON.stringify(user);
+                    console.log(caragarUsuario);
+                    const v = fetch('/api/login', {
+                        //const v = fetch('http://localhost:3002/api/register', { 
+        
+                        method: "POST",
+                        body: caragarUsuario,
+                        headers:
+                            { "Content-Type": "application/json" },
+                    }); */
 
-                method: "POST",
-                body: caragarUsuario,
-                headers:
-                    { "Content-Type": "application/json" },
-            });
 
-        }
 
 
     }
@@ -104,8 +103,7 @@ function NavbarP() {
                                 <Modal.Header closeButton >
                                     <Modal.Title > Inicia Sección o Registrate </Modal.Title> </Modal.Header>
                                 <Modal.Body >
-                                    <Form onSubmit={onSubmit}>
-                                        {/* <Form.Label>Tipo de documento</Form.Label>
+                                    {/* <Form.Label>Tipo de documento</Form.Label>
                                         <Form.Select aria-label="Default select example">
                                             <option>Selecciona tu tipo de documento</option>
                                             <option value="cc">Cédula de Ciudadanía</option>
@@ -117,6 +115,7 @@ function NavbarP() {
                                             <Form.Label>Número de documento:</Form.Label>
                                             <Form.Control type="number" placeholder="Ingresa tú número de documento" />
                                         </Form.Group> */}
+                                    <Form onSubmit={onSubmit}>
 
                                         <Form.Group className="mb-3" controlId="correo">
                                             <Form.Label value="correo" class="correo" controlId="correo">Correo electronico:</Form.Label>
@@ -127,9 +126,9 @@ function NavbarP() {
                                         <Form.Group className="mb-3" controlId="contresena">
                                             <Form.Label>Contraseña:</Form.Label>
                                             <Form.Control type="password" placeholder="Ingresa tu contraseña" />
-                                            {/* <Form.Text className="text-muted">
+                                            <Form.Text className="text-muted">
                                                 La contraseña debe tener mayúsculas, minúsculas y números.
-                                            </Form.Text> */}
+                                            </Form.Text>
                                         </Form.Group>
                                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                                             <Form.Check type="checkbox" label="Recuerdame" />
@@ -137,9 +136,26 @@ function NavbarP() {
                                         <Form.Group className="d-grid gap-2 col-6 mx-auto" controlId="formBasicButton">
                                             <Button variant="secondary" onClick={handleClose} >
                                                 Cancelar </Button>
-                                            <Button variant="primary" /* onClick={onSubmit} */ type="submit">
+                                            <Button variant="primary" onClick={onSubmit} type="submit">
                                                 Ingresar </Button>
                                         </Form.Group>
+
+
+
+                                        {/*                                         <div className="form-group">
+                                            <label>Enter Name</label>
+                                            <input type="text" className="form-control" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Enter Email</label>
+                                            <input type="text" className="form-control" />
+                                        </div>
+                                        <div className="form-group">
+                                            <input type="submit" value="Create User" className="btn btn-success btn-block" />
+                                        </div> */}
+
+
+
                                     </Form>
 
                                 </Modal.Body >

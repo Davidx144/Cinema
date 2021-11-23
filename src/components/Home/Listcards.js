@@ -1,5 +1,5 @@
 import './Home'
-import bootstrapMin from 'bootstrap/dist/js/bootstrap.min';
+/* import bootstrapMin from 'bootstrap/dist/js/bootstrap.min'; */
 
 const Listcards = props => {
     return (
@@ -52,10 +52,10 @@ const Listcards = props => {
 export default Listcards; */
 
 
-{/*                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */}
+/*                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */
 
-{/*             <div className="row no-gutters">
+/*             <div className="row no-gutters">
                 <div className="col-sm">
                     <img className="card-img-top" src={props.img} alt="Card cap" />
                 </div>
@@ -72,23 +72,23 @@ export default Listcards; */
                 <div className="col-sm center bg-dark">
                     <a href="/" className="btn btn-primary button">Más información</a>
                 </div>
-            </div> */}
+            </div> */
 
-{/*             <div class="card mb-3">
+/*             <div class="card mb-3">
                 <img class="card-img-top" src=".../100px180/" alt="Card image cap"/>
                 <div class ="card-body">
                 <h5 class ="card-title">Card title</h5>
                 <p class ="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.This content is a little bit longer.</p>
                 <p class ="card-text"><small class ="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-            </div> */}
+            </div> */
 
 
-{/*             <div class="card">
+/*             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
                 <img class="card-img-bottom" src={props.img} alt="Card cap" />
-            </div> */}
+            </div> */

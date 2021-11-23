@@ -1,5 +1,5 @@
 import './Home'
-import bootstrapMin from 'bootstrap/dist/js/bootstrap.min';
+/* import bootstrapMin from 'bootstrap/dist/js/bootstrap.min'; */
 
 const Gridcards = props => {
     return (

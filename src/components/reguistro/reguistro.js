@@ -1,16 +1,13 @@
 import '../reguistro/reguistro.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-/* import styled from 'styled-components'; */
 import React, { useState } from 'react';
-import { Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError, ContenedorCorreo, ContenedorSelec } from './elementos/Formularios';
+import { Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError, ContenedorCorreo} from './elementos/Formularios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from './componentes/Input';
-import axios from 'axios';
+/* import axios from 'axios'; */
 
-import Select from 'react-select'
-/* import { Navbar, Nav, Container, NavDropdown, Modal, Button, Row, Col, Form,  input } from 'react-bootstrap'; */
-import mongoose from 'mongoose';
+
 
 const App = () => {
     /* const [usuario, cambiarUsuario] = useState({ campo: '', valido: null }); */
@@ -53,7 +50,7 @@ const App = () => {
     }
 
 
-    const onSubmitt = (e) => {
+/*     const onSubmitt = (e) => {
         console.log(nombre.campo);
         console.log(apellido.campo);
         console.log(correo.campo);
@@ -65,7 +62,7 @@ const App = () => {
             apellido,
             correo,
         });
-    }
+    } */
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -92,7 +89,7 @@ const App = () => {
             var co = correo.campo;
             var pass = password.campo;
             var pass2 = password2.campo;
-            var tDoc = tipoDocumento.campo;
+            /* var tDoc = tipoDocumento.campo; */
             var user = {
                 firstname: no,
                 lastname: ap,
@@ -121,7 +118,7 @@ const App = () => {
             } */
 
 
-            const v = fetch('/api/register', {
+            /* const v =  */fetch('/api/register', {
                 /* const v = fetch('http://localhost:3002/api/register', { */
 
                 method: "POST",
@@ -228,11 +225,11 @@ const App = () => {
 
 
 
-    const options = [
+/*     const options = [
         { value: 'chocolate', label: 'Chocolate' },
         { value: 'strawberry', label: 'Strawberry' },
         { value: 'vanilla', label: 'Vanilla' }
-    ]
+    ] */
     return (
         <main>
             <div className="container ">

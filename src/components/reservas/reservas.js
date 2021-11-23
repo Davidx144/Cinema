@@ -16,7 +16,7 @@ export default Reservas; */
 
 
 import React, { useState, Fragment } from "react";
-import { nanoid } from "nanoid";
+/* import { nanoid } from "nanoid"; */
 import "./reservas.css";
 import data from "./mock-data.json";
 import ReadOnlyRow from "./ReadOnlyRow";
@@ -25,12 +25,12 @@ import { Container } from "react-bootstrap";
 
 const Reservas = () => {
     const [contacts, setContacts] = useState(data);
-    const [addFormData, setAddFormData] = useState({
+/*     const [addFormData, setAddFormData] = useState({
         fullName: "",
         address: "",
         phoneNumber: "",
         email: "",
-    });
+    }); */
 
     const [editFormData, setEditFormData] = useState({
         fullName: "",
@@ -41,7 +41,7 @@ const Reservas = () => {
 
     const [editContactId, setEditContactId] = useState(null);
 
-    const handleAddFormChange = (event) => {
+/*     const handleAddFormChange = (event) => {
         event.preventDefault();
 
         const fieldName = event.target.getAttribute("name");
@@ -51,7 +51,7 @@ const Reservas = () => {
         newFormData[fieldName] = fieldValue;
 
         setAddFormData(newFormData);
-    };
+    }; */
 
     const handleEditFormChange = (event) => {
         event.preventDefault();
@@ -65,7 +65,7 @@ const Reservas = () => {
         setEditFormData(newFormData);
     };
 
-    const handleAddFormSubmit = (event) => {
+/*     const handleAddFormSubmit = (event) => {
         event.preventDefault();
 
         const newContact = {
@@ -79,7 +79,7 @@ const Reservas = () => {
         const newContacts = [...contacts, newContact];
         setContacts(newContacts);
     };
-
+ */
     const handleEditFormSubmit = (event) => {
         event.preventDefault();
 

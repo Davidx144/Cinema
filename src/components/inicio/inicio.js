@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 /* import Card from 'react-bootstrap/Card' */
 import Row from 'react-bootstrap/Row';
 /* import Button from 'react-bootstrap/Button'; */
-import swal from 'sweetalert';
+/* import swal from 'sweetalert'; */
 
 
 import Carousel from 'react-bootstrap/Carousel'
@@ -16,7 +16,7 @@ import peli1 from "../../assert/peli1.jpg";
 import peli2 from "../../assert/peli2.jpg";
 import peli3 from "../../assert/peli3.jpg";
 
-import { components } from 'react-select';
+/* import { components } from 'react-select'; */
 /* import { Form } from 'react-bootstrap';
 import entra from '../../assert/logo.png'; */
 
