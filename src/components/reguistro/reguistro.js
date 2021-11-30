@@ -122,7 +122,7 @@ const App = () => {
                     Swal.fire({
                         icon: 'success',
                         title: 'Bien',
-                        text: 'Usuarios reguistrado correctamente',
+                        text: 'Usuarios registrado correctamente',
                         footer: '<a href="/#deets">Inicia seccion</a>'
                       })
                     
@@ -133,7 +133,7 @@ const App = () => {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Parace que el usuario ya existe',
+                        text: 'Parase que el usuario ya existe',
                         footer: '<a href="/#deets">Inicia seccion</a>'
                       })
                 }

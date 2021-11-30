@@ -1,10 +1,14 @@
 import './navbar.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container, NavDropdown, Modal, Button, Form } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Modal, Button, /* Form */ } from 'react-bootstrap';
 import icono from "../../assert/logoP.png";
 import { BiLogIn } from 'react-icons/bi';
 import '../reguistro/reguistro.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import Swal from 'sweetalert2'
+
+
+
 /* import React from 'react'; */
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,48 +27,70 @@ function NavbarP() {
 
         /* console.log(correo.campo); */
 
-        console.log(product.name);
-        var co = e.Body;
-        var pass = e.contresena;
+        console.log(user.email);
+        console.log(user.password)
 
-        var user = {
-            email: co,
-            password: pass,
+        var emailUser = user.email;
+        var passwordUser = user.password;
+
+        var LoginUser = {
+            email: emailUser,
+            password: passwordUser,
         };
-        console.log(user);
+        const loginUser = JSON.stringify(LoginUser);
+        console.log(loginUser)
 
+        conectar();
+        async function conectar() {
 
+            const respuesta = await fetch('/api/login', {
+                method: "POST",
+                body: loginUser,
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+            const exitoso = await respuesta.json();
+            if (exitoso.isAuth === true) {
+                console.log("Iniciado")
+                console.log(exitoso)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Bienvenido',
+                    text: 'Disfruta de las mejores peliculas',
+                    /* footer: '<a href="/registro">Registrate</a>' */
+                })
+                handleClose()
 
+            } else {
+                console.log("No encontrado")
+                console.log(exitoso)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Parace que no estas reguistrado',
+                    footer: '<a href="/registro">Registrate</a>'
+                })
+            }
+        }
 
-
-
-        /*             const caragarUsuario = JSON.stringify(user);
-                    console.log(caragarUsuario);
-                    const v = fetch('/api/login', {
-                        //const v = fetch('http://localhost:3002/api/register', { 
-        
-                        method: "POST",
-                        body: caragarUsuario,
-                        headers:
-                            { "Content-Type": "application/json" },
-                    }); */
     }
 
-    const [product, setProduct] = useState({
-        name: "",
-        description: "",
-        brand: "",
-        price: "",
-      });
-      const [msg, setMsg] = useState({
-        message: "",
-        color: "",
-        visible: "no",
-      });
+    const [user, setUser] = useState({
+        email: "",
+        password: "",
+
+    });
+    /*       const [msg, setMsg] = useState({
+            message: "",
+            color: "",
+            visible: "no",
+          }); */
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setProduct({ ...product, [name]: value });
-      };
+        setUser({ ...user, [name]: value });
+    };
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" position="fixed">
@@ -105,15 +131,15 @@ function NavbarP() {
                                             <input
                                                 required
                                                 onChange={handleChange}
-                                                value={product.name}
+                                                value={user.email}
                                                 autoFocus
                                                 className="form-control"
                                                 placeholder="Introduzca el correo"
-                                                name="name"
+                                                name="email"
                                                 type="email"
                                             />
                                         </div>
-{/*                                         <div className="mb-2">
+                                        {/*                                         <div className="mb-2">
                                             <textarea
                                                 required
                                                 onChange={handleChange}
@@ -129,14 +155,14 @@ function NavbarP() {
                                             <input
                                                 required
                                                 onChange={handleChange}
-                                                value={product.brand}
+                                                value={user.password}
                                                 className="form-control"
                                                 placeholder="Introduzca la contraseña"
-                                                name="brand"
+                                                name="password"
                                                 type="password"
                                             />
                                         </div>
-{/*                                         <div className="mb-2">
+                                        {/*                                         <div className="mb-2">
                                             <input
                                                 required
                                                 onChange={handleChange}
@@ -150,13 +176,11 @@ function NavbarP() {
                                             <button className="btn btn-outline-success w-100" type="submit">
                                                 Ingresar
                                             </button>
-                                            <br></br>
-                                            <button className="btn btn-outline-danger w-100" onClick={handleClose}>
-                                                Cancelar
-                                            </button>
                                         </div>
                                     </form>
-
+                                    <button onClick={handleClose} className="btn btn-outline-danger w-100" >
+                                        Cancelar
+                                    </button>
 
 
                                     {/*                                     <form className="field" onSubmit={onSubmit}>
@@ -248,3 +272,4 @@ function NavbarP() {
     <input type="submit" value="Create User" className="btn btn-success btn-block" />
 </div> */
 export default NavbarP;
+/* export * from "../../core/authcontext" */
