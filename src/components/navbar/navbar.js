@@ -18,31 +18,13 @@ function NavbarP() {
     const handleShow = () => setShow(true);
 
 
-    /*     let [Fullname, setFullname] = useState({
-            fname: '',
-            lname: ''
-        }) */
-
-    /*     const handleChange = (event) => {
-            let value = event.target.value;
-            let name = event.target.name;
-    
-            setFullname((prevalue) => {
-                return {
-                    ...prevalue,   // Spread Operator               
-                    [name]: value
-                }
-            })
-            console.log(value);
-        } */
-
-    const onSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         /* console.log(correo.campo); */
 
-        console.log(e);
-        var co = e.correo;
+        console.log(product.name);
+        var co = e.Body;
         var pass = e.contresena;
 
         var user = {
@@ -50,6 +32,10 @@ function NavbarP() {
             password: pass,
         };
         console.log(user);
+
+
+
+
 
 
         /*             const caragarUsuario = JSON.stringify(user);
@@ -62,14 +48,23 @@ function NavbarP() {
                         headers:
                             { "Content-Type": "application/json" },
                     }); */
-
-
-
-
     }
 
-
-
+    const [product, setProduct] = useState({
+        name: "",
+        description: "",
+        brand: "",
+        price: "",
+      });
+      const [msg, setMsg] = useState({
+        message: "",
+        color: "",
+        visible: "no",
+      });
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setProduct({ ...product, [name]: value });
+      };
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" position="fixed">
@@ -103,28 +98,98 @@ function NavbarP() {
                                 <Modal.Header closeButton >
                                     <Modal.Title > Inicia Sección o Registrate </Modal.Title> </Modal.Header>
                                 <Modal.Body >
-                                    {/* <Form.Label>Tipo de documento</Form.Label>
-                                        <Form.Select aria-label="Default select example">
-                                            <option>Selecciona tu tipo de documento</option>
-                                            <option value="cc">Cédula de Ciudadanía</option>
-                                            <option value="ps">Pasaporte</option>
-                                            <option value="ti">Tarjeta de identidad</option>
-                                        </Form.Select>
-                                        <br></br>
-                                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                                            <Form.Label>Número de documento:</Form.Label>
-                                            <Form.Control type="number" placeholder="Ingresa tú número de documento" />
-                                        </Form.Group> */}
+
+
+                                    <form className="form" onSubmit={handleSubmit} autoComplete="off">
+                                        <div className="mb-2">
+                                            <input
+                                                required
+                                                onChange={handleChange}
+                                                value={product.name}
+                                                autoFocus
+                                                className="form-control"
+                                                placeholder="Introduzca el correo"
+                                                name="name"
+                                                type="email"
+                                            />
+                                        </div>
+{/*                                         <div className="mb-2">
+                                            <textarea
+                                                required
+                                                onChange={handleChange}
+                                                value={product.description}
+                                                rows="2"
+                                                className="form-control"
+                                                type="password"
+                                                name="description"
+                                                placeholder="Introduzca la descripcion"
+                                            ></textarea>
+                                        </div> */}
+                                        <div className="mb-2">
+                                            <input
+                                                required
+                                                onChange={handleChange}
+                                                value={product.brand}
+                                                className="form-control"
+                                                placeholder="Introduzca la contraseña"
+                                                name="brand"
+                                                type="password"
+                                            />
+                                        </div>
+{/*                                         <div className="mb-2">
+                                            <input
+                                                required
+                                                onChange={handleChange}
+                                                value={product.price}
+                                                className="form-control"
+                                                placeholder="Introduzca el precio"
+                                                name="price"
+                                            />
+                                        </div> */}
+                                        <div className="mb-2 mt-4">
+                                            <button className="btn btn-outline-success w-100" type="submit">
+                                                Ingresar
+                                            </button>
+                                            <br></br>
+                                            <button className="btn btn-outline-danger w-100" onClick={handleClose}>
+                                                Cancelar
+                                            </button>
+                                        </div>
+                                    </form>
+
+
+
+                                    {/*                                     <form className="field" onSubmit={onSubmit}>
+                                        <div className="form-group">
+                                            <label className="label" htmlFor="email">Correo:</label>
+                                            <input autoFocus required placeholder="email" type="text" id="email"  onChange={this.manejarCambio}  value={this} className="input" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="label" htmlFor="contresena">Correo:</label>
+                                            <input autoFocus required placeholder="contresena" type="text" id="contresena"  onChange={this.manejarCambio}  value={'$contresena'} className="input" />
+                                        </div>
+                                        <div className="form-group">
+                                            <button className="button is-success mt-2">Guardar</button>
+                                            &nbsp;
+                                            
+                                        </div>
+                                    </form> */}
+                                    {/* <div className="form-control">
+
+                                    </div> */}
+
+
+                                    {/* 
                                     <Form onSubmit={onSubmit}>
 
-                                        <Form.Group className="mb-3" controlId="correo">
-                                            <Form.Label value="correo" class="correo" controlId="correo">Correo electronico:</Form.Label>
+                                        <Form.Group className="mb-3" controlId="correo" >
+                                            <Form.Label value="correo" class="input" controlId="correo" htmlFor="correo">Correo electronico:</Form.Label>
                                             <Form.Control type="email" placeholder="Ingresa tu email" />
 
                                         </Form.Group>
 
-                                        <Form.Group className="mb-3" controlId="contresena">
-                                            <Form.Label>Contraseña:</Form.Label>
+                                        <Form.Group className="mb-3" controlId="contresena" >
+                                            <Form.Label htmlFor="contresena">Contraseña:</Form.Label>
                                             <Form.Control type="password" placeholder="Ingresa tu contraseña" />
                                             <Form.Text className="text-muted">
                                                 La contraseña debe tener mayúsculas, minúsculas y números.
@@ -136,29 +201,15 @@ function NavbarP() {
                                         <Form.Group className="d-grid gap-2 col-6 mx-auto" controlId="formBasicButton">
                                             <Button variant="secondary" onClick={handleClose} >
                                                 Cancelar </Button>
-                                            <Button variant="primary" onClick={onSubmit} type="submit">
+                                            <Button variant="primary"  onClick={this.onSubmit} type="submit">
                                                 Ingresar </Button>
                                         </Form.Group>
-
-
-
-                                        {/*                                         <div className="form-group">
-                                            <label>Enter Name</label>
-                                            <input type="text" className="form-control" />
-                                        </div>
-                                        <div className="form-group">
-                                            <label>Enter Email</label>
-                                            <input type="text" className="form-control" />
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="submit" value="Create User" className="btn btn-success btn-block" />
-                                        </div> */}
-
-
-
-                                    </Form>
+                                    </Form> */}
 
                                 </Modal.Body >
+
+
+
                                 <Modal.Footer >
                                     <Label >¿Nuevo en la plataforma? </Label>
                                     <Button variant="warning" href="/registro">!Reguistrate!</Button>
@@ -172,4 +223,28 @@ function NavbarP() {
     )
 }
 
+/* <Form.Label>Tipo de documento</Form.Label>
+    <Form.Select aria-label="Default select example">
+        <option>Selecciona tu tipo de documento</option>
+        <option value="cc">Cédula de Ciudadanía</option>
+        <option value="ps">Pasaporte</option>
+        <option value="ti">Tarjeta de identidad</option>
+    </Form.Select>
+    <br></br>
+    <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Número de documento:</Form.Label>
+        <Form.Control type="number" placeholder="Ingresa tú número de documento" />
+    </Form.Group> */
+
+/*<div className="form-group">
+    <label>Enter Name</label>
+    <input type="text" className="form-control" />
+</div>
+<div className="form-group">
+    <label>Enter Email</label>
+    <input type="text" className="form-control" />
+</div>
+<div className="form-group">
+    <input type="submit" value="Create User" className="btn btn-success btn-block" />
+</div> */
 export default NavbarP;

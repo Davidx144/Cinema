@@ -2987,6 +2987,11 @@
     "postcss" "^7.0.32"
     "postcss-value-parser" "^4.1.0"
 
+"await@^0.2.6":
+  "integrity" "sha1-yI5u5pPW7Tcv8PUuwV1WVZCIVc4="
+  "resolved" "https://registry.npmjs.org/await/-/await-0.2.6.tgz"
+  "version" "0.2.6"
+
 "aws-sign2@~0.7.0":
   "integrity" "sha1-tG6JCTSpWR8tL2+G1+ap8bP+dqg="
   "resolved" "https://registry.npmjs.org/aws-sign2/-/aws-sign2-0.7.0.tgz"
@@ -12650,6 +12655,11 @@
   dependencies:
     "es6-object-assign" "^1.1.0"
     "promise-polyfill" "^6.0.2"
+
+"sweetalert2@^11.2.1":
+  "integrity" "sha512-6O+Ftl3yCg58pUqMiEn58+p7bQd7h7YrAM1diSaTJcRPO23bcfVd2DI2hW3246XVlTgL+EauV76va6VN5LrfIw=="
+  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.2.1.tgz"
+  "version" "11.2.1"
 
 "symbol-observable@^1.0.4":
   "integrity" "sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ=="

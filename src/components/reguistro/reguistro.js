@@ -1,12 +1,12 @@
 import '../reguistro/reguistro.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import React, { useState } from 'react';
-import { Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError, ContenedorCorreo} from './elementos/Formularios';
+import { Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError, ContenedorCorreo } from './elementos/Formularios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from './componentes/Input';
 /* import axios from 'axios'; */
-
+import Swal from 'sweetalert2'
 
 
 const App = () => {
@@ -50,20 +50,20 @@ const App = () => {
     }
 
 
-/*     const onSubmitt = (e) => {
-        console.log(nombre.campo);
-        console.log(apellido.campo);
-        console.log(correo.campo);
-        console.log(documento.campo);
-        console.log(tipoDocumento);
-
-        console.log({
-            nombre,
-            apellido,
-            correo,
-        });
-    } */
-
+    /*     const onSubmitt = (e) => {
+            console.log(nombre.campo);
+            console.log(apellido.campo);
+            console.log(correo.campo);
+            console.log(documento.campo);
+            console.log(tipoDocumento);
+    
+            console.log({
+                nombre,
+                apellido,
+                correo,
+            });
+        } */
+        
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -101,9 +101,57 @@ const App = () => {
                 userType: "usuario"
             };
 
-
+            
             const caragarUsuario = JSON.stringify(user);
             console.log(caragarUsuario);
+            conectar();
+            async function conectar(){
+
+                const respuesta = await fetch('/api/register', {
+                /* const respuesta = fetch(`${'/api/register'}`, { */
+                    method: "POST",            
+                    body: caragarUsuario,
+                    headers:{
+                         "Content-Type": "application/json" ,
+                    }
+                });
+                const exitoso = await respuesta.json();
+                if (exitoso.succes === true) {
+                    console.log("Guardado")
+                    console.log(exitoso)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Bien',
+                        text: 'Usuarios reguistrado correctamente',
+                        footer: '<a href="/#deets">Inicia seccion</a>'
+                      })
+                    
+    
+                } else {
+                    console.log("No guardado")
+                    console.log(exitoso)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Parace que el usuario ya existe',
+                        footer: '<a href="/#deets">Inicia seccion</a>'
+                      })
+                }
+            }
+            
+        
+/*             fetch('/api/register', {
+               
+
+                method: "POST",
+                body: caragarUsuario,
+                headers:
+                    { "Content-Type": "application/json" },
+            }); */
+
+
+
+ /* const v = fetch('http://localhost:3002/api/register', { */
 /*             try {
                 const v = fetch('/api/register', {
                     
@@ -118,18 +166,7 @@ const App = () => {
             } */
 
 
-            /* const v =  */fetch('/api/register', {
-                /* const v = fetch('http://localhost:3002/api/register', { */
-
-                method: "POST",
-                body: caragarUsuario,
-                headers:
-                    { "Content-Type": "application/json" },
-            });
-
-            
-
-
+            /* const v =  */
 
 
             /*             axios.get(v)
@@ -169,7 +206,7 @@ const App = () => {
             cambiarTipoDocumento({ campo: '', valido: null });
 
             /* err(v); */
-             validar();                           
+            validar();
 
             // ... 
         } else {
@@ -180,7 +217,7 @@ const App = () => {
 
     }
 
-    const validar = () =>{
+    const validar = () => {
 
     }
 
@@ -225,12 +262,13 @@ const App = () => {
 
 
 
-/*     const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-    ] */
+    /*     const options = [
+            { value: 'chocolate', label: 'Chocolate' },
+            { value: 'strawberry', label: 'Strawberry' },
+            { value: 'vanilla', label: 'Vanilla' }
+        ] */
     return (
+        
         <main>
             <div className="container ">
                 <Formulario action="" onSubmit={onSubmit}>
