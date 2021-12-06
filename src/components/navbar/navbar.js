@@ -6,7 +6,7 @@ import { BiLogIn } from 'react-icons/bi';
 import '../reguistro/reguistro.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import Swal from 'sweetalert2'
-
+import App from '../../App';
 
 
 /* import React from 'react'; */
@@ -61,6 +61,7 @@ function NavbarP() {
                     /* footer: '<a href="/registro">Registrate</a>' */
                 })
                 handleClose()
+                setTimeout(window.location.reload(true), 500);
 
             } else {
                 console.log("No encontrado")
@@ -92,6 +93,40 @@ function NavbarP() {
         setUser({ ...user, [name]: value });
     };
 
+    var vari = "";
+    conectar();
+    async function conectar() {
+        /* conectar =(async)=>  { */
+        const respuesta = await fetch('/api/profile', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        const exitoso = await respuesta.json();
+        if (exitoso.error === true) {
+            console.log("Aun no ingresa")
+            console.log(exitoso)
+            vari=exitoso.stringify
+/*             var test = exitoso.name;
+            return test */
+            /* return exitoso */
+        } else {
+            console.log("Usuario ingresado")
+            console.log(exitoso)
+            console.log("Bienbenido ",exitoso.name)
+            console.log("El tipo de usuario es",exitoso.type)
+            vari=exitoso.stringify
+            return exitoso
+        }
+        
+
+    } 
+/* const a = this.exitoso */
+/* console.log("ESTO ES A: ",test) */
+
+
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" position="fixed">
             <Container >
@@ -103,16 +138,25 @@ function NavbarP() {
                         className="d-inline-block align-top" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
+                <Navbar.Collapse id="responsive-navbar-nav" conectar>
                     <Nav className="me-auto" >
+                        {/* Todos */}
                         <Nav.Link href="/#carteleraHome" >Cartelera </Nav.Link>
+                        {/* Usuario */}
+{/*                         {a === true &&
+                        <div> */}
                         <Nav.Link href="/reservas" > Lista de reservas </Nav.Link>
+{/*                         </div>
+                        } */}
+                        {/* Admin */}
                         <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" >
+
                             <NavDropdown.Item href="/agregar" > Agregar películas
                             </NavDropdown.Item>
                             <NavDropdown.Item href="/eliminar" > Eliminar películas</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="/historial" > Historial </NavDropdown.Item>
+
                         </NavDropdown >
                     </Nav>
                     <Nav>

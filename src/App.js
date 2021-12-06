@@ -15,15 +15,29 @@ import Inicio from './components/inicio/inicio';
 import Home from './components/Home/Home';
 import Reservas from './components/reservas/reservas'
 import Salas from './components/salas/salas'
+import Auth from './core/auth'
 
 export const browserHistory = createBrowserHistory({ basename: "/iniciooo" });
+
 function App() {
+  /*   const isAuth = (e) => {
+      console.log(Auth)
+    } */
+/*   isAuth(Auth);
+  async function isAuth(e) {
+    console.log(e.body)
+  } */
+
+
+  localStorage.setItem("key", "value")
   return (
+    
     <div className="App" >
 
       <header class="header" >
-        
+
         <div>
+
           <NavbarP></NavbarP>
         </div>
         <div>
@@ -62,4 +76,5 @@ function App() {
     </div>
   );
 }
+/* export exitoso; */
 export default App;
