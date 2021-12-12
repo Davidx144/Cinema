@@ -98,7 +98,8 @@ const App = () => {
                 password2: pass2,
                 document: doc,
                 documentType: "Cedula",
-                userType: "usuario"
+                userType: "usuario",
+                bookings: [],
             };
 
             
@@ -106,7 +107,6 @@ const App = () => {
             console.log(caragarUsuario);
             conectar();
             async function conectar(){
-
                 const respuesta = await fetch('/api/register', {
                 /* const respuesta = fetch(`${'/api/register'}`, { */
                     method: "POST",            
