@@ -106,10 +106,10 @@ function NavbarP() {
         var type = "usuario"; */
 
     const [usuario, setUsuario] = useState({
-        name: "null",
+        name: "",
     })
     const [tipoUsuario, setTipoUsuario] = useState({
-        tipo: "null",
+        tipo: "",
     })
 
     perfil();
@@ -139,26 +139,20 @@ function NavbarP() {
             var variable2 = (exitoso.name)
             setUsuario(variable2)
             console.log(usuario)
-            /*             var a = toString(exitoso.type)
-                        this.type = a */
-        }
 
-        /*         usuario({
-                    name: toString(exitoso.name)
-                });
-                this.setUsuario({
-                    type: toString(exitoso.type)
-                }) */
+        }
     }
 
-
-
-
-
-    /* const a = this.exitoso */
-    /* console.log("ESTO ES A: ",test) */
-
-
+    async function logout() {
+        fetch('api/logout', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        setTimeout(window.location.reload(true), 500);
+        alert("A cerrado sección satisfactoriamente");
+    }
 
     return (
 
@@ -199,14 +193,14 @@ function NavbarP() {
                         }
                     </Nav>
                     <Nav>
-                        {tipoUsuario === "null" &&
+                        {tipoUsuario.tipo === "" &&
                             <Nav.Link href="#deets" onClick={handleShow} > <BiLogIn /> Iniciar </Nav.Link>
                         }
                         {tipoUsuario === "usuario" &&
-                            <Nav.Link href="#"  > <BiLogIn />  Salir </Nav.Link>
+                            <Nav.Link href="#" onClick={logout} > <BiLogIn />  Salir </Nav.Link>
                         }
                         {tipoUsuario === "Admin" &&
-                            <Nav.Link href="#"  > <BiLogIn />  Salir </Nav.Link>
+                            <Nav.Link href="#"  onClick={logout}> <BiLogIn />  Salir </Nav.Link>
                         }
 
                         <>
