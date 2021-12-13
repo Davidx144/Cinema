@@ -16,10 +16,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Label } from 'reactstrap';
 
 function NavbarP() {
+
+    /*     constructor(props) {
+            super(props);
+            this.state = { value: '' };
+    
+            
+        } */
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
 
 
     const handleSubmit = (e) => {
@@ -73,7 +82,11 @@ function NavbarP() {
                     footer: '<a href="/registro">Registrate</a>'
                 })
             }
+            /*             return (
+                            <div>aaa</div>
+                        ) */
         }
+
 
     }
 
@@ -82,21 +95,25 @@ function NavbarP() {
         password: "",
 
     });
-    /*       const [msg, setMsg] = useState({
-            message: "",
-            color: "",
-            visible: "no",
-          }); */
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser({ ...user, [name]: value });
     };
 
-    var vari = "";
-    conectar();
-    async function conectar() {
-        /* conectar =(async)=>  { */
+
+
+    /*     var name = "";
+        var type = "usuario"; */
+
+    const [usuario, setUsuario] = useState({
+        name: "null",
+    })
+    const [tipoUsuario, setTipoUsuario] = useState({
+        tipo: "null",
+    })
+
+    perfil();
+    async function perfil(props) {
         const respuesta = await fetch('/api/profile', {
             method: "GET",
             headers: {
@@ -104,32 +121,50 @@ function NavbarP() {
             }
         });
         const exitoso = await respuesta.json();
+        console.log(exitoso)
+        /* return (exitoso) */
         if (exitoso.error === true) {
             console.log("Aun no ingresa")
             console.log(exitoso)
-            vari=exitoso.stringify
-/*             var test = exitoso.name;
-            return test */
-            /* return exitoso */
+
         } else {
             console.log("Usuario ingresado")
             console.log(exitoso)
-            console.log("Bienbenido ",exitoso.name)
-            console.log("El tipo de usuario es",exitoso.type)
-            vari=exitoso.stringify
-            return exitoso
+            console.log("Bienbenido ", exitoso.name)
+            console.log("El tipo de usuario es", exitoso.type)
+            console.log("aa", tipoUsuario.type)
+            var variable = (exitoso.type)
+            setTipoUsuario(variable)
+            console.log(tipoUsuario)
+            var variable2 = (exitoso.name)
+            setUsuario(variable2)
+            console.log(usuario)
+            /*             var a = toString(exitoso.type)
+                        this.type = a */
         }
-        
 
-    } 
-/* const a = this.exitoso */
-/* console.log("ESTO ES A: ",test) */
+        /*         usuario({
+                    name: toString(exitoso.name)
+                });
+                this.setUsuario({
+                    type: toString(exitoso.type)
+                }) */
+    }
+
+
+
+
+
+    /* const a = this.exitoso */
+    /* console.log("ESTO ES A: ",test) */
 
 
 
     return (
+
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" position="fixed">
             <Container >
+                {/* <conectar /> */}
                 <Navbar.Brand href="/" >
                     <img alt=""
                         src={icono}
@@ -143,24 +178,37 @@ function NavbarP() {
                         {/* Todos */}
                         <Nav.Link href="/#carteleraHome" >Cartelera </Nav.Link>
                         {/* Usuario */}
-{/*                         {a === true &&
-                        <div> */}
-                        <Nav.Link href="/reservas" > Lista de reservas </Nav.Link>
-{/*                         </div>
-                        } */}
+                        {(tipoUsuario === "usuario") &&
+                            <Nav.Link href="/reservas" > Lista de reservas </Nav.Link>
+                        }
+                        {(tipoUsuario === "Admin") &&
+                            <Nav.Link href="/reservas" > Lista de reservas </Nav.Link>
+                        }
                         {/* Admin */}
-                        <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" >
+                        {tipoUsuario === "Admin" &&
 
-                            <NavDropdown.Item href="/agregar" > Agregar películas
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="/eliminar" > Eliminar películas</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="/historial" > Historial </NavDropdown.Item>
+                            <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" >
 
-                        </NavDropdown >
+                                <NavDropdown.Item href="/agregar" > Agregar películas
+                                </NavDropdown.Item>
+                                <NavDropdown.Item href="/eliminar" > Eliminar películas</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="/historial" > Historial </NavDropdown.Item>
+
+                            </NavDropdown >
+                        }
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets" onClick={handleShow} > <BiLogIn /> Iniciar </Nav.Link>
+                        {tipoUsuario === "null" &&
+                            <Nav.Link href="#deets" onClick={handleShow} > <BiLogIn /> Iniciar </Nav.Link>
+                        }
+                        {tipoUsuario === "usuario" &&
+                            <Nav.Link href="#"  > <BiLogIn />  Salir </Nav.Link>
+                        }
+                        {tipoUsuario === "Admin" &&
+                            <Nav.Link href="#"  > <BiLogIn />  Salir </Nav.Link>
+                        }
+
                         <>
                             <Modal show={show}
                                 onHide={handleClose} >
