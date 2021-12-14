@@ -15,36 +15,18 @@ import Inicio from './components/inicio/inicio';
 import Home from './components/Home/Home';
 import Reservas from './components/reservas/reservas'
 import Salas from './components/salas/salas'
-import Auth from './core/auth'
-import NavbarRuter from './components/navbar/navbarRuter'
+
 
 export const browserHistory = createBrowserHistory({ basename: "/iniciooo" });
 
 function App() {
-  /*   const isAuth = (e) => {
-      console.log(Auth)
-    } */
-  /*   isAuth(Auth);
-    async function isAuth(e) {
-      console.log(e.body)
-    } */
-
-
-
-
-
   localStorage.setItem("key", "value")
   return (
-
     <div className="App" >
-
       <header class="header" >
-
         <div>
-
           <NavbarP></NavbarP>
         </div>
-
         <div>
           <nav className="navbar-dark navbar-expand-sm navbar App-navbar sticky-top bg-dark" id="nav" />
           <Router history={browserHistory} basename={'/'}>
@@ -59,7 +41,6 @@ function App() {
         </div>
       </header>
       <body >
-
         <br></br>
         <Router history={browserHistory} basename={'/'}>
           <Switch>
@@ -68,14 +49,8 @@ function App() {
           </Switch>
         </Router>
         <br></br>
-
-
-
-
       </body>
-
       <footer class="text-center text-lg-start bg-light text-muted" >
-
         <Footer></Footer>
       </footer>
     </div>

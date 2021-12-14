@@ -5,12 +5,10 @@ import { Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from './componentes/Input';
-/* import axios from 'axios'; */
 import Swal from 'sweetalert2'
 
 
 const App = () => {
-    /* const [usuario, cambiarUsuario] = useState({ campo: '', valido: null }); */
     const [nombre, cambiarNombre] = useState({ campo: '', valido: null });
     const [password, cambiarPassword] = useState({ campo: '', valido: null });
     const [password2, cambiarPassword2] = useState({ campo: '', valido: null });
@@ -20,8 +18,6 @@ const App = () => {
     const [terminos, cambiarTerminos] = useState(false);
     const [formularioValido, cambiarFormularioValido] = useState(null);
     const [apellido, cambiarApellido] = useState({ campo: '', valido: null });
-
-
 
     const expresiones = {
         usuario: /^[a-zA-Z0-9_-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -47,28 +43,9 @@ const App = () => {
 
     const onChangeTerminos = (e) => {
         cambiarTerminos(e.target.checked);
-    }
-
-
-    /*     const onSubmitt = (e) => {
-            console.log(nombre.campo);
-            console.log(apellido.campo);
-            console.log(correo.campo);
-            console.log(documento.campo);
-            console.log(tipoDocumento);
-    
-            console.log({
-                nombre,
-                apellido,
-                correo,
-            });
-        } */
-        
+    }   
     const onSubmit = (e) => {
         e.preventDefault();
-
-
-        /* let { Nombre, Apellido, TipoDocumento, Documento, Correo, Password } = usuarioReguistro;  */
         if (
             apellido.valido === 'true' &&
             nombre.valido === 'true' &&
@@ -78,18 +55,13 @@ const App = () => {
             documento.valido === 'true' &&
             terminos
         ) {
-            /* onSubmitt(nombre.campo, apellido.campo) */
             console.log('ENVIADOOO');
-
-
-
             var no = nombre.campo;
             var ap = apellido.campo;
             var doc = documento.campo;
             var co = correo.campo;
             var pass = password.campo;
             var pass2 = password2.campo;
-            /* var tDoc = tipoDocumento.campo; */
             var user = {
                 firstname: no,
                 lastname: ap,
@@ -108,7 +80,6 @@ const App = () => {
             conectar();
             async function conectar(){
                 const respuesta = await fetch('/api/register', {
-                /* const respuesta = fetch(`${'/api/register'}`, { */
                     method: "POST",            
                     body: caragarUsuario,
                     headers:{
@@ -124,9 +95,7 @@ const App = () => {
                         title: 'Bien',
                         text: 'Usuarios registrado correctamente',
                         footer: '<a href="/#deets">Inicia seccion</a>'
-                      })
-                    
-    
+                      })                  
                 } else {
                     console.log("No guardado")
                     console.log(exitoso)
@@ -138,65 +107,7 @@ const App = () => {
                       })
                 }
             }
-            
-        
-/*             fetch('/api/register', {
-               
-
-                method: "POST",
-                body: caragarUsuario,
-                headers:
-                    { "Content-Type": "application/json" },
-            }); */
-
-
-
- /* const v = fetch('http://localhost:3002/api/register', { */
-/*             try {
-                const v = fetch('/api/register', {
-                    
-
-                    method: "POST",
-                    body: caragarUsuario,
-                    headers:
-                        { "Content-Type": "application/json" },
-                });
-            } catch (error) {
-                console.log("Ya existe el usuario")
-            } */
-
-
-            /* const v =  */
-
-
-            /*             axios.get(v)
-                            .catch(function (error) {
-                                if ((error.response.status) === 400) {
-                                    console.log("El usuario ya existe")
-                                } else {
-                                    console.log("todo bien")
-                                }
-                            }); */
-            /*                     }else if ((error.response.status) === 400){
-                                    console.log("todo bien")
-                                } */
-
-            /*                     if (error.response) {
-                                    // Request made and server responded
-                                    console.log("usuario no reguistrado");
-                                    console.log(error.response.status);
-                                     console.log(error.response.headers); 
-                                } else if (error.request) {
-                                    // The request was made but no response was received
-                                    console.log(error.request);
-                                } else {
-                                    // Something happened in setting up the request that triggered an Error
-                                    console.log('Error', error.message);
-                                } */
-
-
             cambiarFormularioValido(true);
-            /* cambiarUsuario({ campo: '', valido: '' }); */
             cambiarNombre({ campo: '', valido: null });
             cambiarApellido({ campo: '', valido: null });
             cambiarPassword({ campo: '', valido: null });
@@ -204,69 +115,13 @@ const App = () => {
             cambiarCorreo({ campo: '', valido: null });
             cambiarDocumento({ campo: '', valido: null });
             cambiarTipoDocumento({ campo: '', valido: null });
-
-            /* err(v); */
             validar();
-
-            // ... 
         } else {
             cambiarFormularioValido(false);
         }
-
-
-
     }
-
     const validar = () => {
-
     }
-
-    /* 
-        const err = (v) => {
-            const v = fetch('/api/register', {
-                method: "GET",
-            });
-    
-            axios.get(v)
-                .catch(function (error) {
-                    if ((error.response.status) === 400) {
-                        console.log("El usuario ya existe")
-                    } else {
-                        console.log("todo bien")
-                    }
-                });
-        } */
-
-
-
-
-
-
-
-    /*         axios.get ('http://localhost:3002/api/register')
-                .catch(function (error) {
-                    if (error.response.status===400) {
-                        // Request made and server responded
-                         console.log(error.response.data); 
-                        console.log("ususario ya existente");
-                         console.log(error.response.headers); 
-                    } else if (error.request) {
-                        // The request was made but no response was received
-                        console.log(error.request);
-                    } else {
-                        // Something happened in setting up the request that triggered an Error
-                        console.log('Error', error.message);
-                    }
-        
-                }); */
-
-
-
-    /*     const options = [
-            { value: 'chocolate', label: 'Chocolate' },
-            { value: 'strawberry', label: 'Strawberry' },
-            { value: 'vanilla', label: 'Vanilla' }
-        ] */
     return (
         
         <main>
@@ -276,54 +131,23 @@ const App = () => {
                         <Label  >Tipo de documento
                             <div className="doc">
                                 <select
-                                    /* value={tipoDocumento} */
                                     estado={tipoDocumento}
                                     placeholder="Tipo de documento"
                                     type="select"
                                     name="select"
                                     id="select"
                                     className="select"
-                                /* value="a" */
                                 >
                                     <option value="cc">Cédula de Ciudadanía</option>
                                     <option value="ps">Pasaporte</option>
                                     <option value="ti">Tarjeta de identidad</option>
-
                                 </select>
                             </div>
                         </Label>
-                        {/*                     <Label  >Tipo de documento
-
-
-
-                        <Input
-                            estado={tipoDocumento}
-                            cambiarEstado={cambiarTipoDocumento}
-                            placeholder="Tipo de documento"
-                            type="select"
-                            name="select"
-                            id="select"
-                            className="select"
-                            options={options}
-                        />
-
-                    </Label> */}
                     </div>
 
-                    {/*                 <Select
-                    placeholder="Tipo de documento"
-                    type="select"
-                    name="select"
-                    id="select"
-                    className="select"
-                    options={options}
-                /> */}
-
-
                     <Input
-                        /* onChange={handleChange} */
                         estado={documento}
-                        /* value={Documento} */
                         cambiarEstado={cambiarDocumento}
                         tipo="text"
                         label="Número de documento"
@@ -332,20 +156,8 @@ const App = () => {
                         leyendaError="El documento solo puede contener numeros."
                         expresionRegular={expresiones.documento}
                     />
-                    {/*                 <Select
-
-                    placeholder="Tipo de documento"
-                    type="select"
-                    name="select"
-                    id="select"
-                    className="select"
-                    inputValue={options}
-                /> */}
-
                     <Input
-                        /* onChange={handleChange} */
                         estado={nombre}
-                        /* value={Nombre} */
                         cambiarEstado={cambiarNombre}
                         tipo="text"
                         label="Nombres"
@@ -354,11 +166,8 @@ const App = () => {
                         leyendaError="El nombre solo puede contener letras y espacios."
                         expresionRegular={expresiones.nombre}
                     />
-
                     <Input
-                        /* onChange={handleChange} */
                         estado={apellido}
-                        /* value={Apellido} */
                         cambiarEstado={cambiarApellido}
                         tipo="text"
                         label="Apellidos"
@@ -367,12 +176,9 @@ const App = () => {
                         leyendaError="El apellido solo puede contener letras y espacios."
                         expresionRegular={expresiones.nombre}
                     />
-
                     <ContenedorCorreo>
                         <Input
-                            /* onChange={handleChange} */
                             estado={correo}
-                            /* value={Correo} */
                             cambiarEstado={cambiarCorreo}
                             tipo="correo"
                             label="Correo Electrónico"
@@ -384,9 +190,7 @@ const App = () => {
                     </ContenedorCorreo>
 
                     <Input
-                        /* onChange={handleChange} */
                         estado={password}
-                        /* campo={Password} */
                         cambiarEstado={cambiarPassword}
                         tipo="password"
                         label="Contraseña"
@@ -395,7 +199,6 @@ const App = () => {
                         expresionRegular={expresiones.password}
                     />
                     <Input
-                        /* onChange={handleChange} */
                         estado={password2}
                         cambiarEstado={cambiarPassword2}
                         tipo="password"
@@ -404,11 +207,6 @@ const App = () => {
                         leyendaError="Ambas contraseñas deben ser iguales."
                         funcion={validarPassword2}
                     />
-
-
-
-
-
                     <ContenedorTerminos>
                         <Label>
                             <input
@@ -428,7 +226,7 @@ const App = () => {
                         </p>
                     </MensajeError>}
                     <ContenedorBotonCentrado>
-                        <Boton type="submit" /* onClick={handleClose} */>Enviar</Boton>
+                        <Boton type="submit" >Enviar</Boton>
                         {formularioValido === true && <MensajeExito>Formulario enviado exitosamente!</MensajeExito>}
                     </ContenedorBotonCentrado>
                     <br></br>
@@ -437,6 +235,5 @@ const App = () => {
         </main>
     );
 }
-
 export default App;
 
