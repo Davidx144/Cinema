@@ -1,15 +1,8 @@
-import { DiReact, DiBootstrap } from 'react-icons/di';
 import { AiFillFacebook, AiFillPhone, AiFillInstagram, AiOutlineInfoCircle, AiFillContacts, AiOutlineMail } from 'react-icons/ai';
-import { FaWhatsapp, FaVuejs } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
 import { BsTwitter, BsFillPatchQuestionFill } from 'react-icons/bs';
 import { GoGlobe } from 'react-icons/go';
 import { FiMapPin } from 'react-icons/fi';
-
-
-
-
-
-
 import icono from "../../assert/logoP.png";
 import "./footer.css"
 
@@ -18,10 +11,6 @@ function footer() {
 
         <footer class="text-center text-lg-start bg-light text-muted" >
             <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom" >
-                {/* <div class="me-5 d-none d-lg-block" >
-                    <span > En caso de tener algún inconveniente:
-                    </span>
-                </div> */}
             </section>
             <section class="" >
                 <div class="container text-center text-md-start mt-5" >
@@ -34,7 +23,7 @@ function footer() {
                                 ¡Si tienes alguna sugerencia no dudes en contactarnos!
                             </p>
                             <div>
-                                <img class="logoIcono" src={icono}/>
+                                <img class="logoIcono" src={icono} alt="" />
                             </div >
                         </div >
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4" >

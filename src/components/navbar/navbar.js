@@ -1,42 +1,117 @@
 import './navbar.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container, NavDropdown, Modal, Button, Row, Col, Form, /* input */ } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Modal, Button, /* Form */ } from 'react-bootstrap';
 import icono from "../../assert/logoP.png";
 import { BiLogIn } from 'react-icons/bi';
 import '../reguistro/reguistro.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-/* import React from 'react'; */
-import React, { Component, useState, state } from "react";
+import Swal from 'sweetalert2'
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Card from 'react-bootstrap/Card'
-import entra from '../../assert/logo.png';
-import { Input, Label, FormGroup, FormText, FormFeedback } from 'reactstrap';
-
-
+import { Label } from 'reactstrap';
 
 function NavbarP() {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        var emailUser = user.email;
+        var passwordUser = user.password;
+        var LoginUser = {
+            email: emailUser,
+            password: passwordUser,
+        };
+        const loginUser = JSON.stringify(LoginUser);
 
+        conectar();
+        async function conectar() {
+            const respuesta = await fetch('/api/login', {
+                method: "POST",
+                body: loginUser,
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+            const exitoso = await respuesta.json();
+            if (exitoso.isAuth === true) {
+                /*                 console.log("Iniciado")
+                                console.log(exitoso) */
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Bienvenido',
+                    text: 'Disfruta de las mejores peliculas',
+                })
+                handleClose()
+                setTimeout(window.location.reload(true), 500);
 
-    let [Fullname, setFullname] = useState({
-        fname: '',
-        lname: ''
+            } else {
+                console.log("No encontrado")
+                console.log(exitoso)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Parace que no estas reguistrado',
+                    footer: '<a href="/registro">Registrate</a>'
+                })
+            }
+        }
+    }
+
+    const [user, setUser] = useState({
+        email: "",
+        password: "",
+
+    });
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUser({ ...user, [name]: value });
+    };
+    const [usuario, setUsuario] = useState({
+        name: "",
+    })
+    const [tipoUsuario, setTipoUsuario] = useState({
+        tipo: "",
     })
 
-    const handleChange = (event) => {
-        let value = event.target.value;
-        let name = event.target.name;
-
-        setFullname((prevalue) => {
-            return {
-                ...prevalue,   // Spread Operator               
-                [name]: value
+    perfil();
+    async function perfil(props) {
+        const respuesta = await fetch('/api/profile', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
             }
-        })
-        console.log(value);
+        });
+        const exitoso = await respuesta.json();
+        console.log(exitoso)
+        /* return (exitoso) */
+        if (exitoso.error === true) {
+            console.log("Aun no ingresa")
+            /* console.log(exitoso) */
+
+        } else {
+            /*             console.log("Usuario ingresado")
+                        console.log(exitoso)
+                        console.log("Bienbenido ", exitoso.name)
+                        console.log("El tipo de usuario es", exitoso.type)
+                        console.log("aa", tipoUsuario.type) */
+            var variable = (exitoso.type)
+            setTipoUsuario(variable)
+            console.log(tipoUsuario)
+            var variable2 = (exitoso.name)
+            setUsuario(variable2)
+            console.log(usuario)
+        }
+    }
+    async function logout() {
+        fetch('api/logout', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        setTimeout(window.location.reload(true), 500);
+        alert("A cerrado sección satisfactoriamente");
     }
 
     return (
@@ -50,65 +125,81 @@ function NavbarP() {
                         className="d-inline-block align-top" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
+                <Navbar.Collapse id="responsive-navbar-nav" conectar>
                     <Nav className="me-auto" >
+                        {/* Todos */}
                         <Nav.Link href="/#carteleraHome" >Cartelera </Nav.Link>
-                        <Nav.Link href="/reservas" > Lista de reservas </Nav.Link>
-                        <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" >
-                            <NavDropdown.Item href="/agregar" > Agregar películas
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="/eliminar" > Eliminar películas</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="/historial" > Historial </NavDropdown.Item>
-                        </NavDropdown >
+                        {/* Usuario */}
+                        {(tipoUsuario === "usuario") &&
+                            <Nav.Link href="/reservas" > Lista de reservas </Nav.Link>
+                        }
+                        {(tipoUsuario === "Admin") &&
+                            <Nav.Link href="/reservas" > Lista de reservas </Nav.Link>
+                        }
+                        {/* Admin */}
+                        {tipoUsuario === "Admin" &&
+                            <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" >
+                                <NavDropdown.Item href="/agregar" > Agregar películas
+                                </NavDropdown.Item>
+                                <NavDropdown.Item href="/eliminar" > Eliminar películas</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="/historial" > Historial </NavDropdown.Item>
+
+                            </NavDropdown >
+                        }
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets" onClick={handleShow} > <BiLogIn /> Iniciar </Nav.Link>
+                        {/* Sin iniciar */}
+                        {tipoUsuario.tipo === "" &&
+                            <Nav.Link href="#deets" onClick={handleShow} > <BiLogIn /> Iniciar </Nav.Link>
+                        }
+                        {/* para usuario */}
+                        {tipoUsuario === "usuario" &&
+                            <Nav.Link href="#" onClick={logout} > <BiLogIn />  Salir </Nav.Link>
+                        }
+                        {/* Para admin */}
+                        {tipoUsuario === "Admin" &&
+                            <Nav.Link href="#" onClick={logout}> <BiLogIn />  Salir </Nav.Link>
+                        }
                         <>
                             <Modal show={show}
                                 onHide={handleClose} >
-
                                 <Modal.Header closeButton >
                                     <Modal.Title > Inicia Sección o Registrate </Modal.Title> </Modal.Header>
                                 <Modal.Body >
-                                    <Form>
-                                        {/* <Form.Label>Tipo de documento</Form.Label>
-                                        <Form.Select aria-label="Default select example">
-                                            <option>Selecciona tu tipo de documento</option>
-                                            <option value="cc">Cédula de Ciudadanía</option>
-                                            <option value="ps">Pasaporte</option>
-                                            <option value="ti">Tarjeta de identidad</option>
-                                        </Form.Select>
-                                        <br></br>
-                                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                                            <Form.Label>Número de documento:</Form.Label>
-                                            <Form.Control type="number" placeholder="Ingresa tú número de documento" />
-                                        </Form.Group> */}
-
-                                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                                            <Form.Label>Correo electronico:</Form.Label>
-                                            <Form.Control type="email" placeholder="Ingresa tu email" />
-
-                                        </Form.Group>
-
-                                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                                            <Form.Label>Contraseña:</Form.Label>
-                                            <Form.Control type="password" placeholder="Ingresa tu contraseña" />
-                                            {/* <Form.Text className="text-muted">
-                                                La contraseña debe tener mayúsculas, minúsculas y números.
-                                            </Form.Text> */}
-                                        </Form.Group>
-                                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                            <Form.Check type="checkbox" label="Recuerdame" />
-                                        </Form.Group>
-                                        <Form.Group className="d-grid gap-2 col-6 mx-auto" controlId="formBasicButton">
-                                            <Button variant="secondary" onClick={handleClose} >
-                                                Cancelar </Button>
-                                            <Button variant="primary" /* onClick={handleClose} */ type="submit">
-                                                Ingresar </Button>
-                                        </Form.Group>
-                                    </Form>
-
+                                    <form className="form" onSubmit={handleSubmit} autoComplete="off">
+                                        <div className="mb-2">
+                                            <input
+                                                required
+                                                onChange={handleChange}
+                                                value={user.email}
+                                                autoFocus
+                                                className="form-control"
+                                                placeholder="Introduzca el correo"
+                                                name="email"
+                                                type="email"
+                                            />
+                                        </div>
+                                        <div className="mb-2">
+                                            <input
+                                                required
+                                                onChange={handleChange}
+                                                value={user.password}
+                                                className="form-control"
+                                                placeholder="Introduzca la contraseña"
+                                                name="password"
+                                                type="password"
+                                            />
+                                        </div>
+                                        <div className="mb-2 mt-4">
+                                            <button className="btn btn-outline-success w-100" type="submit">
+                                                Ingresar
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <button onClick={handleClose} className="btn btn-outline-danger w-100" >
+                                        Cancelar
+                                    </button>
                                 </Modal.Body >
                                 <Modal.Footer >
                                     <Label >¿Nuevo en la plataforma? </Label>
@@ -122,5 +213,4 @@ function NavbarP() {
         </Navbar >
     )
 }
-
 export default NavbarP;

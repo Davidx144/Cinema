@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-/* import { ContenedorSelec } from './elementos/Formularios'; */
 
 const colores = {
 	borde: "#0075FF",
@@ -8,12 +7,6 @@ const colores = {
 	exito: "#1ed12d"
 }
 // estilos del formuluario
-/* columns: 1fr 1fr===endra dos columnas iguales
-@media (max-width: 800px){
-		grid-template-columns: 1fr;
-	} es para el respositive
-
-*/
 const Formulario = styled.form`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -26,7 +19,6 @@ const Formulario = styled.form`
 	`}
 
 `;
-
 
 const Label = styled.label`
 	display: block;

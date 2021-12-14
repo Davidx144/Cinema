@@ -12,10 +12,10 @@
     text-align: center;
     margin: auto;
 }
-
-/* #Modal.Footer{
-    position: relative;
-    text-align: center;
-    margin:auto;
+.btn-outline-success{
+    margin: auto;
 }
- */
+.btn-outline-danger{
+    margin: auto;
+    margin-top: 10px;
+}

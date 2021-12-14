@@ -1,20 +1,11 @@
 
 .carousel {
     background: #3c12a7;
-    /* opacity:0.5; */
    }
    
     
     .carousel .carousel-item {
       height: 400px; }
-/*       @media (max-width: 800px){
-        .carousel .carousel-item {
-          height: 200px; }
-      }
-      @media (max-width: 700){
-        .carousel .carousel-item {
-          height: 100px; }
-      } */
       .carousel .carousel-item img {
         position: absolute;
         top: 0;
@@ -28,13 +19,7 @@
     position: absolute;
     bottom: 0px;
     z-index: 1; }
-  
 
-/* .carousel{
-    width:100px; 
-    height:100px;
-}
- */
 .Carousel.Item{
     width: 200px; 
     height:200px;

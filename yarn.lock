@@ -2987,6 +2987,11 @@
     "postcss" "^7.0.32"
     "postcss-value-parser" "^4.1.0"
 
+"await@^0.2.6":
+  "integrity" "sha1-yI5u5pPW7Tcv8PUuwV1WVZCIVc4="
+  "resolved" "https://registry.npmjs.org/await/-/await-0.2.6.tgz"
+  "version" "0.2.6"
+
 "aws-sign2@~0.7.0":
   "integrity" "sha1-tG6JCTSpWR8tL2+G1+ap8bP+dqg="
   "resolved" "https://registry.npmjs.org/aws-sign2/-/aws-sign2-0.7.0.tgz"
@@ -10994,7 +10999,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@*", "react@^0.14.0 || ^15.0.0", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^15.0.0 || ^16.0.0", "react@^15.4.0", "react@^15.4.0-0", "react@^15.4.2", "react@^15.7.0", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0-rc.1", "react@^17.0.0", "react@^17.0.2", "react@>= 16", "react@>= 16.3", "react@>= 16.3.0", "react@>= 16.8.0", "react@>=0.14.0", "react@>=15", "react@>=15.0.0", "react@>=16.14.0", "react@>=16.3.0", "react@>=16.3.2", "react@>=16.6.0", "react@>=16.8.0", "react@>=16.x", "react@0.14.x || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@15.x", "react@17.0.2":
+"react@*", "react@^0.14.0 || ^15.0.0", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^15.0.0 || ^16.0.0", "react@^15.4.0", "react@^15.4.0-0", "react@^15.4.2", "react@^15.7.0", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0-rc.1", "react@^17.0.0", "react@^17.0.2", "react@>= 16", "react@>= 16.3", "react@>= 16.3.0", "react@>= 16.8.0", "react@>=0.14.0", "react@>=15", "react@>=15.0.0", "react@>=16.14.0", "react@>=16.3.0", "react@>=16.3.2", "react@>=16.6.0", "react@>=16.8.0", "react@>=16.x", "react@0.14.x || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
@@ -12650,6 +12655,11 @@
   dependencies:
     "es6-object-assign" "^1.1.0"
     "promise-polyfill" "^6.0.2"
+
+"sweetalert2@^11.2.1":
+  "integrity" "sha512-6O+Ftl3yCg58pUqMiEn58+p7bQd7h7YrAM1diSaTJcRPO23bcfVd2DI2hW3246XVlTgL+EauV76va6VN5LrfIw=="
+  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.2.1.tgz"
+  "version" "11.2.1"
 
 "symbol-observable@^1.0.4":
   "integrity" "sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ=="
