@@ -83,7 +83,7 @@ function NavbarP() {
             }
         });
         const exitoso = await respuesta.json();
-        console.log(exitoso)
+        /* console.log(exitoso) */
         /* return (exitoso) */
         if (exitoso.error === true) {
             console.log("Aun no ingresa")
@@ -97,10 +97,10 @@ function NavbarP() {
                         console.log("aa", tipoUsuario.type) */
             var variable = (exitoso.type)
             setTipoUsuario(variable)
-            console.log(tipoUsuario)
+            /* console.log(tipoUsuario) */
             var variable2 = (exitoso.name)
             setUsuario(variable2)
-            console.log(usuario)
+            /* console.log(usuario) */
         }
     }
     async function logout() {

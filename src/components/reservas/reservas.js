@@ -4,6 +4,7 @@ import data from "./mock-data.json";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import { Container } from "react-bootstrap";
+import Swal from 'sweetalert2'
 
 const Reservas = () => {
     const [contacts, setContacts] = useState(data);
@@ -52,6 +53,11 @@ const Reservas = () => {
         setEditContactId(null);
     };
     const handleDeleteClick = (contactId) => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Bienvenido',
+            text: 'Disfruta de las mejores peliculas',
+        })
         const newContacts = [...contacts];
         const index = contacts.findIndex((contact) => contact.id === contactId);
         newContacts.splice(index, 1);

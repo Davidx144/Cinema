@@ -15,6 +15,8 @@ import Gridcards from './Gridcards';
 import Listcards from './Listcards';
 import { MDBRange } from 'mdb-react-ui-kit';
 
+
+
 function Home() {
 
 
@@ -32,10 +34,7 @@ function Home() {
   const onChange = (e) => {
     setRange(e.target.value);
   }
-  return (
-
-
-
+    return (
 
     <div id="carteleraHome" >
       <div class="custom-shape-divider-top-1636681532">
@@ -109,6 +108,7 @@ function Home() {
           {buttonName}
         </button>
       </div>
+      
       <div>
         <div className="container ">
           <div>
@@ -118,6 +118,12 @@ function Home() {
           </div>
         </div>
       </div>
+
+      <img 
+      src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
+      alt="new"
+      />
+
     </div>
 
 
@@ -129,15 +135,17 @@ function Home() {
 
 
 
-
+const peli11 = ['https://media.revistagq.com/photos/614861246d52b6989c0fd9f8/16:9/w_1280,c_limit/dune.png']
+/* peli11.src=("https://media.revistagq.com/photos/614861246d52b6989c0fd9f8/16:9/w_1280,c_limit/dune.png") */
 //Función para mostrar los peliculas en forma de listado
 function showListedElements() {
   /* titulo genero imagen duracion sinopcis formato horario valor */
   return (
+    
     <div className="row form-group">
       <Listcards img={peli1} Titulo="Eternals" Genero="Acción, Aventura, Marvel" Duracion="157min" Formato="3D" Sinopcis="Eternals de Marvel Studios, sigue a un grupo de héroes más allá de las estrellas que han protegido a la Tierra desde el principio de los tiempos. Cuando unas criaturas monstruosas llamadas los Deviants, que se pensaba estaban perdidas, regresan misteriosamente y los Eternals se ven forzados a reunirse para defender a la humanidad una vez más." Horario="8:00PM" Valor="9.000 Mil" />
       <Listcards img={peli2} Titulo="Venom Carnage Liberado" Genero="Acción, Marvel, Suspenso" Duracion="90min" Formato="2D-3D" Sinopcis="Eddie y Venom están luchando por coexistir cuando el simbionte más grande y malo se une con Cletus Kasady, un asesino en serie psicótico, desatando Carnage. Tom Hardy regresa a la pantalla grande como el protector letal Venom, uno de los personajes más grandes y complejos de MARVEL." Horario="10:00PM" Valor="10.000 Mil" />
-      <Listcards img={peli3} Titulo="Duna" Genero="Acción, Aventura, Ciencia Ficción, Drama" Duracion="156min" Formato="2D" Sinopcis="Arrakis, el planeta del desierto, feudo de la familia Harkonnen desde hace generaciones, queda en manos de la Casa de los Atreides después de que el emperador ceda a la casa la explotación de las reservas de especia, una de las materias primas más valiosas de la galaxia y también una droga capaz de amplificar la conciencia y extender la vida. " Horario="4:00PM" Valor="7.000 Mil" />
+      <Listcards img={peli11} Titulo="Duna" Genero="Acción, Aventura, Ciencia Ficción, Drama" Duracion="156min" Formato="2D" Sinopcis="Arrakis, el planeta del desierto, feudo de la familia Harkonnen desde hace generaciones, queda en manos de la Casa de los Atreides después de que el emperador ceda a la casa la explotación de las reservas de especia, una de las materias primas más valiosas de la galaxia y también una droga capaz de amplificar la conciencia y extender la vida. " Horario="4:00PM" Valor="7.000 Mil" />
       <Listcards img={peli4} Titulo="El Misterio De Soho" Genero="Thriller" Duracion="116min" Formato="D2" Sinopcis="El Misterio De Soho es el nuevo thriller psicológico de Edgar Wright, que cuenta la historia sobre una joven apasionada por la moda que, misteriosamente, es capaz de trasladarse a la década de los años 60’s, donde se encuentra con su ídolo, una deslumbrante aspirante a cantante. Pero el Londres de la época no es lo que parece, y el tiempo parece desmoronarse con oscuras consecuencias." Horario="1:00 PM" Valor="5.000 Mil" />
       <Listcards img={peli5} Titulo="Riesgo Bajo Cero" Genero="Acción, Drama" Duracion="109min" Formato="2D-3D" Sinopcis="Luego del colapso de una remota mina de diamantes, en el extremo norte de Canadá, un conductor de tractomula será el líder de la compleja misión de rescate. Su objetivo será salvar las vidas de estos mineros atrapados en ese enorme y gélido paraje, mientras crece el peligro de descongelamiento y se enfrenta a una amenaza que no veía venir." Horario="10:00AM" Valor="6.000 Mil" />
       <Listcards img={peli6} Titulo="Coda, Señales del Corazón" Genero="Drama" Duracion="111min" Formato="2D" Sinopcis="Ruby Rossi es una niña CODA, hija de padres sordos (Children Of Deaf Adult). Es la intérprete esencial de sus padres y hermano todos los días. También tiene un talento sobresaliente: cantar. Alentada por su profesor de música (Eugenio Derbez), decide prepararse para la audición de una prestigiosa Academia de Música." Horario="3:00AM" Valor="2.000 Mil" />

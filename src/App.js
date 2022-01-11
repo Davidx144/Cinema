@@ -15,6 +15,8 @@ import Inicio from './components/inicio/inicio';
 import Home from './components/Home/Home';
 import Reservas from './components/reservas/reservas'
 import Salas from './components/salas/salas'
+import AgregarPelicula from './components/crearPelicula/agregarPelicula';
+
 
 
 export const browserHistory = createBrowserHistory({ basename: "/iniciooo" });
@@ -36,6 +38,7 @@ function App() {
               <Route exact path="/salida" component={Reguistro} />
               <Route exact path="/reservas" component={Reservas} />
               <Route exact path="/historial" component={Salas} />
+              <Route exact path="/agregar" component={AgregarPelicula} />
             </Switch>
           </Router>
         </div>
