@@ -41,9 +41,11 @@ function NavbarP() {
                     icon: 'success',
                     title: 'Bienvenido',
                     text: 'Disfruta de las mejores peliculas',
-                })
-                handleClose()
-                setTimeout(window.location.reload(true), 500);
+                }).then(function () {
+                    window.location = "/";
+                });
+                /* handleClose()
+                setTimeout(window.location.reload(true), 500); */
 
             } else {
                 console.log("No encontrado")
@@ -100,7 +102,7 @@ function NavbarP() {
             /* console.log(tipoUsuario) */
             var variable2 = (exitoso.name)
             setUsuario(variable2)
-            /* console.log(usuario) */
+            console.log(usuario)
         }
     }
     async function logout() {
@@ -112,6 +114,7 @@ function NavbarP() {
         });
         setTimeout(window.location.reload(true), 500);
         alert("A cerrado sección satisfactoriamente");
+        window.location = "/";
     }
 
     return (

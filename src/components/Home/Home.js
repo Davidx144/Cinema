@@ -14,10 +14,12 @@ import React, { useState } from 'react';
 import Gridcards from './Gridcards';
 import Listcards from './Listcards';
 import { MDBRange } from 'mdb-react-ui-kit';
+import { BiBody } from 'react-icons/bi';
 
 
 
 function Home() {
+  
 
 
   const [buttonName, setButtonName] = useState("Cuadricula");
@@ -34,7 +36,7 @@ function Home() {
   const onChange = (e) => {
     setRange(e.target.value);
   }
-    return (
+  return (
 
     <div id="carteleraHome" >
       <div class="custom-shape-divider-top-1636681532">
@@ -108,7 +110,7 @@ function Home() {
           {buttonName}
         </button>
       </div>
-      
+
       <div>
         <div className="container ">
           <div>
@@ -119,10 +121,10 @@ function Home() {
         </div>
       </div>
 
-      <img 
+      {/*       <img 
       src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
       alt="new"
-      />
+      /> */}
 
     </div>
 
@@ -136,14 +138,42 @@ function Home() {
 
 
 const peli11 = ['https://media.revistagq.com/photos/614861246d52b6989c0fd9f8/16:9/w_1280,c_limit/dune.png']
+
+listaPeliculas()
+async function listaPeliculas(props) {
+  const respuesta = await fetch('/api/movies', {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  });
+  const exitoso = await respuesta.json();
+  
+  if (exitoso.error === true) {
+    console.log("no se pudo acceder a la base de datos")
+  } else {
+    for (let i in exitoso) {
+      console.log(exitoso[i].title)
+      console.log(exitoso[i].title,exitoso[i].gender,exitoso[i].format)
+      //return < Listcards img={exitoso[0].img} Titulo={exitoso[0].title} Genero={exitoso[0].gender} Duracion={exitoso[0].duration} Formato={exitoso[0].format} Sinopcis={exitoso[0].synopsis} Horario={exitoso[0].hour} Valor={exitoso[0].value} />
+
+      //return < Listcards img={exitoso[i].img} Titulo={exitoso[i].title} Genero={exitoso[i].gender} Duracion={exitoso[i].duration} Formato={exitoso[i].format} Sinopcis={exitoso[i].synopsis} Horario={exitoso[i].hour} Valor={exitoso[i].value} />
+    }
+  }
+}
+
+
+
 /* peli11.src=("https://media.revistagq.com/photos/614861246d52b6989c0fd9f8/16:9/w_1280,c_limit/dune.png") */
 //Función para mostrar los peliculas en forma de listado
 function showListedElements() {
+
   /* titulo genero imagen duracion sinopcis formato horario valor */
   return (
     
     <div className="row form-group">
-      <Listcards img={peli1} Titulo="Eternals" Genero="Acción, Aventura, Marvel" Duracion="157min" Formato="3D" Sinopcis="Eternals de Marvel Studios, sigue a un grupo de héroes más allá de las estrellas que han protegido a la Tierra desde el principio de los tiempos. Cuando unas criaturas monstruosas llamadas los Deviants, que se pensaba estaban perdidas, regresan misteriosamente y los Eternals se ven forzados a reunirse para defender a la humanidad una vez más." Horario="8:00PM" Valor="9.000 Mil" />
+      {/* {listaPeliculas()} */}
+      < Listcards img={peli1} Titulo="Eternals" Genero="Acción, Aventura, Marvel" Duracion="157min" Formato="3D" Sinopcis="Eternals de Marvel Studios, sigue a un grupo de héroes más allá de las estrellas que han protegido a la Tierra desde el principio de los tiempos. Cuando unas criaturas monstruosas llamadas los Deviants, que se pensaba estaban perdidas, regresan misteriosamente y los Eternals se ven forzados a reunirse para defender a la humanidad una vez más." Horario="8:00PM" Valor="9.000 Mil" />
       <Listcards img={peli2} Titulo="Venom Carnage Liberado" Genero="Acción, Marvel, Suspenso" Duracion="90min" Formato="2D-3D" Sinopcis="Eddie y Venom están luchando por coexistir cuando el simbionte más grande y malo se une con Cletus Kasady, un asesino en serie psicótico, desatando Carnage. Tom Hardy regresa a la pantalla grande como el protector letal Venom, uno de los personajes más grandes y complejos de MARVEL." Horario="10:00PM" Valor="10.000 Mil" />
       <Listcards img={peli11} Titulo="Duna" Genero="Acción, Aventura, Ciencia Ficción, Drama" Duracion="156min" Formato="2D" Sinopcis="Arrakis, el planeta del desierto, feudo de la familia Harkonnen desde hace generaciones, queda en manos de la Casa de los Atreides después de que el emperador ceda a la casa la explotación de las reservas de especia, una de las materias primas más valiosas de la galaxia y también una droga capaz de amplificar la conciencia y extender la vida. " Horario="4:00PM" Valor="7.000 Mil" />
       <Listcards img={peli4} Titulo="El Misterio De Soho" Genero="Thriller" Duracion="116min" Formato="D2" Sinopcis="El Misterio De Soho es el nuevo thriller psicológico de Edgar Wright, que cuenta la historia sobre una joven apasionada por la moda que, misteriosamente, es capaz de trasladarse a la década de los años 60’s, donde se encuentra con su ídolo, una deslumbrante aspirante a cantante. Pero el Londres de la época no es lo que parece, y el tiempo parece desmoronarse con oscuras consecuencias." Horario="1:00 PM" Valor="5.000 Mil" />
