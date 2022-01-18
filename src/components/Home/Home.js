@@ -1,4 +1,4 @@
-import peli1 from '../../assert/peliculas/peli1.jpg';
+/* import peli1 from '../../assert/peliculas/peli1.jpg';
 import peli2 from '../../assert/peliculas/peli2.jpg';
 import peli3 from '../../assert/peliculas/peli3.jpg';
 import peli4 from '../../assert/peliculas/peli4.jpg';
@@ -6,20 +6,20 @@ import peli5 from '../../assert/peliculas/peli5.jpg';
 import peli6 from '../../assert/peliculas/peli6.jpg';
 import peli7 from '../../assert/peliculas/peli7.jpg';
 import peli8 from '../../assert/peliculas/peli8.jpg';
-import peli9 from '../../assert/peliculas/peli9.jpg';
+import peli9 from '../../assert/peliculas/peli9.jpg'; */
 
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
+import React, { useState/* , Component  */ } from 'react';
 import Gridcards from './Gridcards';
 import Listcards from './Listcards';
 import { MDBRange } from 'mdb-react-ui-kit';
-import { BiBody } from 'react-icons/bi';
+/* import { BiBody } from 'react-icons/bi'; */
 
 
 
 function Home() {
-  
+  /* listaPeliculas(); */
 
 
   const [buttonName, setButtonName] = useState("Cuadricula");
@@ -31,14 +31,15 @@ function Home() {
   }
 
 
-  const [range, setRange] = useState(2);
+  const [range, setRange] = useState(5000);
 
   const onChange = (e) => {
     setRange(e.target.value);
+    /* console.log(e.target.value) */
   }
   return (
-
     <div id="carteleraHome" >
+      {/* {listaPeliculas()} */}
       <div class="custom-shape-divider-top-1636681532">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
           <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
@@ -120,27 +121,13 @@ function Home() {
           </div>
         </div>
       </div>
-
-      {/*       <img 
-      src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
-      alt="new"
-      /> */}
-
     </div>
-
-
-
-
-
   )
 }
 
-
-
-const peli11 = ['https://media.revistagq.com/photos/614861246d52b6989c0fd9f8/16:9/w_1280,c_limit/dune.png']
-
-listaPeliculas()
-let exitoso
+/* let datosCargados = false */
+listaPeliculas();
+let exitoso = []
 async function listaPeliculas(props) {
   const respuesta = await fetch('/api/movies', {
     method: "GET",
@@ -148,57 +135,40 @@ async function listaPeliculas(props) {
       "Content-Type": "application/json",
     }
   });
-  exitoso = await respuesta.json();
+  exitoso = await respuesta.json()
+  await accionAsincrona();
+}
+const accionAsincrona = async () => {
+  return new Promise((resolve, reject) => {
+  setTimeout(() => {
+      resolve();
+  }, 5000);
+});   
 }
 
-
-
-/* peli11.src=("https://media.revistagq.com/photos/614861246d52b6989c0fd9f8/16:9/w_1280,c_limit/dune.png") */
 //Función para mostrar los peliculas en forma de listado
 function showListedElements() {
-
-  /* titulo genero imagen duracion sinopcis formato horario valor */
   return (
     <div className="row form-group">
-      { 
-      exitoso.map((i,f) =>(
-        <Listcards img={i.img} Titulo={i.title} Genero={i.gender} Duracion={i.duration} Formato={i.format} Sinopcis={i.synopsis} Horario={i.hour} Valor={i.value} />
-      ))
+      {
+        exitoso.map((i, f) => (
+          <Listcards img={i.img} Titulo={i.title} Genero={i.gender} Duracion={i.duration} Formato={i.format} Sinopcis={i.synopsis} Horario={i.hour} Valor={i.value} id={i._id} />
+        ))
       }
-      {/* {listaPeliculas()} */}
-      {/* <Listcards img={peli1} Titulo="Eternals" Genero="Acción, Aventura, Marvel" Duracion="157min" Formato="3D" Sinopcis="Eternals de Marvel Studios, sigue a un grupo de héroes más allá de las estrellas que han protegido a la Tierra desde el principio de los tiempos. Cuando unas criaturas monstruosas llamadas los Deviants, que se pensaba estaban perdidas, regresan misteriosamente y los Eternals se ven forzados a reunirse para defender a la humanidad una vez más." Horario="8:00PM" Valor="9.000 Mil" />
-      <Listcards img={peli2} Titulo="Venom Carnage Liberado" Genero="Acción, Marvel, Suspenso" Duracion="90min" Formato="2D-3D" Sinopcis="Eddie y Venom están luchando por coexistir cuando el simbionte más grande y malo se une con Cletus Kasady, un asesino en serie psicótico, desatando Carnage. Tom Hardy regresa a la pantalla grande como el protector letal Venom, uno de los personajes más grandes y complejos de MARVEL." Horario="10:00PM" Valor="10.000 Mil" />
-      <Listcards img={peli11} Titulo="Duna" Genero="Acción, Aventura, Ciencia Ficción, Drama" Duracion="156min" Formato="2D" Sinopcis="Arrakis, el planeta del desierto, feudo de la familia Harkonnen desde hace generaciones, queda en manos de la Casa de los Atreides después de que el emperador ceda a la casa la explotación de las reservas de especia, una de las materias primas más valiosas de la galaxia y también una droga capaz de amplificar la conciencia y extender la vida. " Horario="4:00PM" Valor="7.000 Mil" />
-      <Listcards img={peli4} Titulo="El Misterio De Soho" Genero="Thriller" Duracion="116min" Formato="D2" Sinopcis="El Misterio De Soho es el nuevo thriller psicológico de Edgar Wright, que cuenta la historia sobre una joven apasionada por la moda que, misteriosamente, es capaz de trasladarse a la década de los años 60’s, donde se encuentra con su ídolo, una deslumbrante aspirante a cantante. Pero el Londres de la época no es lo que parece, y el tiempo parece desmoronarse con oscuras consecuencias." Horario="1:00 PM" Valor="5.000 Mil" />
-      <Listcards img={peli5} Titulo="Riesgo Bajo Cero" Genero="Acción, Drama" Duracion="109min" Formato="2D-3D" Sinopcis="Luego del colapso de una remota mina de diamantes, en el extremo norte de Canadá, un conductor de tractomula será el líder de la compleja misión de rescate. Su objetivo será salvar las vidas de estos mineros atrapados en ese enorme y gélido paraje, mientras crece el peligro de descongelamiento y se enfrenta a una amenaza que no veía venir." Horario="10:00AM" Valor="6.000 Mil" />
-      <Listcards img={peli6} Titulo="Coda, Señales del Corazón" Genero="Drama" Duracion="111min" Formato="2D" Sinopcis="Ruby Rossi es una niña CODA, hija de padres sordos (Children Of Deaf Adult). Es la intérprete esencial de sus padres y hermano todos los días. También tiene un talento sobresaliente: cantar. Alentada por su profesor de música (Eugenio Derbez), decide prepararse para la audición de una prestigiosa Academia de Música." Horario="3:00AM" Valor="2.000 Mil" />
-      <Listcards img={peli7} Titulo="Peter: El Demonio" Genero="Terror" Duracion="95min" Formato="2D" Sinopcis="A principios de 1908, en Messina, vivía Peter, un niño de 13 años que viene de una familia de comerciantes inglesa y muy adinerada, conocido por su crueldad con los animales y sus allegados. Una noche, se despierta en un ataúd en el cementerio de la ciudad, fruto de la venganza de un sirviente. Cuando un terremoto destruye toda Messina, Peter se queda atrapado y es olvidado." Horario="3:00AM" Valor="3.000 Mil" />
-      <Listcards img={peli8} Titulo="La Familia Monster 2" Genero="Animación, Comedia" Duracion="102min" Formato="2D-3D" Sinopcis="Para rescatar a Baba Yaga y Renfield de las garras de la cazadora de monstruos Mila Starr, la familia Wishbone se transforma una vez más en un vampiro, Frankenstein, la momia y el hombre lobo. Con la ayuda de sus tres murciélagos mascota, nuestra Familia Monstruo vuelve a recorrer el mundo para salvar a sus amigos." Horario="10:00AM" Valor="6.000 Mil" />
-      <Listcards img={peli9} Titulo="Perfumes" Genero="Drama" Duracion="100min" Formato="2D" Sinopcis="Anne Walberg es una estrella del mundo de los perfumes. Crea fragancias y vende su increíble talento a todo tipo de empresas. Vive como una diva, egoísta y con mucho temperamento. Guillaume es su nuevo chófer y la única persona de su alrededor que no tiene miedo a enfrentarla. Y esa es sin duda la razón por la que ella no le despide. " Horario="2:00PM" Valor="1.500 Mil" /> */}
     </div>
-
   )
 }
-
 //Función para mostrar los peliculas en forma de cuadricula
 function showMoreElements() {
+  
   return (
-    /* Titulo genero imagen duracion  */
-    <div >
-      <div className="row form-group">
-        <Gridcards img={peli1} Titulo="Eternals" Genero="Acción, Aventura, Marvel" Duracion="157min" Formato="3D" />
-        <Gridcards img={peli2} Titulo="Venom: Carnage Liberado" Genero="Acción, Marvel, Suspenso" Duracion="90min" Formato="-2D-3D" />
-        <Gridcards img={peli3} Titulo="Duna" Genero="Acción, Aventura, Ciencia Ficción, Drama" Duracion="156min" Formato="2D" />
-        <Gridcards img={peli4} Titulo="El Misterio De Soho" Genero="Thriller" Duracion="116min" Formato="D2" />
-        <Gridcards img={peli5} Titulo="Riesgo Bajo Cero" Genero="Acción, Drama" Duracion="109min" Formato="2D-3D" />
-        <Gridcards img={peli6} Titulo="Coda, Señales del Corazón" Genero="Drama" Duracion="111min" Formato="2D" />
-        <Gridcards img={peli7} Titulo="Peter: El Demonio" Genero="Terror" Duracion="95min" Formato="2D" />
-        <Gridcards img={peli8} Titulo="La Familia Monster 2" Genero="Animación, Comedia" Duracion="102min" Formato="2D-3D" />
-        <Gridcards img={peli9} Titulo="Perfumes" Genero="Drama" Duracion="100min" Formato="2D" />
-
-      </div>
+    <div className="row ">
+      {
+        exitoso.map((i, f) => (
+          <Gridcards img={i.img} Titulo={i.title} Genero={i.gender} Duracion={i.duration} Formato={i.format} id={i._id} />
+        ))
+      }
     </div>
-
   );
 }
 

@@ -9,7 +9,7 @@ import peli1 from "../../assert/peli1.jpg";
 import peli2 from "../../assert/peli2.jpg";
 import peli3 from "../../assert/peli3.jpg";
 
-const Inicio = () => {
+const Carusel = () => {
     return (
         <Container>
             <Row Col-8 className="corru">
@@ -52,4 +52,4 @@ const Inicio = () => {
     );
 }
 
-export default Inicio;
+export default Carusel;

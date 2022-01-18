@@ -1,6 +1,6 @@
 import './agregarPelicula.css'
 import { Container, Row } from "react-bootstrap";
-import { /*Button, FormGroup, Form, Label,   FormText */ Input, Col } from 'reactstrap';
+import { /*Button, FormGroup, Form, Label,   FormText  Input,*/ Col } from 'reactstrap';
 import { useForm } from "react-hook-form";
 import { select } from 'react-bootstrap';
 import Swal from 'sweetalert2'
