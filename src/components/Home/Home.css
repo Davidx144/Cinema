@@ -69,6 +69,11 @@ body.custom-shape-divider-top-1636681532 svg {
     color: white;
 }
 
+.loading{
+    /* margin: 30px; */
+    min-height: 50px;
+    
+}
 .center {
     display: flex;
     justify-content: center;

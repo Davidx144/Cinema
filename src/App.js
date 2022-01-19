@@ -11,7 +11,7 @@ import { createBrowserHistory } from 'history';
 import Reguistro from './components/reguistro/reguistro';
 import Footer from "./components/footer/footer";
 import NavbarP from './components/navbar/navbar';
-import Inicio from './components/inicio/inicio';
+import Inicio from './components/carrucel/carrusel';
 import Home from './components/Home/Home';
 import Reservas from './components/reservas/reservas'
 import Salas from './components/salas/salas'

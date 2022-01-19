@@ -140,17 +140,24 @@ const AgregarPelicula = () => {
                                 </div>
                             </Col>
 
-                            <Col sm={8}>
+                            <Col sm={6}>
                                 <div>
-                                    <label for="">Descripcion</label>
-                                    <textarea {...register("synopsis")} type="textarea" class="form-control" id="" placeholder="Descripcion de la pelicula" rows="4" required />
+                                    <label for="">Imagen</label>
+                                    <textarea {...register("img")} type="textarea" class="form-control" id="" placeholder="Link de la Imagen" rows="2" required />
                                 </div>
                             </Col>
 
-                            <Col sm={4}>
+                            <Col sm={6}>
                                 <div>
-                                    <label for="">Imagen</label>
-                                    <textarea {...register("img")} type="textarea" class="form-control" id="" placeholder="Link de la Imagen" rows="4" required />
+                                    <label for="">Trailer</label>
+                                    <textarea {...register("trailer")} type="textarea" class="form-control" id="" placeholder="Link del trailer" rows="2" required />
+                                </div>
+                            </Col>
+
+                            <Col sm={12}>
+                                <div>
+                                    <label for="">Descripcion</label>
+                                    <textarea {...register("synopsis")} type="textarea" class="form-control" id="" placeholder="Descripcion de la pelicula" rows="4" required />
                                 </div>
                             </Col>
                         </Row>
