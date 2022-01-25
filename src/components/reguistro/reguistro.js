@@ -77,8 +77,8 @@ const App = () => {
             
             const caragarUsuario = JSON.stringify(user);
             console.log(caragarUsuario);
-            conectar();
-            async function conectar(){
+            reguistarUsuario();
+            async function reguistarUsuario(){
                 const respuesta = await fetch('/api/register', {
                     method: "POST",            
                     body: caragarUsuario,

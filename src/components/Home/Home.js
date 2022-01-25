@@ -91,7 +91,7 @@ function Home() {
               <option value="5">Suspenso</option>
               <option value="6">Aventura</option>
               <option value="7">Ficción</option>
-              <option value="8">Ciencia </option>
+              <option value="8">Ciencis </option>
               <option value="9">Marvel</option>
   
   
@@ -144,7 +144,7 @@ function Home() {
 /* let datosCargados = false */
 
 listaPeliculas();
-let exitoso = []
+let listaDePeliculas = []
 async function listaPeliculas(props) {
   const respuesta = await fetch('/api/movies', {
     method: "GET",
@@ -152,7 +152,7 @@ async function listaPeliculas(props) {
       "Content-Type": "application/json",
     }
   });
-  exitoso = await respuesta.json()
+  listaDePeliculas = await respuesta.json()
 }
 
 
@@ -161,7 +161,7 @@ function showListedElements() {
   return (
     <div className="row form-group">
       {
-        exitoso.map((i, f) => (
+        listaDePeliculas.map((i, f) => (
           <Listcards img={i.img} Titulo={i.title} Genero={i.gender} Duracion={i.duration} Formato={i.format} Sinopcis={i.synopsis} Horario={i.hour} Valor={i.value} id={i._id} />
         ))
       }
@@ -173,7 +173,7 @@ function showMoreElements() {
   return (
     <div className="row ">
       {
-        exitoso.map((i, f) => (
+        listaDePeliculas.map((i, f) => (
           <Gridcards img={i.img} Titulo={i.title} Genero={i.gender} Duracion={i.duration} Formato={i.format} id={i._id} />
         ))
       }

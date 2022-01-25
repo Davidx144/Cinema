@@ -12,7 +12,7 @@ import peli3 from "../../assert/peli3.jpg";
 const Carrusel = () => {
     return (
         <Container>
-            <Row Col-8 className="corru">
+            <Row /* col-8  */className="corru">
                 <Carousel>
                     <Carousel.Item interval={4000}>
                         <img

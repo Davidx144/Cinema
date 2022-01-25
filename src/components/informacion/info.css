@@ -5,7 +5,32 @@
 }
 
 .imag{
-  /*   max-width: 50px;
-    max-height: 50px; */
+    max-width: 500px;
+    /* max-height: 50px; */
     width: 28rem;
+    padding: 10px;
 }
+.videoYoutube{
+  /*   width:35rem; 
+    height:20rem;  */
+    width:560px;
+    height:315px;
+  }
+
+@media (max-width: 600px) {
+  .imag{
+    /* background-color: antiquewhite; */
+    width: 20em;
+    max-width: 280px;
+    align-items: center;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .videoYoutube{
+    /*   width:35rem; 
+      height:20rem;  */
+      width:280px;
+      height:215px;
+    }
+}
+

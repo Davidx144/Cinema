@@ -11,7 +11,7 @@ const Gridcards = props => {
                     <p class="card-text text-align-left"><strong>Genero:</strong> {props.Genero}</p>
                     <p class="card-text text-align-left"><strong>Duracion:</strong> {props.Duracion} minutos</p>
                     <p class="card-text text-align-left"><strong>Formato:</strong> {props.Formato}</p>
-                    <a href={"info/"+(props.id)} class="btn btn-primary" >Reservar</a>
+                    <a href={"/info/"+(props.id)} class="btn btn-primary" >Reservar</a>
                 </div>
             </div>
             <br></br>

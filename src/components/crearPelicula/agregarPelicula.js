@@ -16,8 +16,8 @@ const AgregarPelicula = () => {
         const newPelicula = (JSON.stringify(data));
         console.log(newPelicula)
 
-        conectar();
-        async function conectar() {
+        registerMovie();
+        async function registerMovie() {
             const respuesta = await fetch('/api/registerMovie', {
                 method: "POST",
                 body: newPelicula,
@@ -58,12 +58,12 @@ const AgregarPelicula = () => {
             <div className='agregarPeli'>
                 <h3>Crear Peliculas</h3>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div class="form-row">
+                    <div className="form-row">
                         <Row>
                             <Col sm={6}>
                                 <div>
                                     <label for="">Titulo</label>
-                                    <input {...register("title")} type="text" class="form-control" id="validationCustom01" placeholder="Titulo de la pelicula" className='select' required />
+                                    <input {...register("title")} type="text" className="form-control" id="validationCustom01" placeholder="Titulo de la pelicula" className='select' required />
                                 </div>
                             </Col>
 
@@ -105,7 +105,7 @@ const AgregarPelicula = () => {
                             <Col sm={2}>
                                 <div>
                                     <label for="">Hora</label>
-                                    <input {...register("hour")} type="time" class="form-control" id="validationCustom01" placeholder="Titulo de la pelicula" className='select' required />
+                                    <input {...register("hour")} type="time" /* class="form-control" */ id="validationCustom01" placeholder="Titulo de la pelicula" className='select form-control"' required />
                                 </div>
                             </Col>
 
@@ -129,50 +129,50 @@ const AgregarPelicula = () => {
                             <Col sm={4}>
                                 <div>
                                     <label for="">Precio</label>
-                                    <input {...register("value")} type="number" class="form-control" id="" placeholder="Precio" className='select' required />
+                                    <input {...register("value")} type="number" /* class="form-control"  */id="" placeholder="Precio" className='select form-control' required />
                                 </div>
                             </Col>
 
                             <Col sm={4}>
                                 <div>
                                     <label for="">Duraccion</label>
-                                    <input {...register("duration")} type="number" class="form-control" id="" placeholder="Duraccion en minutos" className='select' required />
+                                    <input {...register("duration")} type="number" /* class="form-control"  */id="" placeholder="Duraccion en minutos" className='select form-control' required />
                                 </div>
                             </Col>
 
                             <Col sm={6}>
                                 <div>
                                     <label for="">Imagen</label>
-                                    <textarea {...register("img")} type="textarea" class="form-control" id="" placeholder="Link de la Imagen" rows="2" required />
+                                    <textarea {...register("img")} type="textarea" /* class="form-control" */ className='form-control' id="" placeholder="Link de la Imagen" rows="2" required />
                                 </div>
                             </Col>
 
                             <Col sm={6}>
                                 <div>
                                     <label for="">Trailer</label>
-                                    <textarea {...register("trailer")} type="textarea" class="form-control" id="" placeholder="Link del trailer" rows="2" required />
+                                    <textarea {...register("trailer")} type="textarea" /* class="form-control" */ className='form-control' id="" placeholder="Link del trailer" rows="2" required />
                                 </div>
                             </Col>
 
                             <Col sm={12}>
                                 <div>
                                     <label for="">Descripcion</label>
-                                    <textarea {...register("synopsis")} type="textarea" class="form-control" id="" placeholder="Descripcion de la pelicula" rows="4" required />
+                                    <textarea {...register("synopsis")} type="textarea" /* class="form-control"  */className='form-control' id="" placeholder="Descripcion de la pelicula" rows="4" required />
                                 </div>
                             </Col>
                         </Row>
 
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required />
-                            <label class="form-check-label" for="invalidCheck">
+                            <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required />
+                            <label className="form-check-label" for="invalidCheck">
                                 ¿He leído y verificado que todo esté bien?
                             </label>
                         </div>
                     </div>
-                    <button class="btn btn-primary" type="submit">Agregar</button>
+                    <button className="btn btn-primary" type="submit">Agregar</button>
                 </form>
             </div>
         </Container>

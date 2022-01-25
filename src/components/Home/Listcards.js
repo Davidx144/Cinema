@@ -13,8 +13,8 @@ const Listcards = props => {
                     <p class="card-text text-align-left"><strong>Formato:</strong> {props.Formato}</p>
                     <p class="card-text text-align-left"><strong>Horario:</strong> {props.Horario}</p>
                     <p class="card-text text-align-left"><strong>Valor:</strong> {props.Valor}</p>
-                    
-                    <a href={"info/"+(props.id)} class="btn btn-primary">Reservar</a>
+                     
+                    <a href={`/info/`+(props.id)} class="btn btn-primary">Reservar</a>
                 </div>
             </div>
             <br></br>

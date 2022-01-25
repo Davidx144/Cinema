@@ -19,14 +19,15 @@ import AgregarPelicula from './components/crearPelicula/agregarPelicula';
 import Info from "./components/informacion/info"
 
 
+//export const browserHistory = createBrowserHistory({ basename: "/inicio" });
 
-export const browserHistory = createBrowserHistory({ basename: "/iniciooo" });
+export const browserHistory = createBrowserHistory({ basename: "/" });
 
 function App() {
   localStorage.setItem("key", "value")
   return (
     <div className="App" >
-      <header class="header" >
+      <header className="header">
         <div>
           <NavbarP></NavbarP>
         </div>
@@ -55,7 +56,7 @@ function App() {
         </Router>
         <br></br>
       </body>
-      <footer class="text-center text-lg-start bg-light text-muted" >
+      <footer className="text-center text-lg-start bg-light text-muted" >
         <Footer></Footer>
       </footer>
     </div>

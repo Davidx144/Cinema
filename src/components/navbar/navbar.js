@@ -24,8 +24,8 @@ function NavbarP() {
         };
         const loginUser = JSON.stringify(LoginUser);
 
-        conectar();
-        async function conectar() {
+        logear();
+        async function logear() {
             const respuesta = await fetch('/api/login', {
                 method: "POST",
                 body: loginUser,
@@ -84,10 +84,10 @@ function NavbarP() {
                 "Content-Type": "application/json",
             }
         });
-        const exitoso = await respuesta.json();
+        const perfilUsuario = await respuesta.json();
         /* console.log(exitoso) */
         /* return (exitoso) */
-        if (exitoso.error === true) {
+        if (perfilUsuario.error === true) {
             console.log("Aun no ingresa")
             /* console.log(exitoso) */
 
@@ -97,10 +97,10 @@ function NavbarP() {
                         console.log("Bienbenido ", exitoso.name)
                         console.log("El tipo de usuario es", exitoso.type)
                         console.log("aa", tipoUsuario.type) */
-            var variable = (exitoso.type)
+            var variable = (perfilUsuario.type)
             setTipoUsuario(variable)
             /* console.log(tipoUsuario) */
-            var variable2 = (exitoso.name)
+            var variable2 = (perfilUsuario.name)
             setUsuario(variable2)
             console.log(usuario)
         }
@@ -128,7 +128,7 @@ function NavbarP() {
                         className="d-inline-block align-top" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav" conectar>
+                <Navbar.Collapse id="responsive-navbar-nav" /* logear */>
                     <Nav className="me-auto" >
                         {/* Todos */}
                         <Nav.Link href="/#carteleraHome" >Cartelera </Nav.Link>
