@@ -120,7 +120,7 @@ function Home() {
         </div>
         <br></br>
         <div className="container mb-3 d-none d-lg-block">
-          <label><h4><strong>Formato: </strong></h4></label>
+          <label className='formato'><h4><strong>Formato: </strong></h4></label>
           <span className="space">  </span>
   
           <button type="submit" className="btn btn-primary" onClick={() => changeView()}>

@@ -6,8 +6,8 @@ import BeatLoader from "react-spinners/BeatLoader"
 import App from "../salas/salas"
 import { Container, Row } from "react-bootstrap";
 import { /*Button, FormGroup, Form, Label,   FormText  Input,*/ Col } from 'reactstrap';
-import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom";
+import { useState/* , useEffect  */} from "react"
+/* import { useParams } from "react-router-dom"; */
 
 /* constructor(props){
     super(props);
