@@ -108,6 +108,7 @@ function Home() {
               id='customRange3'
               label='Valor máximo de la boletería: '
               onChange={onChange}
+              h-100
             />
   
             <span className="space">  </span>

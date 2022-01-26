@@ -48,7 +48,7 @@ function App() {
       </header>
       {/* <div className='body'> */}
       <body >
-        <br></br>
+        {/* <br></br> */}
         <Router history={browserHistory} basename={'/'}>
           <Switch>
             <Route exact path="/" component={Home} />

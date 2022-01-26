@@ -20,7 +20,7 @@
 @media (max-width: 600px) {
   .imag{
     /* background-color: antiquewhite; */
-    width: 20em;
+    /* width: 20em; */
     max-width: 280px;
     align-items: center;
     overflow-x: auto;

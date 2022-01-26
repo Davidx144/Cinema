@@ -19,52 +19,48 @@ const { match: {params} } = this.props;
 console.log(params.id) */
 
 
-const Infopeli = () => {
-    //function Infopeli() {
-    const params = useParams();
-    console.log("Esto es el useP:" + params.id)
-    var URLactual = (window.location);
-    //console.log(URLactual.pathname)
-    var url = (URLactual.pathname)
-    var ids = url.slice(6)
+//function Infopeli() {
+/* const params = useParams(); */
+/* console.log("Esto es el useP:" + params.id) */
+var URLactual = (window.location);
+//console.log(URLactual.pathname)
+var url = (URLactual.pathname)
+var ids = url.slice(6)
+var idss = url.slice(0,6)
+console.log(url)
+if(idss === "/info/"){
     var ss = (`/api/info/${ids}`)
-    var sss = (`/api/info/` + (params.id))
+}
+/* var sss = (`/api/info/` + (params.id)) */
 
-    const [peliCargada, setCarga] = useState(false)
+/* const [peliCargada, setCarga] = useState(false) */
 
-    console.log(peliCargada)
-    infoPelicula();
-    let peliculaActual = []
-    async function infoPelicula(props) {
-        //const respuesta = await fetch('/api/info/61e0a6ddc4ffa27245fc2196', {
-        //const respuesta = await fetch(`/api/info/` + (params.id), {
-        //const respuesta = await fetch(`/api/info/${params.id}`, {
+/* console.log(peliCargada) */
+infoPelicula()
+let peliculaActual = []
+async function infoPelicula(props) {
+    //const respuesta = await fetch('/api/info/61e0a6ddc4ffa27245fc2196', {
+    //const respuesta = await fetch(`/api/info/` + (params.id), {
+    const respuestas = await fetch(ss, {
 
-        const respuesta = await fetch('/api/info/61e0a6ddc4ffa27245fc2196', {
+    //const respuestas = await fetch('/api/info/61e0a6ddc4ffa27245fc2196', {
 
-            //const respuesta = await fetch(`/api/info/${ids}`, {
-            //const respuesta = await fetch(params.id, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
-        peliculaActual = await respuesta.json()
-        if (peliculaActual === []) {
-            console.log("Aun no llega")
-            
-        } else {
-            /* var variable = (perfilUsuario.type) */
-            setCarga(true)
-            console.log(peliCargada)
+        //const respuesta = await fetch(`/api/info/${ids}`, {
+        //const respuesta = await fetch(params.id, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
         }
+    });
+    peliculaActual = await respuestas.json()
 
-        console.log(peliculaActual[0])
-        
 
-        console.log(peliCargada)
+    console.log(peliculaActual[0])
 
-    }
+}
+
+
+const Infopeli = () => {
 
     
 
@@ -81,7 +77,7 @@ const Infopeli = () => {
             setLoading(false)
         }, 1000);
     }
-    if (/* loading || peliculaActual === []*/peliCargada === false) {
+    if ( loading /*|| peliculaActual === []*//* peliCargada === false */) {
         cambiarEstado()
         return (
             <div>
@@ -94,13 +90,13 @@ const Infopeli = () => {
             </div>
         )
     } else {
-        //var videoEmbe = ("https://www.youtube.com/embed/" + (peliculaActual[0].trailer).slice(-11))
-        var videoEmbe = ("https://www.youtube.com/embed/")
+        var videoEmbe = ("https://www.youtube.com/embed/" + (peliculaActual[0].trailer).slice(-11))
+        //var videoEmbe = ("https://www.youtube.com/embed/")
 
         console.log(videoEmbe)
         return (
             <Container >
-            {setCarga(true)}
+            {/* {setCarga(true)} */}
                 <div className='infoPelic'>
                     <Row>
                         <Col sm={6}>
