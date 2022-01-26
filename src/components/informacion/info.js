@@ -2,7 +2,7 @@
 /* import React, { useState , Component   } from 'react'; */
 import "./info.css"
 import BeatLoader from "react-spinners/BeatLoader"
-import Sillas from "../reservas/reservas"
+/* import Sillas from "../reservas/reservas" */
 import App from "../salas/salas"
 import { Container, Row } from "react-bootstrap";
 import { /*Button, FormGroup, Form, Label,   FormText  Input,*/ Col } from 'reactstrap';
@@ -18,35 +18,55 @@ console.log("ejem: " + params.id)
 const { match: {params} } = this.props;
 console.log(params.id) */
 
-var URLactual = (window.location);
-//console.log(URLactual.pathname)
-var url = (URLactual.pathname)
-var ids = url.slice(6)
-var ss=(`/api/info/${ids}`)
 
-infoPelicula();
-let peliculaActual = []
-async function infoPelicula(props) {
-    const respuesta = await fetch('/api/info/61e0a6ddc4ffa27245fc2196', {
-    //const respuesta = await fetch(ss, {
-    
-        //const respuesta = await fetch(`/api/info/${ids}`, {
-    //const respuesta = await fetch(params.id, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        }
-    });
-    peliculaActual = await respuesta.json()
-
-    console.log(peliculaActual[0])
-}
 const Infopeli = () => {
-    
-
     //function Infopeli() {
     const params = useParams();
-    console.log("Esto es el useP:"+ params.id)
+    console.log("Esto es el useP:" + params.id)
+    var URLactual = (window.location);
+    //console.log(URLactual.pathname)
+    var url = (URLactual.pathname)
+    var ids = url.slice(6)
+    var ss = (`/api/info/${ids}`)
+    var sss = (`/api/info/` + (params.id))
+
+    const [peliCargada, setCarga] = useState(false)
+
+    console.log(peliCargada)
+    infoPelicula();
+    let peliculaActual = []
+    async function infoPelicula(props) {
+        //const respuesta = await fetch('/api/info/61e0a6ddc4ffa27245fc2196', {
+        //const respuesta = await fetch(`/api/info/` + (params.id), {
+        //const respuesta = await fetch(`/api/info/${params.id}`, {
+
+        const respuesta = await fetch('/api/info/61e0a6ddc4ffa27245fc2196', {
+
+            //const respuesta = await fetch(`/api/info/${ids}`, {
+            //const respuesta = await fetch(params.id, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        peliculaActual = await respuesta.json()
+        if (peliculaActual === []) {
+            console.log("Aun no llega")
+            
+        } else {
+            /* var variable = (perfilUsuario.type) */
+            setCarga(true)
+            console.log(peliCargada)
+        }
+
+        console.log(peliculaActual[0])
+        
+
+        console.log(peliCargada)
+
+    }
+
+    
 
 
 
@@ -61,7 +81,7 @@ const Infopeli = () => {
             setLoading(false)
         }, 1000);
     }
-    if (loading || peliculaActual === []) {
+    if (/* loading || peliculaActual === []*/peliCargada === false) {
         cambiarEstado()
         return (
             <div>
@@ -74,11 +94,14 @@ const Infopeli = () => {
             </div>
         )
     } else {
-        var videoEmbe = ("https://www.youtube.com/embed/" + (peliculaActual[0].trailer).slice(-11))
+        //var videoEmbe = ("https://www.youtube.com/embed/" + (peliculaActual[0].trailer).slice(-11))
+        var videoEmbe = ("https://www.youtube.com/embed/")
+
         console.log(videoEmbe)
         return (
             <Container >
-                <div className='infoPeli'>
+            {setCarga(true)}
+                <div className='infoPelic'>
                     <Row>
                         <Col sm={6}>
                             <h2><strong size="20">{peliculaActual[0].title}</strong></h2>
@@ -103,12 +126,11 @@ const Infopeli = () => {
                     </Row>
                     <br></br>
                     <Row>
-                        <div class="embed-responsive">
-                            <iframe className='videoYoutube' /* src={exitoso[0].trailer}  */ src={videoEmbe} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        <div className="embed-responsive">
+                            <iframe className='videoYoutube' /* src={exitoso[0].trailer}  */ src={videoEmbe} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
                             </iframe>
                         </div>
                     </Row>
-                    <ejemplo></ejemplo>
                     <h1>aaaaaasas</h1>
                     <p>{url}</p>
                     <p>{ids}</p>

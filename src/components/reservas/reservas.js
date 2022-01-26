@@ -67,8 +67,8 @@ const Reservas = () => {
         <Container>
             <div className="app-container">
                 <form onSubmit={handleEditFormSubmit}>
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
+                    <table className="table table-striped">
+                        <thead className="thead-dark">
                             <tr>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Horario</th>

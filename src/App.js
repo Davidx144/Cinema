@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import {
-  BrowserRouter as Router,
+  /* BrowserRouter as */ Router,
   Switch,
   Route,
 } from "react-router-dom";
@@ -46,6 +46,7 @@ function App() {
           </Router>
         </div>
       </header>
+      {/* <div className='body'> */}
       <body >
         <br></br>
         <Router history={browserHistory} basename={'/'}>

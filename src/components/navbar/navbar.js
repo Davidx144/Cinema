@@ -89,6 +89,7 @@ function NavbarP() {
         /* return (exitoso) */
         if (perfilUsuario.error === true) {
             console.log("Aun no ingresa")
+            console.log(usuario)
             /* console.log(exitoso) */
 
         } else {
@@ -102,7 +103,7 @@ function NavbarP() {
             /* console.log(tipoUsuario) */
             var variable2 = (perfilUsuario.name)
             setUsuario(variable2)
-            console.log(usuario)
+            /* console.log(usuario) */
         }
     }
     async function logout() {

@@ -25,8 +25,8 @@ const EditableRow = ({
       <td>
       </td>
       <td>
-        <button type="submit" class="btn btn-success">Guardar</button>
-        <button type="button" class="btn btn-danger" onClick={handleCancelClick}>
+        <button type="submit" className="btn btn-success">Guardar</button>
+        <button type="button" className="btn btn-danger" onClick={handleCancelClick}>
           Cancelar
         </button>
       </td>
