@@ -127,10 +127,10 @@ const Infopeli = () => {
                             </iframe>
                         </div>
                     </Row>
-                    <h1>aaaaaasas</h1>
+                    {/* <h1>aaaaaasas</h1>
                     <p>{url}</p>
                     <p>{ids}</p>
-                    <p>{peliculaActual[0].title}</p>
+                    <p>{peliculaActual[0].title}</p> */}
                 </div>
             </Container>
         )

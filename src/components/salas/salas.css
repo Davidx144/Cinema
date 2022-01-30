@@ -31,7 +31,7 @@ this.App {
 .Salas{
     background-color: #9b1e1e;
     width: 370px;
-    height: 500px;
+    height: 550px;
     align-items: center;
     text-align: center;
     display: flex;
@@ -43,7 +43,7 @@ this.App {
     .Salas{
         background-color: #bb2626;
         width: 280px;
-        height: 530px;
+        height: 580px;
         align-items: center;
         text-align: center;
         display: flex;

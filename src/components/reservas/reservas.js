@@ -75,6 +75,7 @@ const Reservas = () => {
                                 <th scope="col">Cantidad</th>
                                 <th scope="col">Valor</th>
                                 <th scope="col">Actions</th>
+                                
                             </tr>
                         </thead>
                         <tbody>

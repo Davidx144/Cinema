@@ -1,6 +1,10 @@
 import './salas.css'
 import React, { useState } from 'react'
 import clsx from 'clsx'
+import { Boton } from '../reguistro/elementos/Formularios'
+import Swal from 'sweetalert2'
+
+
 
 const movies = [
   {
@@ -28,34 +32,78 @@ const movies = [
 const seats = Array.from({ length: 8 * 8 }, (_, i) => i)
 
 export default function App() {
+
+  const handleSubmit = (e) => {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      /* buttonsStyling: false */
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: '¿Seguro quiere reservar?',
+      text: "Después de aceptar se harán las reservas correspondientes",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, Reserva!',    
+      cancelButtonText: 'No, cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Reservado!',
+          'Tus boletas se han reservado.',
+          'success'
+        ).then(function () {
+          window.location = "/";
+      });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'No se realizó la reserva',
+          'error'
+        )
+      }
+    })
+  }
+
+
   const [selectedMovie, setSelectedMovie] = useState(movies[0])
   const [selectedSeats, setSelectedSeats] = useState([])
 
   return (
-      <div className="Salas">
-    <div className="App">
-      <Movies
-        movie={selectedMovie}
-        onChange={movie => {
-          setSelectedSeats([])
-          setSelectedMovie(movie)
-        }}
-      />
-      <ShowCase />
-      <Cinema
-        movie={selectedMovie}
-        selectedSeats={selectedSeats}
-        onSelectedSeatsChange={selectedSeats => setSelectedSeats(selectedSeats)}
-      />
+    <div className="Salas">
+      <div className="App">
+        <Movies
+          movie={selectedMovie}
+          onChange={movie => {
+            setSelectedSeats([])
+            setSelectedMovie(movie)
+          }}
+        />
+        <ShowCase />
+        <Cinema
+          movie={selectedMovie}
+          selectedSeats={selectedSeats}
+          onSelectedSeatsChange={selectedSeats => setSelectedSeats(selectedSeats)}
+        />
 
-      <p className="info">
-        Tienes seleccionado <span className="count">{selectedSeats.length}</span>{' '}
-        puestos, por un precio de{' '}
-        <span className="total">
-          {selectedSeats.length * selectedMovie.price}$
-        </span>
-      </p>
-    </div>
+        <p className="info">
+          Tienes seleccionado <span className="count">{selectedSeats.length}</span>{' '}
+          puestos, por un precio de{' '}
+          <span className="total">
+            {selectedSeats.length * selectedMovie.price}$
+          </span>
+        </p>
+        <div>
+          <Boton onClick={handleSubmit} >Reservar</Boton>
+        </div>
+      </div>
     </div>
   )
 }
@@ -110,7 +158,7 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
   }
 
   return (
-      
+
     <div className="Cinema">
       <div className="screen" />
 
@@ -132,10 +180,10 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
                 isOccupied
                   ? null
                   : e => {
-                      if (e.key === 'Enter') {
-                        handleSelectedState(seat)
-                      }
+                    if (e.key === 'Enter') {
+                      handleSelectedState(seat)
                     }
+                  }
               }
             />
           )

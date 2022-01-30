@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Label } from 'reactstrap';
 
+
 function NavbarP() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -107,15 +108,50 @@ function NavbarP() {
         }
     }
     async function logout() {
-        fetch('api/logout', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            /* buttonsStyling: false */
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: '¿Desea salir?',
+            text: "¡Se cerrará la sesión actual!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Si, cerrar.',
+            cancelButtonText: 'No, cancelar.',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                    'Sesión cerrada',
+                    'Esperamos verte de nuevo.',
+                    'success'
+                ).then(function () {
+                    fetch('api/logout', {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        }
+                    });
+                    window.location = "/";
+                });
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'Sigue disfrutando de las mejores películas ;)',
+                    'error'
+                )
             }
-        });
-        setTimeout(window.location.reload(true), 500);
-        alert("A cerrado sección satisfactoriamente");
-        window.location = "/";
+        })
+
     }
 
     return (
@@ -143,11 +179,12 @@ function NavbarP() {
                         {/* Admin */}
                         {tipoUsuario === "Admin" &&
                             <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" >
+                                
+                                <NavDropdown.Item href="/editarPeliculas" > Editar películas </NavDropdown.Item>
+                                <NavDropdown.Item href="/eliminarPeliculas" > Eliminar películas</NavDropdown.Item>
+                                <NavDropdown.Divider />
                                 <NavDropdown.Item href="/agregar" > Agregar películas
                                 </NavDropdown.Item>
-                                <NavDropdown.Item href="/eliminar" > Eliminar películas</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="/historial" > Historial </NavDropdown.Item>
 
                             </NavDropdown >
                         }
@@ -159,11 +196,11 @@ function NavbarP() {
                         }
                         {/* para usuario */}
                         {tipoUsuario === "usuario" &&
-                            <Nav.Link href="#" onClick={logout} > <BiLogIn />  Salir </Nav.Link>
+                            <Nav.Link /* href="#" */ onClick={logout} > <BiLogIn />  Salir </Nav.Link>
                         }
                         {/* Para admin */}
                         {tipoUsuario === "Admin" &&
-                            <Nav.Link href="#" onClick={logout}> <BiLogIn />  Salir </Nav.Link>
+                            <Nav.Link /* href="#" */ onClick={logout}> <BiLogIn />  Salir </Nav.Link>
                         }
                         <>
                             <Modal show={show}

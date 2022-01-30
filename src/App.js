@@ -14,7 +14,7 @@ import NavbarP from './components/navbar/navbar';
 import Inicio from './components/carrucel/carrusel';
 import Home from './components/Home/Home';
 import Reservas from './components/reservas/reservas'
-import Salas from './components/salas/salas'
+/* import Salas from './components/salas/salas' */
 import AgregarPelicula from './components/crearPelicula/agregarPelicula';
 import Info from "./components/informacion/info"
 
@@ -39,7 +39,7 @@ function App() {
               <Route exact path="/registro" component={Reguistro} />
               <Route exact path="/salida" component={Reguistro} />
               <Route exact path="/reservas" component={Reservas} />
-              <Route exact path="/historial" component={Salas} />
+              {/* <Route exact path="/historial" component={Salas} /> */}
               <Route path="/info/:id" component={Info} />
               <Route exact path="/agregar" component={AgregarPelicula} />
             </Switch>
