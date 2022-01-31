@@ -37,7 +37,7 @@ const EliminarPelicula = () => {
 
         swalWithBootstrapButtons.fire({
             title: '¿Desea eliminar la película?',
-            text: "¡La película se borrará completamente de la base de datos, incluidas sus reservas.!",
+            text: "¡La película se borrará completamente de la base de datos, incluidas sus reservas!",
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: 'Si, borrar.',
@@ -93,13 +93,13 @@ const EliminarPelicula = () => {
     } else {
         return (
             <Container>
-                <div className="app-container">
+                <div className="app-container-delete">
                     <form /* onSubmit={handleEditFormSubmit} */>
                         <table className="table table-striped">
                             <thead className="thead-dark">
                                 <tr>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Estado</th>
+                                    <th scope="col">Genero</th>
                                 </tr>
                             </thead>
                             <tbody>

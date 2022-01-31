@@ -62,8 +62,8 @@ const AgregarPelicula = () => {
                         <Row>
                             <Col sm={6}>
                                 <div>
-                                    <label for="">Titulo</label>
-                                    <input {...register("title")} type="text" /* className="form-control"  */id="validationCustom01" placeholder="Titulo de la pelicula" className='select form-control' required />
+                                    <label for="">Titulo</label >
+                                    <input {...register("title")} type="text" /* className="form-control"  */id="validationCustom01" placeholder="Titulo de la pelicula" className='select form-control' /* defaultValue={"3D"} */ required />
                                 </div>
                             </Col>
 
@@ -112,7 +112,7 @@ const AgregarPelicula = () => {
                             <Col sm={4}>
                                 <div>
                                     <label >Formato</label>
-                                    <select {...register("format")} className='select'>
+                                    <select {...register("format")} className='select' >
                                         <option value="2D">
                                             2D
                                         </option>
