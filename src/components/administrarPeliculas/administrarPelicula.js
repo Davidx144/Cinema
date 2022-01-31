@@ -1,11 +1,12 @@
 import React, { useState, Fragment } from "react";
 import "./administrarPelicula.css";
-import data from "./mock-data.json";
+/* import data from "./mock-data.json"; */
 import ListarPeliculas from "./listarPeliculas";
 /* import EditableRow from "./EditableRow"; */
 import { Container } from "react-bootstrap";
 import Swal from 'sweetalert2'
 import BeatLoader from "react-spinners/BeatLoader"
+/* import { BiAlarm } from "react-icons/bi"; */
 
 
 const EliminarPelicula = () => {
@@ -22,6 +23,12 @@ const EliminarPelicula = () => {
     console.log(listaDePeliculaas)
 
     /* const [contacts, setContacts] = useState(listaDePeliculaas); */
+
+    const handleEditClick = (peliID) => {
+        console.log(peliID)
+        alert('gg')
+        window.location.assign(`/editar/`+(peliID))
+    }
 
     const handleDeleteClick = (peliID) => {
         console.log(peliID)
@@ -111,6 +118,8 @@ const EliminarPelicula = () => {
                                             gender={i.gender}
                                             id={i._id}
                                             handleDeleteClick={handleDeleteClick}
+                                            handleEditClick={handleEditClick}
+
                                         />
                                     </Fragment>
                                 ))}

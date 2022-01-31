@@ -6,9 +6,9 @@ const ListarPeliculas = ({ title,gender, id, handleEditClick, handleDeleteClick 
       <td>{title}</td>
       <td>{gender}</td>
       <td>
-        <button
-          type="button" className="btn btn-warning"
-          /* onClick={(event) => handleEditClick(event, contact)} */
+        <button href={`/editar/`}
+          type="button" className="btn btn-warning" 
+          onClick={(event) => handleEditClick(id)}
         >
           Editar
         </button>
