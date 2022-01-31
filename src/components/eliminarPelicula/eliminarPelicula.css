@@ -1,0 +1,11 @@
+.app-container {
+    background-color: antiquewhite;
+  }
+    @media (max-width: 600px) {
+      .app-container {
+        background-color: antiquewhite;
+        width: 20em;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }

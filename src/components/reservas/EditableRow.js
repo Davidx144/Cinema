@@ -8,9 +8,16 @@ const EditableRow = ({
   return (
     <tr>
       <td>
+      <input
+          type="text"
+          required="required"
+          placeholder="Enter a phone number..."
+          name="fullName"
+          value={editFormData.fullName}
+          onChange={handleEditFormChange}
+        ></input>
       </td>
       <td>
-
       </td>
       <td>
         <input
