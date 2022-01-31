@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import "./eliminarPelicula.css";
+import "./administrarPelicula.css";
 import data from "./mock-data.json";
 import ListarPeliculas from "./listarPeliculas";
 /* import EditableRow from "./EditableRow"; */

@@ -180,8 +180,8 @@ function NavbarP() {
                         {tipoUsuario === "Admin" &&
                             <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" >
                                 
-                                <NavDropdown.Item href="/editarPeliculas" > Editar películas </NavDropdown.Item>
-                                <NavDropdown.Item href="/eliminarPeliculas" > Eliminar películas</NavDropdown.Item>
+                                {/* <NavDropdown.Item href="/editarPeliculas" > Editar películas </NavDropdown.Item> */}
+                                <NavDropdown.Item href="/administrarPelicula" > Editar / Eliminar</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="/agregar" > Agregar películas
                                 </NavDropdown.Item>
