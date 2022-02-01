@@ -18,6 +18,7 @@ import Reservas from './components/reservas/reservas'
 import AgregarPelicula from './components/crearPelicula/agregarPelicula';
 import Info from "./components/informacion/info"
 import AdministrarPelicula from './components/administrarPeliculas/administrarPelicula';
+import EditarPelicula from './components/editarPelicula/editarPelicula';
 
 
 //export const browserHistory = createBrowserHistory({ basename: "/inicio" });
@@ -41,7 +42,7 @@ function App() {
               <Route exact path="/salida" component={Reguistro} />
               <Route exact path="/reservas" component={Reservas} />
               <Route exact path="/administrarPelicula" component={AdministrarPelicula} />
-
+              <Route exact path="/editar/:id" component={EditarPelicula} />
               {/* <Route exact path="/historial" component={Salas} /> */}
               <Route exact path="/info/:id" component={Info} />
               <Route exact path="/agregar" component={AgregarPelicula} />

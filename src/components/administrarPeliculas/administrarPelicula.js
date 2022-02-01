@@ -26,7 +26,7 @@ const EliminarPelicula = () => {
 
     const handleEditClick = (peliID) => {
         console.log(peliID)
-        alert('gg')
+        /* alert('gg') */
         window.location.assign(`/editar/`+(peliID))
     }
 
