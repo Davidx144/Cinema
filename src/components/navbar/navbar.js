@@ -147,7 +147,7 @@ function NavbarP() {
                 swalWithBootstrapButtons.fire(
                     'Cancelado',
                     'Sigue disfrutando de las mejores películas ;)',
-                    'error'
+                    'info'
                 )
             }
         })
