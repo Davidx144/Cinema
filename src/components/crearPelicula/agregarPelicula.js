@@ -4,15 +4,45 @@ import { /*Button, FormGroup, Form, Label,   FormText  Input,*/ Col } from 'reac
 import { useForm } from "react-hook-form";
 /* import { select } from 'react-bootstrap'; */
 import Swal from 'sweetalert2'
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 
+/* export interface ColourOption {
+    readonly value: string;
+    readonly label: string;
+    readonly color: string;
+    readonly isFixed?: boolean;
+    readonly isDisabled?: boolean;
+  } */
 
 const AgregarPelicula = () => {
 
+
+    const animatedComponents = makeAnimated();
+    const colourOptions = [
+        { value: 'ocean', label: 'Ocean', name: 'ose', color: '#00B8D9', isFixed: true },
+        { value: 'blue', label: 'Blue', color: '#0052CC', isDisabled: true, name: 'osea' },
+        { value: 'purple', label: 'Purple', color: '#5243AA' },
+        { value: 'red', label: 'Red', color: '#FF5630', isFixed: true, name: 'oses' },
+        { value: 'orange', label: 'Orange', color: '#FF8B00', name: 'osed' },
+        { value: 'yellow', label: 'Yellow', color: '#FFC400', name: 'osef' },
+        { value: 'green', label: 'Green', color: '#36B37E', name: 'oseg' },
+        { value: 'forest', label: 'Forest', color: '#00875A', name: 'osez' },
+        { value: 'slate', label: 'Slate', color: '#253858', name: 'osex' },
+        { value: 'silver', label: 'Silver', color: '#666666', name: 'osec' },
+    ];
+
+    const handleColor = (da) => {
+        console.log(da)
+    }
+
+    console.log(colourOptions)
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
         /* data.preventDefault(); */
         /* alert(JSON.stringify(data)); */
         console.log(data.title);
+        console.log(data);
         const newPelicula = (JSON.stringify(data));
         console.log(newPelicula)
 
@@ -57,20 +87,71 @@ const AgregarPelicula = () => {
         <Container>
             <div className='agregarPeli'>
                 <h3>Crear Peliculas</h3>
+                {/* <form onSubmit={handleColor()}>
+                    <div className="form-row">
+                        <Row>
+                            <Col sm={6}>
+                                <label for="">Color</label >
+                                <Select className='select form-control'
+                                    {...register("color")}
+                                    id="validationCustom0133"
+                                    closeMenuOnSelect={false}
+                                    components={animatedComponents}
+                                    defaultValue={[colourOptions[4], colourOptions[5]]}
+                                    isMulti
+                                    options={[{value:'aa',label:'bb',name:'ss'},{value:'aas',label:'bbd',name:'ssd'}]}
+                                />
+                            </Col>
+                        </Row>
+                    </div>
+                </form> */}
+
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-row">
                         <Row>
                             <Col sm={6}>
                                 <div>
                                     <label for="">Titulo</label >
-                                    <input {...register("title")} type="text" /* className="form-control"  */id="validationCustom01" placeholder="Titulo de la pelicula" className='select form-control' /* defaultValue={"3D"} */ required />
+                                    <input {...register("title")} type="text" /* className="form-control"  */ id="validationCustom01" placeholder="Titulo de la pelicula" className='select form-control' /* defaultValue={"3D"} */ required />
                                 </div>
                             </Col>
 
+
                             <Col sm={4}>
                                 <div>
+
+                                    {/* <label class="form-label select-label">Example label</label> */}
+
+                                    <div
+                                        /* ref="d" */
+                                        className="checkboxes border-gray-200 border border-solid"
+                                    >
+                                        <label htmlFor="one" className="block ">
+                                            <input
+                                                type="checkbox"
+                                                id="one"
+                                                
+                                                value="Instagram"
+                                                className="m-3"
+                                            />
+                                            Instagram
+                                        </label>
+                                        <label htmlFor="two" className="block">
+                                            <input
+                                                type="checkbox"
+                                                id="two"
+                                                
+                                                value="LinkedIn"
+                                                className="m-3"
+                                            />
+                                            LinkedIn
+                                        </label>
+                                    </div>
+
+
                                     <label >Genero</label>
-                                    <select {...register("gender")} className='select'>
+                                    <select {...register("gender")} className='select'
+                                    >
                                         <option value="Aventura">
                                             Aventura
                                         </option>
@@ -129,14 +210,14 @@ const AgregarPelicula = () => {
                             <Col sm={4}>
                                 <div>
                                     <label for="">Precio</label>
-                                    <input {...register("value")} type="number" /* className="form-control"  */id="" placeholder="Precio" className='select form-control' required />
+                                    <input {...register("value")} type="number" /* className="form-control"  */ id="" placeholder="Precio" className='select form-control' required />
                                 </div>
                             </Col>
 
                             <Col sm={4}>
                                 <div>
                                     <label for="">Duraccion</label>
-                                    <input {...register("duration")} type="number" /* className="form-control"  */id="" placeholder="Duraccion en minutos" className='select form-control' required />
+                                    <input {...register("duration")} type="number" /* className="form-control"  */ id="" placeholder="Duraccion en minutos" className='select form-control' required />
                                 </div>
                             </Col>
 
@@ -157,7 +238,7 @@ const AgregarPelicula = () => {
                             <Col sm={12}>
                                 <div>
                                     <label for="">Descripcion</label>
-                                    <textarea {...register("synopsis")} type="textarea" /* className="form-control"  */className='form-control' id="" placeholder="Descripcion de la pelicula" rows="4" required />
+                                    <textarea {...register("synopsis")} type="textarea" /* className="form-control"  */ className='form-control' id="" placeholder="Descripcion de la pelicula" rows="4" required />
                                 </div>
                             </Col>
                         </Row>
