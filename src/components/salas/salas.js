@@ -11,6 +11,7 @@ const movies = [
     name: 'Avenger',
     price: 10,
     occupied: [20, 21, 30, 1, 2, 8],
+    lista:[['Juan',[1,4,5]],['nelson',[7,40]],['sara',[2]]]
   },
   {
     name: 'Joker',
@@ -29,9 +30,11 @@ const movies = [
   },
 ]
 
-const seats = Array.from({ length: 8 * 8 }, (_, i) => i)
+const seats = Array.from({ length: 8 * 6 }, (_, i) => i)
 
 export default function App() {
+
+
 
   const handleSubmit = (e) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -52,6 +55,17 @@ export default function App() {
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
+        console.log(selectedList)
+        let ocupadas = []
+        var Aux = []
+        movies[0].lista.map(movie => (
+          console.log(movie[1]),
+          Aux = ocupadas.concat(movie[1]),
+          ocupadas = Aux
+        ))
+        console.log(ocupadas)
+
+        console.log(selectedSeats)
         swalWithBootstrapButtons.fire(
           'Reservado!',
           'Tus boletas se han reservado.',
@@ -72,6 +86,7 @@ export default function App() {
     })
   }
 
+  const [selectedList, setSelectedList] = useState(movies[0].lista)
 
   const [selectedMovie, setSelectedMovie] = useState(movies[0])
   const [selectedSeats, setSelectedSeats] = useState([])
