@@ -37,13 +37,17 @@ const AgregarPelicula = () => {
     }
 
     console.log(colourOptions)
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm([{horarios:['11:00','9:00']}]);
     const onSubmit = (data) => {
         /* data.preventDefault(); */
         /* alert(JSON.stringify(data)); */
+        const data2 = {hours:["12:00 PM","3:00 PM","6:00 PM", "9:00 PM"]}
+
+        const data3 = Object.assign({}, data, data2)
         console.log(data.title);
-        console.log(data);
-        const newPelicula = (JSON.stringify(data));
+        /* console.log(data.horarios); */
+        console.log(data3);
+        const newPelicula = (JSON.stringify(data3));
         console.log(newPelicula)
 
         registerMovie();
@@ -186,10 +190,10 @@ const AgregarPelicula = () => {
                             <Col sm={2}>
                                 <div>
                                     <label for="">Hora</label>
-                                    <input {...register("hour")} type="time" /* className="form-control" */ id="validationCustom01" placeholder="Titulo de la pelicula" className='select form-control"' required />
+                                    <input {...register("hour")} type="time" id="validationCustom01" placeholder="Titulo de la pelicula" className='select form-control"' required />
                                 </div>
                             </Col>
-
+                            
                             <Col sm={4}>
                                 <div>
                                     <label >Formato</label>

@@ -4,7 +4,29 @@ import clsx from 'clsx'
 import { Boton } from '../reguistro/elementos/Formularios'
 import Swal from 'sweetalert2'
 
+const LocalStorageMovie = localStorageKey => {
+  const [value, setValue] = React.useState(
+    localStorage.getItem(localStorageKey) || ''
+  );
 
+  React.useEffect(() => {
+    localStorage.setItem("Id_peli", value);
+  }, [value]);
+
+  return [value, setValue];
+};
+
+const LocalStorageUser = localStorageKey => {
+  const [value, setValue] = React.useState(
+    localStorage.getItem(localStorageKey) || ''
+  );
+
+  React.useEffect(() => {
+    localStorage.setItem("id_usuario", value);
+  }, [value]);
+
+  return [value, setValue];
+};
 
 const movies = [
   {
@@ -36,7 +58,7 @@ const movies = [
     id_pelicula: "ddd",
     id_user: "dd",
     precio: "33",
-    hora: "34",
+    hora: "10:00 PM",
     listaReservas: [['Juan',[1,4,5]],['nelson',[7,40]],['sara',[2]]],
     occupied: [20, 21, 30, 1, 2, 8],
 
@@ -47,15 +69,24 @@ const seats = Array.from({ length: 8 * 6 }, (_, i) => i)
 
 export default function App() {
 
+  const [id_Pelicula, setValue] = LocalStorageMovie(
+    'Id_peli'
+  );
 
+  const [id_Usuario, setValueUser] = LocalStorageUser(
+    'id_usuario'
+  );
 
-  const handleSubmit = (e) => {
+  console.log("Este es el id de la peli : "+id_Pelicula)
+  console.log("Este es el id del usuario : "+id_Usuario)
+
+ /*  const handleSubmit = (e) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
         cancelButton: 'btn btn-danger'
       },
-      /* buttonsStyling: false */
+      
     })
 
     swalWithBootstrapButtons.fire({
@@ -75,7 +106,7 @@ export default function App() {
           console.log(movie[1]),
           Aux = ocupadas.concat(movie[1]),
           ocupadas = Aux
-          /* occupied[1].concat */
+          
           ))
         movies[0].occupied.concat(ocupadas)
         console.log(ocupadas)
@@ -86,10 +117,10 @@ export default function App() {
           'Tus boletas se han reservado.',
           'success'
         ).then(function () {
-          /* window.location = "/"; */
+          window.location = "/";
       });
       } else if (
-        /* Read more about handling dismissals below */
+        
         result.dismiss === Swal.DismissReason.cancel
       ) {
         swalWithBootstrapButtons.fire(
@@ -99,7 +130,7 @@ export default function App() {
         )
       }
     })
-  }
+  } */
 
   const [selectedList, setSelectedList] = useState(movies[0].lista)
 
@@ -131,7 +162,7 @@ export default function App() {
           </span>
         </p>
         <div>
-          <Boton onClick={handleSubmit} >Reservar</Boton>
+          <Boton /* onClick={handleSubmit}  */>Reservar</Boton>
         </div>
       </div>
     </div>
@@ -151,7 +182,7 @@ function Movies({ movie, onChange }) {
       >
         {movies.map(movie => (
           <option key={movie.hora} value={movie.hora}>
-            {movie.hora} (${movie.price})
+            {movie.hora} {/* (${movie.price}) */}
           </option>
         ))}
       </select>

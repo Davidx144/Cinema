@@ -8,7 +8,9 @@
     align-items: center;
 }
 
-
+.saludo{
+    color: gainsboro;
+}
 
 .Home-header {
     width: 100%;

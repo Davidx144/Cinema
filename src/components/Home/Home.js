@@ -17,7 +17,23 @@ import { MDBRange } from 'mdb-react-ui-kit';
 import BeatLoader from "react-spinners/BeatLoader"
 import { Container } from 'react-bootstrap';
 
+const LocalStorageUser = localStorageKey => {
+  const [value, setValue] = React.useState(
+    localStorage.getItem(localStorageKey) || 'Usuario'
+  );
+
+  React.useEffect(() => {
+    localStorage.setItem("nombre_usuario", value);
+  }, [value]);
+
+  return [value, setValue];
+};
+
 function Home() {
+
+  const [nombreUsuario, setValue] = LocalStorageUser(
+    'nombre_usuario'
+  );
 
   const [loading, setLoading] = useState(true)
   const cambiarEstado = () => {
@@ -63,7 +79,9 @@ function Home() {
           </svg>
         </div>
   
-  
+        <p className='saludo'>
+          Hola {nombreUsuario}
+        </p>
         <div className="container ">
           {/* Filtro */}
           <div className="terms col-4 mb-6 d-lg-block" >

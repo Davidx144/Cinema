@@ -43,6 +43,9 @@ function NavbarP() {
                     title: 'Bienvenido',
                     text: 'Disfruta de las mejores peliculas',
                 }).then(function () {
+                    /* perfil() */
+                    /* localStorage.setItem('nombre_usuario', exitoso.name); */
+                    localStorage.setItem('id_usuario', exitoso.id);
                     window.location = "/";
                 });
                 /* handleClose()
@@ -104,6 +107,10 @@ function NavbarP() {
             /* console.log(tipoUsuario) */
             var variable2 = (perfilUsuario.name)
             setUsuario(variable2)
+            localStorage.setItem('nombre_usuario', perfilUsuario.name);
+            localStorage.setItem('id_usuario', perfilUsuario.id);
+
+
             /* console.log(usuario) */
         }
     }
@@ -137,6 +144,7 @@ function NavbarP() {
                             "Content-Type": "application/json",
                         }
                     });
+                    localStorage.clear();
                     window.location = "/";
                 });
 
@@ -179,7 +187,7 @@ function NavbarP() {
                         {/* Admin */}
                         {tipoUsuario === "Admin" &&
                             <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" >
-                                
+
                                 {/* <NavDropdown.Item href="/editarPeliculas" > Editar películas </NavDropdown.Item> */}
                                 <NavDropdown.Item href="/administrarPelicula" > Editar / Eliminar</NavDropdown.Item>
                                 <NavDropdown.Divider />
