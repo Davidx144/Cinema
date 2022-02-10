@@ -146,13 +146,23 @@ if (idss === "/info/") {
 }
 
 let reservasActual = []
-let horariode6 = []
+/* let horariode6 = [] */
+
+let Aux12 = []
+let horario12 = []
+
+let Aux3 = []
+let horario3 = []
+
 let Aux6 = []
 let horario6 = []
 
+let Aux9 = []
+let horario9 = []
+
+
+
 infoReservas()
-// eslint-disable-next-line react-hooks/rules-of-hooks
-/* const [horario6, setSelectedAux6] = useState([]) */
 async function infoReservas(props) {
     const respuestas = await fetch(peliculasParaReserva, {
         method: "GET",
@@ -164,17 +174,32 @@ async function infoReservas(props) {
 
     /* .then(function () { */
     for (var i = 0; i < (reservasActual.length); i++) {
-        /* console.log(i) */
-        if (reservasActual[i].hour === "6:00 PM") {
+        console.log(i)
+        if (reservasActual[i].hour === "12:00 PM") {
+            Aux12 = horario12.concat(reservasActual[i].chairs)
+            horario12 = (Aux12)
+            console.log("las sillas de las 12 son:" + horario12)
+
+        } else if (reservasActual[i].hour === "3:00 PM") {
+            Aux3 = horario3.concat(reservasActual[i].chairs)
+            horario3 = (Aux3)
+            console.log("las sillas de las 3 son:" + horario3)
+
+        } else if (reservasActual[i].hour === "6:00 PM") {
             Aux6 = horario6.concat(reservasActual[i].chairs)
             horario6 = (Aux6)
-
-            /* horariode6.concat(reservasActual.chairs) */
-
             console.log("las sillas de las 6 son:" + horario6)
+
+        } else if (reservasActual[i].hour === "9:00 PM") {
+            Aux9 = horario9.concat(reservasActual[i].chairs)
+            horario9 = (Aux9)
+            console.log("las sillas de las 9 son:" + horario9)
         }
     }
+    localStorage.setItem('horario12', horario12);
+    localStorage.setItem('horario3', horario3);
     localStorage.setItem('horario6', horario6);
+    localStorage.setItem('horario9', horario9);
 
     /* }) */
     /* const eli = (reservasActual.length)
@@ -201,41 +226,28 @@ async function infoReservas(props) {
 
 //la sala visual
 
-const movies = [
+var movies = [
     {
-        name: 'Avenger',
-        price: 10,
-        occupied: [20, 21, 30, 1, 2, 8],
-        lista: [['Juan', [1, 4, 5]], ['nelson', [7, 40]], ['sara', [2]]],
-        hora: "12:00 AM",
+        price: 0,
+        occupied: [],
+        hora: "12:00 PM",
     },
     {
-        name: 'Joker',
-        price: 12,
-        occupied: [9, 41, 35, 11, 65, 26],
+        price: 0,
+        occupied: [],
         hora: "3:00 PM",
     },
     {
-        name: 'Toy story',
-        price: 8,
-        occupied: [44],
+        price: 0,
+        occupied: [],
         hora: "6:00 PM",
     },
     {
-        name: 'the lion king',
-        price: 9,
-        occupied: [10, 12, 50, 33, 28, 47],
+        price: 0,
+        occupied: [],
         hora: "9:00 PM",
     },
-    /*     {
-            id_pelicula: "ddd",
-            id_user: "dd",
-            precio: "33",
-            hora: "10:00 PM",
-            listaReservas: [['Juan', [1, 4, 5]], ['nelson', [7, 40]], ['sara', [2]]],
-            occupied: [20, 21, 30, 1, 2, 8],
-    
-        } */
+
 ]
 
 const seats = Array.from({ length: 8 * 6 }, (_, i) => i)
@@ -300,6 +312,32 @@ const LocalStorageHora = localStorageKey => {
     return [value, setValue];
 };
 
+
+
+const LocalStorageHorario12 = localStorageKey => {
+    const [value, setValue] = React.useState(
+        localStorage.getItem(localStorageKey) || ''
+    );
+
+    React.useEffect(() => {
+        localStorage.setItem("horario12", value);
+    }, [value]);
+
+    return [value, setValue];
+};
+
+const LocalStorageHorario3 = localStorageKey => {
+    const [value, setValue] = React.useState(
+        localStorage.getItem(localStorageKey) || ''
+    );
+
+    React.useEffect(() => {
+        localStorage.setItem("horario3", value);
+    }, [value]);
+
+    return [value, setValue];
+};
+
 const LocalStorageHorario6 = localStorageKey => {
     const [value, setValue] = React.useState(
         localStorage.getItem(localStorageKey) || ''
@@ -312,52 +350,22 @@ const LocalStorageHorario6 = localStorageKey => {
     return [value, setValue];
 };
 
+const LocalStorageHorario9 = localStorageKey => {
+    const [value, setValue] = React.useState(
+        localStorage.getItem(localStorageKey) || ''
+    );
+
+    React.useEffect(() => {
+        localStorage.setItem("horario9", value);
+    }, [value]);
+
+    return [value, setValue];
+};
+
 function Salas() {
 
 
 
-
-    const reservasPorHoras = [
-        {
-            name: 'Avenger',
-            price: 10,
-            occupied: [20, 21, 30, 1, 2, 8],
-            lista: [['Juan', [1, 4, 5]], ['nelson', [7, 40]], ['sara', [2]]],
-            hora: "12:01 AM",
-        },
-        {
-            name: 'Joker',
-            price: 12,
-            occupied: [9, 41, 35, 11, 65, 26],
-            hora: "3:00 PM",
-        },
-        {
-            name: 'Toy story',
-            price: 8,
-            occupied: [37, 25, 44, 13, 2, 3, 0],
-            hora: "6:00 Pm",
-        },
-        {
-            name: 'the lion king',
-            price: 9,
-            occupied: [10, 12, 50, 33, 28, 47],
-            hora: "9:00 PM",
-        },
-        /*     {
-                id_pelicula: "ddd",
-                id_user: "dd",
-                precio: "33",
-                hora: "10:00 PM",
-                listaReservas: [['Juan', [1, 4, 5]], ['nelson', [7, 40]], ['sara', [2]]],
-                occupied: [20, 21, 30, 1, 2, 8],
-        
-            } */
-    ]
-
-    /*     localStorage.setItem('nombre_peli', peliculaActual[0].title);
-        localStorage.setItem('valor_peli', peliculaActual[0].value);
-        localStorage.setItem('hora_peli', peliculaActual[0].hour);
-        localStorage.setItem('Id_peli', peliculaActual[0]._id); */
 
 
     const [id_Pelicula, setValue] = LocalStorageMovie(
@@ -368,15 +376,15 @@ function Salas() {
         'id_usuario'
     );
 
-    const [nombre_Pelicula, setValueNombrePelicula] = LocalStorageUser(
+    const [nombre_Pelicula, setValueNombrePelicula] = LocalStorageNombrePeli(
         'nombre_peli'
     );
 
-    const [valor_Pelicula, setValueValorPelicula] = LocalStorageNombrePeli(
+    const [valor_Pelicula, setValueValorPelicula] = LocalStorageValor(
         'valor_peli'
     );
 
-    const [hora_Pelicula, setValueHoraPeli] = LocalStorageValor(
+    const [hora_Pelicula, setValueHoraPeli] = LocalStorageHora(
         'hora_peli'
     );
 
@@ -403,7 +411,7 @@ function Salas() {
         }).then((result) => {
             if (result.isConfirmed) {
                 console.log(selectedList)
-                let ocupadas = []
+                /* let ocupadas = [] */
                 /*           var Aux = []
                           movies[0].lista.map(movie => (
                             console.log(movie[1]),
@@ -411,7 +419,7 @@ function Salas() {
                             ocupadas = Aux
                             
                             )) */
-                movies[0].occupied.concat(ocupadas)
+                /* movies[0].occupied.concat(ocupadas) */
 
                 console.log("El id de la peli es: " + id_Pelicula)
                 console.log("El id del usuario es: " + id_Usuario)
@@ -504,46 +512,67 @@ function Salas() {
     )
 }
 
+
 function Movies({ movie, onChange }) {
-    const [hararioalas6, setValue] = LocalStorageHorario6(
+   
+
+    const [hararioalas12, setValueHorario12] = LocalStorageHorario12(
+        'horario12'
+    );
+    
+    const [hararioalas3, setValueHorario3] = LocalStorageHorario3(
+        'horario3'
+    );
+    
+    const [hararioalas6, setValueHorario6] = LocalStorageHorario6(
         'horario6'
     );
-    const movies4 = [
+    
+    const [hararioalas9, setValueHorario9] = LocalStorageHorario9(
+        'horario9'
+    );
+    
+    const [valor_Pelicula, setValueValorPelicula] = LocalStorageValor(
+        'valor_peli'
+    );
+
+    movies[0].occupied=hararioalas12
+    movies[0].price=valor_Pelicula
+
+    movies[1].occupied=hararioalas3
+    movies[1].price=valor_Pelicula
+
+    movies[2].occupied=hararioalas6
+    movies[2].price=valor_Pelicula
+
+    movies[3].occupied=hararioalas9
+    movies[3].price=valor_Pelicula
+
+    
+/*     const movies4 = [
         {
-            name: 'Avenger',
-            price: 10,
-            occupied: [20, 21, 30, 1, 2, 8],
-            lista: [['Juan', [1, 4, 5]], ['nelson', [7, 40]], ['sara', [2]]],
-            hora: "12:00 AM",
+            price: valor_Pelicula,
+            occupied: hararioalas12,
+            hora: "12:00 PM",
         },
         {
-            name: 'Joker',
-            price: 12,
-            occupied: [9, 41, 35, 11, 65, 26],
+            price: valor_Pelicula,
+            occupied: hararioalas3,
             hora: "3:00 PM",
         },
         {
-            name: 'Toy story',
-            price: 8,
+            price: valor_Pelicula,
             occupied: hararioalas6,
             hora: "6:00 PM",
         },
         {
-            name: 'the lion king',
-            price: 9,
-            occupied: [10, 12, 50, 33, 28, 47],
+            price: valor_Pelicula,
+            occupied: hararioalas9,
             hora: "9:00 PM",
         },
-        /*     {
-                id_pelicula: "ddd",
-                id_user: "dd",
-                precio: "33",
-                hora: "10:00 PM",
-                listaReservas: [['Juan', [1, 4, 5]], ['nelson', [7, 40]], ['sara', [2]]],
-                occupied: [20, 21, 30, 1, 2, 8],
-        
-            } */
-    ]
+    ] */
+
+    
     return (
         <div className="Movies">
             <label htmlFor="movie"><strong>Selecciona el horario</strong></label>
@@ -551,10 +580,10 @@ function Movies({ movie, onChange }) {
                 id="movie"
                 value={movie.hora}
                 onChange={e => {
-                    onChange(movies4.find(movie => movie.hora === e.target.value))
+                    onChange(movies.find(movie => movie.hora === e.target.value))
                 }}
             >
-                {movies4.map(movie => (
+                {movies.map(movie => (
                     <option key={movie.hora} value={movie.hora}>
                         {movie.hora} {/* (${movie.price}) */}
                     </option>
@@ -591,41 +620,61 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
             onSelectedSeatsChange([...selectedSeats, seat])
         }
     }
-
-    return (
-
-        <div className="Cinema">
-            <div className="screen" />
-
-            <div className="seats">
-                {seats.map(seat => {
-                    const isSelected = selectedSeats.includes(seat)
-                    const isOccupied = movie.occupied.includes(seat)
-                    return (
-                        <span
-                            tabIndex="0"
-                            key={seat}
-                            className={clsx(
-                                'seat',
-                                isSelected && 'selected',
-                                isOccupied && 'occupied',
-                            )}
-                            onClick={isOccupied ? null : () => handleSelectedState(seat)}
-                            onKeyPress={
-                                isOccupied
-                                    ? null
-                                    : e => {
-                                        if (e.key === 'Enter') {
-                                            handleSelectedState(seat)
-                                        }
-                                    }
-                            }
-                        />
-                    )
-                })}
+    const [loading, setLoading] = useState(true)
+    const cambiarEstado = () => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000);
+    }
+    if (loading /*|| peliculaActual === []*//* peliCargada === false */) {
+        cambiarEstado()
+        return (
+            <div>
+                <Container className='loading'>
+                    <BeatLoader
+                        size={15}
+                    />
+                </Container>
             </div>
-        </div>
-    )
+        )
+    } else {
+
+        return (
+    
+    
+            <div className="Cinema">
+                <div className="screen" />
+    
+                <div className="seats">
+                    {seats.map(seat => {
+                        const isSelected = selectedSeats.includes(seat)
+                        const isOccupied = movie.occupied.includes(seat)
+                        return (
+                            <span
+                                tabIndex="0"
+                                key={seat}
+                                className={clsx(
+                                    'seat',
+                                    isSelected && 'selected',
+                                    isOccupied && 'occupied',
+                                )}
+                                onClick={isOccupied ? null : () => handleSelectedState(seat)}
+                                onKeyPress={
+                                    isOccupied
+                                        ? null
+                                        : e => {
+                                            if (e.key === 'Enter') {
+                                                handleSelectedState(seat)
+                                            }
+                                        }
+                                }
+                            />
+                        )
+                    })}
+                </div>
+            </div>
+        )
+    }
 }
 
 export default Infopeli;
