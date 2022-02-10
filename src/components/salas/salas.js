@@ -45,7 +45,7 @@ const movies = [
   {
     name: 'Toy story',
     price: 8,
-    occupied: [37, 25, 44, 13, 2, 3],
+    occupied: [37, 25, 44, 13, 2, 31, 0],
     hora: "6:00: PM",
   },
   {

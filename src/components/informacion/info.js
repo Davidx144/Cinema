@@ -1,91 +1,55 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* import React, { useState , Component   } from 'react'; */
+//agregar la reserva
+/*     const onSubmit = (data) => {
+        console.log(data.title);
+        console.log(data);
+        const newPelicula = (JSON.stringify(data));
+        console.log(newPelicula)
+ 
+        registerMovie();
+        async function registerMovie() {
+            const respuesta = await fetch('/api/registerMovie', {
+                method: "POST",
+                body: newPelicula,
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+            const exitoso = await respuesta.json();
+            if (exitoso.succes === true) {
+                console.log("Guardado")
+                console.log(exitoso)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Bien',
+                    text: 'Pelicula registrada correctamente',
+                    footer: '<a href="/#deets">Inicia seccion</a>'
+                }).then(function () {
+                    window.location = "/";
+                });
+            } else {
+                console.log("No guardado")
+                console.log(exitoso)
+                Swal.fire({
+                    href: "/",
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Parase que la pelicula ya existe',
+                    footer: '<a href="/#deets">Inicia seccion</a>'
+                })
+            }
+        }
+    }; */
 import "./info.css"
 import BeatLoader from "react-spinners/BeatLoader"
-/* import Sillas from "../reservas/reservas" */
-/* import Salas from "../salas/salas" */
 import { Container, Row } from "react-bootstrap";
-import { /*Button, FormGroup, Form, Label,   FormText  Input,*/ Col } from 'reactstrap';
+import { Col } from 'reactstrap';
 import Swal from 'sweetalert2'
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import { Boton } from '../reguistro/elementos/Formularios'
 
 
-var URLactual = (window.location);
-var url = (URLactual.pathname)
-var ids = url.slice(6)
-var idss = url.slice(0, 6)
-console.log(url)
-if (idss === "/info/") {
-    var ss = (`/api/info/${ids}`)
-}
-
-infoPelicula()
-let peliculaActual = []
-async function infoPelicula(props) {
-    const respuestas = await fetch(ss, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        }
-    });
-    peliculaActual = await respuestas.json()
-
-
-    console.log(peliculaActual[0])
-
-    localStorage.setItem('nombre_peli', peliculaActual[0].title);
-    localStorage.setItem('valor_peli', peliculaActual[0].value);
-    localStorage.setItem('hora_peli', peliculaActual[0].hour);
-    localStorage.setItem('Id_peli', peliculaActual[0]._id);
-
-}
-
-
 const Infopeli = () => {
-
-    //agregar la reserva
-    /*     const onSubmit = (data) => {
-            console.log(data.title);
-            console.log(data);
-            const newPelicula = (JSON.stringify(data));
-            console.log(newPelicula)
-    
-            registerMovie();
-            async function registerMovie() {
-                const respuesta = await fetch('/api/registerMovie', {
-                    method: "POST",
-                    body: newPelicula,
-                    headers: {
-                        "Content-Type": "application/json",
-                    }
-                });
-                const exitoso = await respuesta.json();
-                if (exitoso.succes === true) {
-                    console.log("Guardado")
-                    console.log(exitoso)
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Bien',
-                        text: 'Pelicula registrada correctamente',
-                        footer: '<a href="/#deets">Inicia seccion</a>'
-                    }).then(function () {
-                        window.location = "/";
-                    });
-                } else {
-                    console.log("No guardado")
-                    console.log(exitoso)
-                    Swal.fire({
-                        href: "/",
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Parase que la pelicula ya existe',
-                        footer: '<a href="/#deets">Inicia seccion</a>'
-                    })
-                }
-            }
-        }; */
 
     const [loading, setLoading] = useState(true)
     const cambiarEstado = () => {
@@ -97,7 +61,6 @@ const Infopeli = () => {
         cambiarEstado()
         return (
             <div>
-
                 <Container className='loading'>
                     <BeatLoader
                         size={15}
@@ -107,12 +70,9 @@ const Infopeli = () => {
         )
     } else {
         var videoEmbe = ("https://www.youtube.com/embed/" + (peliculaActual[0].trailer).slice(-11))
-        //var videoEmbe = ("https://www.youtube.com/embed/")
-
         console.log(videoEmbe)
         return (
             <Container >
-                {/* {setCarga(true)} */}
                 <div className='infoPelic'>
                     <Row>
                         <Col sm={6}>
@@ -134,7 +94,7 @@ const Infopeli = () => {
                         </Col>
                         <Col sm={6}>
                             <Salas></Salas>
-                            {/* <Salas></Salas> */}
+
                         </Col>
                     </Row>
                     <br></br>
@@ -151,8 +111,96 @@ const Infopeli = () => {
     }
 }
 
+var URLactual = (window.location);
+var url = (URLactual.pathname)
+var ids = url.slice(6)
+var idss = url.slice(0, 6)
+console.log(url)
+if (idss === "/info/") {
+    var apiInfo = (`/api/info/${ids}`)
+}
+
+infoPelicula()
+let peliculaActual = []
+async function infoPelicula(props) {
+    const respuestas = await fetch(apiInfo, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    peliculaActual = await respuestas.json()
+
+
+    console.log(peliculaActual[0])
+
+    localStorage.setItem('nombre_peli', peliculaActual[0].title);
+    localStorage.setItem('valor_peli', peliculaActual[0].value);
+    localStorage.setItem('hora_peli', peliculaActual[0].hour);
+    localStorage.setItem('Id_peli', peliculaActual[0]._id);
+
+}
+
+if (idss === "/info/") {
+    var peliculasParaReserva = (`/api/bookingsMovie/${ids}`)
+}
+
+let reservasActual = []
+let horariode6 = []
+let Aux6 = []
+let horario6 = []
+
+infoReservas()
+// eslint-disable-next-line react-hooks/rules-of-hooks
+/* const [horario6, setSelectedAux6] = useState([]) */
+async function infoReservas(props) {
+    const respuestas = await fetch(peliculasParaReserva, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    reservasActual = await respuestas.json()
+
+    /* .then(function () { */
+    for (var i = 0; i < (reservasActual.length); i++) {
+        /* console.log(i) */
+        if (reservasActual[i].hour === "6:00 PM") {
+            Aux6 = horario6.concat(reservasActual[i].chairs)
+            horario6 = (Aux6)
+
+            /* horariode6.concat(reservasActual.chairs) */
+
+            console.log("las sillas de las 6 son:" + horario6)
+        }
+    }
+    localStorage.setItem('horario6', horario6);
+
+    /* }) */
+    /* const eli = (reservasActual.length)
+    console.log(reservasActual.length) */
+}
+/* reservasActual.map(reserva => (
+    dividirHora(reserva)
+)) */
+
+/* function dividirHora(reser) {
+    if (reser.hour === "6:00 PM") {
+        Aux6 = horario6.concat(reser.chairs)
+        horario6 = (Aux6)
+        console.log(horario6)
+    }
+} */
+
+
+
+
+/* const horario6 = reservasActual.map */
+
+
 
 //la sala visual
+
 const movies = [
     {
         name: 'Avenger',
@@ -170,8 +218,8 @@ const movies = [
     {
         name: 'Toy story',
         price: 8,
-        occupied: [37, 25, 44, 13, 2, 3],
-        hora: "6:00: PM",
+        occupied: [44],
+        hora: "6:00 PM",
     },
     {
         name: 'the lion king',
@@ -179,15 +227,15 @@ const movies = [
         occupied: [10, 12, 50, 33, 28, 47],
         hora: "9:00 PM",
     },
-/*     {
-        id_pelicula: "ddd",
-        id_user: "dd",
-        precio: "33",
-        hora: "10:00 PM",
-        listaReservas: [['Juan', [1, 4, 5]], ['nelson', [7, 40]], ['sara', [2]]],
-        occupied: [20, 21, 30, 1, 2, 8],
-
-    } */
+    /*     {
+            id_pelicula: "ddd",
+            id_user: "dd",
+            precio: "33",
+            hora: "10:00 PM",
+            listaReservas: [['Juan', [1, 4, 5]], ['nelson', [7, 40]], ['sara', [2]]],
+            occupied: [20, 21, 30, 1, 2, 8],
+    
+        } */
 ]
 
 const seats = Array.from({ length: 8 * 6 }, (_, i) => i)
@@ -252,9 +300,59 @@ const LocalStorageHora = localStorageKey => {
     return [value, setValue];
 };
 
+const LocalStorageHorario6 = localStorageKey => {
+    const [value, setValue] = React.useState(
+        localStorage.getItem(localStorageKey) || ''
+    );
+
+    React.useEffect(() => {
+        localStorage.setItem("horario6", value);
+    }, [value]);
+
+    return [value, setValue];
+};
 
 function Salas() {
 
+
+
+
+    const reservasPorHoras = [
+        {
+            name: 'Avenger',
+            price: 10,
+            occupied: [20, 21, 30, 1, 2, 8],
+            lista: [['Juan', [1, 4, 5]], ['nelson', [7, 40]], ['sara', [2]]],
+            hora: "12:01 AM",
+        },
+        {
+            name: 'Joker',
+            price: 12,
+            occupied: [9, 41, 35, 11, 65, 26],
+            hora: "3:00 PM",
+        },
+        {
+            name: 'Toy story',
+            price: 8,
+            occupied: [37, 25, 44, 13, 2, 3, 0],
+            hora: "6:00 Pm",
+        },
+        {
+            name: 'the lion king',
+            price: 9,
+            occupied: [10, 12, 50, 33, 28, 47],
+            hora: "9:00 PM",
+        },
+        /*     {
+                id_pelicula: "ddd",
+                id_user: "dd",
+                precio: "33",
+                hora: "10:00 PM",
+                listaReservas: [['Juan', [1, 4, 5]], ['nelson', [7, 40]], ['sara', [2]]],
+                occupied: [20, 21, 30, 1, 2, 8],
+        
+            } */
+    ]
 
     /*     localStorage.setItem('nombre_peli', peliculaActual[0].title);
         localStorage.setItem('valor_peli', peliculaActual[0].value);
@@ -278,7 +376,7 @@ function Salas() {
         'valor_peli'
     );
 
-    const [hora_Pelicula, setValueHoraPeli] = LocalStorageUser(
+    const [hora_Pelicula, setValueHoraPeli] = LocalStorageValor(
         'hora_peli'
     );
 
@@ -319,7 +417,7 @@ function Salas() {
                 console.log("El id del usuario es: " + id_Usuario)
                 console.log("El nombre de la peli es: " + nombre_Pelicula)
                 console.log("El valor de la peli es: " + valor_Pelicula)
-                console.log("la hora de la peli es: " + hora_Pelicula)
+                console.log("la hora de la peli es: " + selectedMovie.hora)
                 console.log("las sillas seleccionadas son: " + selectedSeats)
 
                 console.log(selectedSeats)
@@ -329,21 +427,21 @@ function Salas() {
                     id_user: id_Usuario,
                     chairs: selectedSeats,
                     movieValue: valor_Pelicula,
-                    hour: hora_Pelicula,
+                    hour: selectedMovie.hora,
                     title: nombre_Pelicula,
-                    bookingValue: valor_Pelicula*selectedSeats.length
+                    bookingValue: valor_Pelicula * selectedSeats.length
                 };
-    
-                
+
+
                 const caragarReserva = JSON.stringify(reservaPelicula);
 
                 reguistarReserva();
-                async function reguistarReserva(){
+                async function reguistarReserva() {
                     const respuesta = await fetch('/api/registerBooking', {
-                        method: "POST",            
+                        method: "POST",
                         body: caragarReserva,
-                        headers:{
-                             "Content-Type": "application/json" ,
+                        headers: {
+                            "Content-Type": "application/json",
                         }
                     });
                     const exitoso = await respuesta.json();
@@ -407,6 +505,45 @@ function Salas() {
 }
 
 function Movies({ movie, onChange }) {
+    const [hararioalas6, setValue] = LocalStorageHorario6(
+        'horario6'
+    );
+    const movies4 = [
+        {
+            name: 'Avenger',
+            price: 10,
+            occupied: [20, 21, 30, 1, 2, 8],
+            lista: [['Juan', [1, 4, 5]], ['nelson', [7, 40]], ['sara', [2]]],
+            hora: "12:00 AM",
+        },
+        {
+            name: 'Joker',
+            price: 12,
+            occupied: [9, 41, 35, 11, 65, 26],
+            hora: "3:00 PM",
+        },
+        {
+            name: 'Toy story',
+            price: 8,
+            occupied: hararioalas6,
+            hora: "6:00 PM",
+        },
+        {
+            name: 'the lion king',
+            price: 9,
+            occupied: [10, 12, 50, 33, 28, 47],
+            hora: "9:00 PM",
+        },
+        /*     {
+                id_pelicula: "ddd",
+                id_user: "dd",
+                precio: "33",
+                hora: "10:00 PM",
+                listaReservas: [['Juan', [1, 4, 5]], ['nelson', [7, 40]], ['sara', [2]]],
+                occupied: [20, 21, 30, 1, 2, 8],
+        
+            } */
+    ]
     return (
         <div className="Movies">
             <label htmlFor="movie"><strong>Selecciona el horario</strong></label>
@@ -414,10 +551,10 @@ function Movies({ movie, onChange }) {
                 id="movie"
                 value={movie.hora}
                 onChange={e => {
-                    onChange(movies.find(movie => movie.hora === e.target.value))
+                    onChange(movies4.find(movie => movie.hora === e.target.value))
                 }}
             >
-                {movies.map(movie => (
+                {movies4.map(movie => (
                     <option key={movie.hora} value={movie.hora}>
                         {movie.hora} {/* (${movie.price}) */}
                     </option>
