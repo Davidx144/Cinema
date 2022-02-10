@@ -536,13 +536,14 @@ function Movies({ movie, onChange }) {
         'valor_peli'
     );
 
+    var aux = hararioalas6
     movies[0].occupied=hararioalas12
     movies[0].price=valor_Pelicula
 
     movies[1].occupied=hararioalas3
     movies[1].price=valor_Pelicula
 
-    movies[2].occupied=hararioalas6
+    movies[2].occupied=aux
     movies[2].price=valor_Pelicula
 
     movies[3].occupied=hararioalas9

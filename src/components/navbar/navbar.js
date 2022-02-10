@@ -179,10 +179,10 @@ function NavbarP() {
                         <Nav.Link href="/#carteleraHome" >Cartelera </Nav.Link>
                         {/* Usuario */}
                         {(tipoUsuario === "usuario") &&
-                            <Nav.Link href="/reservas" > Lista de reservas </Nav.Link>
+                            <Nav.Link href="/bookingsUser/61b6c2fadb3251694090fd75" > Lista de reservas </Nav.Link>
                         }
                         {(tipoUsuario === "Admin") &&
-                            <Nav.Link href="/reservas" > Lista de reservas </Nav.Link>
+                            <Nav.Link href="/bookingsUser/61b6c2fadb3251694090fd75" > Lista de reservas </Nav.Link>
                         }
                         {/* Admin */}
                         {tipoUsuario === "Admin" &&

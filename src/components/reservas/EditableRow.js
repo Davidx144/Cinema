@@ -1,5 +1,11 @@
 import React from "react";
-
+/*     {
+      "id": 2,
+      "title": "Coda, Señales del Corazón",
+      "hour": "3:00AM",
+      "chairs": "1",
+      "bookingValue": "2.000 Mil"
+    }, */
 const EditableRow = ({
   editFormData,
   handleEditFormChange,
@@ -12,8 +18,8 @@ const EditableRow = ({
           type="text"
           required="required"
           placeholder="Enter a phone number..."
-          name="fullName"
-          value={editFormData.fullName}
+          name="title"
+          value={editFormData.title}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -24,8 +30,8 @@ const EditableRow = ({
           type="text"
           required="required"
           placeholder="Enter a phone number..."
-          name="phoneNumber"
-          value={editFormData.phoneNumber}
+          name="chairs"
+          value={editFormData.chairs}
           onChange={handleEditFormChange}
         ></input>
       </td>
