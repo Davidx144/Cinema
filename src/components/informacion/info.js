@@ -252,6 +252,7 @@ var movies = [
 
 const seats = Array.from({ length: 8 * 6 }, (_, i) => i)
 
+
 const LocalStorageMovie = localStorageKey => {
     const [value, setValue] = React.useState(
         localStorage.getItem(localStorageKey) || ''
@@ -656,10 +657,13 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
     
                 <div className="seats">
                     {seats.map(seat => {
-                        var isOccupied = []
+                        /* var isOccupied = [] */
                         const isSelected = selectedSeats.includes(seat)
-                        var isOccupied = movie.occupied.includes(seat)
+                        const isOccupied = movie.occupied.includes(seat)
                         
+                        console.log(isOccupied)
+                        /* console.log(isSelected) */
+
                         /* var aux9 = (movie.occupied.includes(seat))
                         const isOccupied = Object.assign([], aux9); */
                         return (
