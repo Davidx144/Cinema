@@ -480,10 +480,12 @@ function Salas() {
     const [selectedMovie, setSelectedMovie] = useState(movies[0])
     const [selectedSeats, setSelectedSeats] = useState([])
 
+
     return (
         <div className="Salas">
             <div className="App">
                 <Movies
+                
                     movie={selectedMovie}
                     onChange={movie => {
                         setSelectedSeats([])
@@ -514,6 +516,7 @@ function Salas() {
 
 
 function Movies({ movie, onChange }) {
+    
    
 
     const [hararioalas12, setValueHorario12] = LocalStorageHorario12(
@@ -539,6 +542,8 @@ function Movies({ movie, onChange }) {
     var aux = hararioalas6
     movies[0].occupied=hararioalas12
     movies[0].price=valor_Pelicula
+
+    console.log(hararioalas6)
 
     movies[1].occupied=hararioalas3
     movies[1].price=valor_Pelicula
@@ -573,7 +578,9 @@ function Movies({ movie, onChange }) {
         },
     ] */
 
-    
+    console.log('selectedMovie.occupied')
+
+    console.log(movie.occupied)
     return (
         <div className="Movies">
             <label htmlFor="movie"><strong>Selecciona el horario</strong></label>
@@ -640,6 +647,7 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
         )
     } else {
 
+        
         return (
     
     
@@ -648,8 +656,12 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
     
                 <div className="seats">
                     {seats.map(seat => {
+                        var isOccupied = []
                         const isSelected = selectedSeats.includes(seat)
-                        const isOccupied = movie.occupied.includes(seat)
+                        var isOccupied = movie.occupied.includes(seat)
+                        
+                        /* var aux9 = (movie.occupied.includes(seat))
+                        const isOccupied = Object.assign([], aux9); */
                         return (
                             <span
                                 tabIndex="0"

@@ -10,8 +10,20 @@ import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Label } from 'reactstrap';
 
+const LocalStorageUser = localStorageKey => {
+    const [value, setValue] = React.useState(
+        localStorage.getItem(localStorageKey) || ''
+    );
+
+    React.useEffect(() => {
+        localStorage.setItem("id_usuario", value);
+    }, [value]);
+
+    return [value, setValue];
+};
 
 function NavbarP() {
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -161,6 +173,9 @@ function NavbarP() {
         })
 
     }
+    const [id_Usuario, setValueUser] = LocalStorageUser(
+        'id_usuario'
+    );
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" position="fixed">
@@ -179,10 +194,11 @@ function NavbarP() {
                         <Nav.Link href="/#carteleraHome" >Cartelera </Nav.Link>
                         {/* Usuario */}
                         {(tipoUsuario === "usuario") &&
-                            <Nav.Link href="/bookingsUser/61b6c2fadb3251694090fd75" > Lista de reservas </Nav.Link>
+                        
+                            <Nav.Link href={"/bookingsUser/"+(id_Usuario)}  > Lista de reservas </Nav.Link>
                         }
                         {(tipoUsuario === "Admin") &&
-                            <Nav.Link href="/bookingsUser/61b6c2fadb3251694090fd75" > Lista de reservas </Nav.Link>
+                            <Nav.Link href={"/bookingsUser/"+(id_Usuario)}> Lista de reservas </Nav.Link>
                         }
                         {/* Admin */}
                         {tipoUsuario === "Admin" &&
