@@ -3,6 +3,21 @@
     padding: 30px;
     margin: 30px;
 }
+
+this.body {
+  background-image: url("../../assert/cinema-old.jpg");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+}
+this.header {
+  background: url("../../assert/cinema-old.jpg") no-repeat center;
+  background-size: cover;
+  min-height: 100vh;
+}
+
 /* body {
     background: #0e101c;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

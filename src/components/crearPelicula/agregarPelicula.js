@@ -126,8 +126,7 @@ const AgregarPelicula = () => {
 
                                     {/* <label class="form-label select-label">Example label</label> */}
 
-                                    <div
-                                        /* ref="d" */
+                                    {/* <div
                                         className="checkboxes border-gray-200 border border-solid"
                                     >
                                         <label htmlFor="one" className="block ">
@@ -150,7 +149,7 @@ const AgregarPelicula = () => {
                                             />
                                             LinkedIn
                                         </label>
-                                    </div>
+                                    </div> */}
 
 
                                     <label >Genero</label>

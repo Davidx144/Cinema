@@ -6,6 +6,7 @@ import ListaReservadas from "./listaReservadas";
 import { Container } from "react-bootstrap";
 import Swal from 'sweetalert2'
 import BeatLoader from "react-spinners/BeatLoader"
+import EditarReserva from "../editarReserva/editarReserva";
 /* import { BiAlarm } from "react-icons/bi"; */
 
 
@@ -26,8 +27,9 @@ const ReservadasUsuario = () => {
 
     const handleEditClick = (reservaId) => {
         console.log(reservaId)
+        /* return (<EditarReserva reserva={reservaId}></EditarReserva>) */
         /* alert('gg') */
-        window.location.assign(`/editarReserva/`+(reservaId))
+        window.location.assign(`/editarReserva/` + (reservaId))
     }
 
     const handleDeleteClick = (reservaId) => {
@@ -57,7 +59,7 @@ const ReservadasUsuario = () => {
                     'Todos los registros han sido eliminados.',
                     'success'
                 ).then(function () {
-                    fetch('/api/deleteBooking/'+reservaId, {
+                    fetch('/api/deleteBooking/' + reservaId, {
                         method: "DELETE",
                         headers: {
                             "Content-Type": "application/json",
@@ -141,13 +143,13 @@ var urlreserva = (URLactual.pathname)
 var idsUserReservas = urlreserva.slice(14)
 var idsUser = urlreserva.slice(0, 14)
 
-console.log("este"+idsUser)
+console.log("este" + idsUser)
 if (idsUser === "/bookingsUser/") {
     var apiReservas = (`/api/bookingsUser/${idsUserReservas}`)
 }
-console.log("hola"+apiReservas)
+console.log("hola" + apiReservas)
 
-var reservasDelUsuario =[/* {title:"El Closet",hour:"3:00 PM",chairs:[0,1,6],bookingValue:"23400"},{title:"Scream La Película",hour:"12:00 PM",chairs:[1,3],bookingValue:"7800"} */]
+var reservasDelUsuario = [/* {title:"El Closet",hour:"3:00 PM",chairs:[0,1,6],bookingValue:"23400"},{title:"Scream La Película",hour:"12:00 PM",chairs:[1,3],bookingValue:"7800"} */]
 reservasUsuario()
 async function reservasUsuario(props) {
     const respuestas = await fetch(apiReservas, {
@@ -159,7 +161,8 @@ async function reservasUsuario(props) {
     reservasDelUsuario = await respuestas.json()
     console.log(reservasDelUsuario)
 
-} 
+}
+
 
 
 export default ReservadasUsuario;
