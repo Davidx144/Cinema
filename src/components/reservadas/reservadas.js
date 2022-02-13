@@ -24,14 +24,14 @@ const ReservadasUsuario = () => {
 
     /* const [contacts, setContacts] = useState(listaDePeliculaas); */
 
-    const handleEditClick = (peliID) => {
-        console.log(peliID)
+    const handleEditClick = (reservaId) => {
+        console.log(reservaId)
         /* alert('gg') */
-        window.location.assign(`/editar/`+(peliID))
+        window.location.assign(`/editarReserva/`+(reservaId))
     }
 
-    const handleDeleteClick = (peliID) => {
-        console.log(peliID)
+    const handleDeleteClick = (reservaId) => {
+        console.log(reservaId)
 
         /*  */
         const swalWithBootstrapButtons = Swal.mixin({
@@ -43,8 +43,8 @@ const ReservadasUsuario = () => {
         })
 
         swalWithBootstrapButtons.fire({
-            title: '¿Desea eliminar la película?',
-            text: "¡La película se borrará completamente de la base de datos, incluidas sus reservas!",
+            title: '¿Desea eliminar la reserva?',
+            text: "¡La reserva se borrará completamente de la base de datos!",
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: 'Si, borrar.',
@@ -53,11 +53,11 @@ const ReservadasUsuario = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 swalWithBootstrapButtons.fire(
-                    'Película borrada',
+                    'Reserva borrada',
                     'Todos los registros han sido eliminados.',
                     'success'
                 ).then(function () {
-                    fetch('api/delete/'+peliID, {
+                    fetch('/api/deleteBooking/'+reservaId, {
                         method: "DELETE",
                         headers: {
                             "Content-Type": "application/json",
