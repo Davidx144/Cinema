@@ -69,11 +69,16 @@
   background: url("../src/assert/cinema.jpg") no-repeat center;
   background-size: cover;
   min-height: 100vh;
+  
 }
+
+
 .header .navbar {
   background-color: transparent !important;
+  /* margin-bottom: 80px; */
   /* position: fixed; */
 }
+
 
 .Modal.Footer{
   position: center;

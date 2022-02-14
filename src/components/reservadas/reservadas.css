@@ -10,3 +10,27 @@
         white-space: nowrap;
       }
     }
+
+.editBoton{
+    background-color: rgb(97, 50, 224);
+    border-color: #352591e1;
+    color: aliceblue;
+}
+
+.editBoton:hover{
+  background-color: rgb(185, 160, 255);
+  border-color: #352591e1;
+  color: aliceblue;
+}
+
+.deleteBoton{
+  background-color: rgb(237, 88, 38);
+  border-color: #dd3e22e1;
+  color: aliceblue;
+}
+
+.deleteBoton:hover{
+background-color: rgb(235, 179, 57);
+border-color: #d69a2be1;
+color: aliceblue;
+}

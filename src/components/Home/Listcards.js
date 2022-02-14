@@ -3,8 +3,8 @@ import './Home'
 const Listcards = props => {
     return (
         <div className="cartas">
-            <div className="grid h-100">
-                <img className="card-img-top" src={props.img} alt="Card cap"/>
+            <div className="grid h-100 cardZ">
+                <img className="card-img-top " src={props.img} alt="Card cap"/>
                 <div className="card-body bg-dark">
                     <h5 className="card-text text-align-left"><strong>Titulo:</strong> <strong>{props.Titulo}</strong></h5>
                     <p className="card-text text-align-left"><strong>Genero:</strong> {props.Genero}</p>
@@ -14,7 +14,7 @@ const Listcards = props => {
                     <p className="card-text text-align-left"><strong>Horario:</strong> {props.Horario}</p>
                     <p className="card-text text-align-left"><strong>Valor:</strong> {props.Valor}</p>
                      
-                    <a href={`/info/`+(props.id)} className="btn btn-primary">Reservar</a>
+                    <a href={`/info/`+(props.id)} className="btn btn-primary botonR">Reservar</a>
                 </div>
             </div>
             <br></br>

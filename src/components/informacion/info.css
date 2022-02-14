@@ -5,7 +5,7 @@
 }
 
 .imag{
-    max-width: 500px;
+    max-width: 410px;
     /* max-height: 50px; */
     width: 28rem;
     padding: 10px;
@@ -17,11 +17,11 @@
     height:315px;
   }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .imag{
     /* background-color: antiquewhite; */
-    /* width: 20em; */
-    max-width: 280px;
+    width: 19em;
+    /* max-width: 250px; */
     align-items: center;
     overflow-x: auto;
     white-space: nowrap;
@@ -29,9 +29,20 @@
   .videoYoutube{
     /*   width:35rem; 
       height:20rem;  */
-      width:280px;
+      max-width: 250px;
       height:215px;
     }
+}
+@media (max-width: 500px){
+  .Salas{
+      background-color: #bb2626;
+      max-width: 280px;
+      height: 580px;
+      align-items: center;
+      text-align: center;
+      display: flex;
+      margin: auto;
+  }
 }
 
 
@@ -78,17 +89,7 @@ this.App {
     /* flex-flow: column; */
     
 }
-@media (max-width: 768px){
-    .Salas{
-        background-color: #bb2626;
-        width: 280px;
-        height: 580px;
-        align-items: center;
-        text-align: center;
-        display: flex;
-        margin: auto;
-    }
-}
+
 
 .Movies {
   margin-bottom: 24px;

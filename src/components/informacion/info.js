@@ -365,10 +365,6 @@ const LocalStorageHorario9 = localStorageKey => {
 
 function Salas() {
 
-
-
-
-
     const [id_Pelicula, setValue] = LocalStorageMovie(
         'Id_peli'
     );

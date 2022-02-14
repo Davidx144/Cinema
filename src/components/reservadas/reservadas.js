@@ -25,11 +25,11 @@ const ReservadasUsuario = () => {
 
     /* const [contacts, setContacts] = useState(listaDePeliculaas); */
 
-    const handleEditClick = (reservaId) => {
+    const handleEditClick = (reservaId,movieId) => {
         console.log(reservaId)
         /* return (<EditarReserva reserva={reservaId}></EditarReserva>) */
         /* alert('gg') */
-        window.location.assign(`/editarReserva/` + (reservaId))
+        window.location.assign(`/editarReserva/` + (reservaId)+("/")+(movieId))
     }
 
     const handleDeleteClick = (reservaId) => {
@@ -122,6 +122,7 @@ const ReservadasUsuario = () => {
                                             chairs={i.chairs}
                                             id={i._id}
                                             hour={i.hour}
+                                            id_movie={i.id_movie}
                                             bookingValue={i.bookingValue}
                                             handleDeleteClick={handleDeleteClick}
                                             handleEditClick={handleEditClick}

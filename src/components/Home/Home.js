@@ -131,7 +131,7 @@ function Home() {
   
             <span className="space">  </span>
   
-            <button type="submit" className=" form btn btn-primary"> Aplicar Filtros</button>
+            <button type="submit" className=" form btn btn-primary format"> Aplicar Filtros</button>
             <span className="space">  </span>
   
           </div>
@@ -141,7 +141,7 @@ function Home() {
           <label className='formato'><h4><strong>Formato: </strong></h4></label>
           <span className="space">  </span>
   
-          <button type="submit" className="btn btn-primary" onClick={() => changeView()}>
+          <button type="submit" className="btn btn-primary format" onClick={() => changeView()}>
             {buttonName}
           </button>
         </div>

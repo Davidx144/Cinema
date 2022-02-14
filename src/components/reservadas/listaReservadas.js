@@ -1,6 +1,7 @@
 import React from "react";
+import './reservadas.css'
 
-const ListarPeliculas = ({ title,chairs, id,hour,bookingValue, handleEditClick, handleDeleteClick }) => {
+const ListarPeliculas = ({ title,chairs, id,hour,bookingValue, id_movie,handleEditClick, handleDeleteClick }) => {
   console.log("Estas son las sillas:" + chairs)
   return (
     <tr>
@@ -10,12 +11,12 @@ const ListarPeliculas = ({ title,chairs, id,hour,bookingValue, handleEditClick, 
       <td>{bookingValue}</td>
       <td>
         <button href={`/editar/`}
-          type="button" className="btn btn-warning" 
-          onClick={(event) => handleEditClick(id)}
+          type="button" className="btn btn-warning editBoton" 
+          onClick={(event) => handleEditClick(id,id_movie)}
         >
           Editar
         </button>
-        <button type="button" className="btn btn-danger" onClick={() => handleDeleteClick(id)}>
+        <button type="button" className="btn btn-danger deleteBoton" onClick={() => handleDeleteClick(id)}>
           Eliminar
         </button>
       </td>

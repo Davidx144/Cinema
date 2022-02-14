@@ -178,7 +178,7 @@ function NavbarP() {
     );
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" position="fixed">
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" position="fixed" /* className='navbar fixed-top navbar-light bg-light' */>
             <Container >
                 <Navbar.Brand href="/" >
                     <img alt=""
@@ -189,20 +189,20 @@ function NavbarP() {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" /* logear */>
-                    <Nav className="me-auto" >
+                    <Nav className="me-auto " >
                         {/* Todos */}
-                        <Nav.Link href="/#carteleraHome" >Cartelera </Nav.Link>
+                        <Nav.Link href="/#carteleraHome" className='botonesNav' >Cartelera </Nav.Link>
                         {/* Usuario */}
                         {(tipoUsuario === "usuario") &&
-                        
-                            <Nav.Link href={"/bookingsUser/"+(id_Usuario)}  > Lista de reservas </Nav.Link>
+
+                            <Nav.Link href={"/bookingsUser/" + (id_Usuario)} className='botonesNav' > Lista de reservas </Nav.Link>
                         }
                         {(tipoUsuario === "Admin") &&
-                            <Nav.Link href={"/bookingsUser/"+(id_Usuario)}> Lista de reservas </Nav.Link>
+                            <Nav.Link href={"/bookingsUser/" + (id_Usuario)} className='botonesNav'> Lista de reservas </Nav.Link>
                         }
                         {/* Admin */}
                         {tipoUsuario === "Admin" &&
-                            <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" >
+                            <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" className='botonesNav'>
 
                                 {/* <NavDropdown.Item href="/editarPeliculas" > Editar películas </NavDropdown.Item> */}
                                 <NavDropdown.Item href="/administrarPelicula" > Editar / Eliminar</NavDropdown.Item>
@@ -216,15 +216,15 @@ function NavbarP() {
                     <Nav>
                         {/* Sin iniciar */}
                         {tipoUsuario.tipo === "" &&
-                            <Nav.Link href="#deets" onClick={handleShow} > <BiLogIn /> Iniciar </Nav.Link>
+                            <Nav.Link href="#deets" onClick={handleShow} className='botonesNav'> <BiLogIn /> Iniciar </Nav.Link>
                         }
                         {/* para usuario */}
                         {tipoUsuario === "usuario" &&
-                            <Nav.Link /* href="#" */ onClick={logout} > <BiLogIn />  Salir </Nav.Link>
+                            <Nav.Link /* href="#" */ onClick={logout} className='botonesNav'> <BiLogIn />  Salir </Nav.Link>
                         }
                         {/* Para admin */}
                         {tipoUsuario === "Admin" &&
-                            <Nav.Link /* href="#" */ onClick={logout}> <BiLogIn />  Salir </Nav.Link>
+                            <Nav.Link /* href="#" */ onClick={logout} className='botonesNav'> <BiLogIn />  Salir </Nav.Link>
                         }
                         <>
                             <Modal show={show}

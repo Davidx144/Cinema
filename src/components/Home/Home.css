@@ -20,6 +20,18 @@
     color: rgba(209, 201, 201, 0.904);
 }
 
+.format{
+    background-color: #3963ed; 
+    border-radius: 20px;
+    border-color: #577ec5e1;
+}
+
+.format:hover{
+    transform: scale(1.05);
+    background-color: rgb(75, 37, 180);
+}
+
+
 body {
     background-image: radial-gradient(circle at -11.24% 85.36%, #78635f 0, #775d5b 8.33%, #745556 16.67%, #714d52 25%, #6d444f 33.33%, #683a4c 41.67%, #613049 50%, #592648 58.33%, #4f1e48 66.67%, #441849 75%, #38144b 83.33%, #29134d 91.67%, #13134f 100%);
     /* background-image: radial-gradient(circle at -20.71% 50%, #f97b86 0, #eb7387 10%, #d96a85 20%, #c46081 30%, #ad567a 40%, #934b6f 50%, #7a4063 60%, #653758 70%, #522f4e 80%, #432944 90%, #36233c 100%); */
@@ -165,4 +177,27 @@ input[type=number] {
 
 .terms.col-4.mb-6.d-lg-block {
     padding: 10px !important;
+}
+
+.card-body{
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.cardZ:hover{
+    transform: scale(1.05);
+    
+    /* background-color: rgba(57, 192, 237, 0.2) */
+}
+/* background-color: rgba(57, 192, 237, 0.2) */
+
+.botonR{
+    background-color: #3c39ed; 
+    border-radius: 20px;
+    border-color: #577ec5e1;
+    
+}
+.botonR:hover{
+    background-color: rgb(97, 50, 224);
+    border-color: #352591e1;
 }
