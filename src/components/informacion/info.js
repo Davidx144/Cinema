@@ -70,7 +70,7 @@ const Infopeli = () => {
         )
     } else {
         var videoEmbe = ("https://www.youtube.com/embed/" + (peliculaActual[0].trailer).slice(-11))
-        console.log(videoEmbe)
+        /* console.log(videoEmbe) */
         return (
             <Container >
                 <div className='infoPelic'>
@@ -115,7 +115,7 @@ var URLactual = (window.location);
 var url = (URLactual.pathname)
 var ids = url.slice(6)
 var idss = url.slice(0, 6)
-console.log(url)
+/* console.log(url) */
 if (idss === "/info/") {
     var apiInfo = (`/api/info/${ids}`)
 }
@@ -132,7 +132,7 @@ async function infoPelicula(props) {
     peliculaActual = await respuestas.json()
 
 
-    console.log(peliculaActual[0])
+    /* console.log(peliculaActual[0]) */
 
     localStorage.setItem('nombre_peli', peliculaActual[0].title);
     localStorage.setItem('valor_peli', peliculaActual[0].value);
@@ -174,26 +174,26 @@ async function infoReservas(props) {
 
     /* .then(function () { */
     for (var i = 0; i < (reservasActual.length); i++) {
-        console.log(i)
+        /* console.log(i) */
         if (reservasActual[i].hour === "12:00 PM") {
             Aux12 = horario12.concat(reservasActual[i].chairs)
             horario12 = (Aux12)
-            console.log("las sillas de las 12 son:" + horario12)
+            /* console.log("las sillas de las 12 son:" + horario12) */
 
         } else if (reservasActual[i].hour === "3:00 PM") {
             Aux3 = horario3.concat(reservasActual[i].chairs)
             horario3 = (Aux3)
-            console.log("las sillas de las 3 son:" + horario3)
+            /* console.log("las sillas de las 3 son:" + horario3) */
 
         } else if (reservasActual[i].hour === "6:00 PM") {
             Aux6 = horario6.concat(reservasActual[i].chairs)
             horario6 = (Aux6)
-            console.log("las sillas de las 6 son:" + horario6)
+            /* console.log("las sillas de las 6 son:" + horario6) */
 
         } else if (reservasActual[i].hour === "9:00 PM") {
             Aux9 = horario9.concat(reservasActual[i].chairs)
             horario9 = (Aux9)
-            console.log("las sillas de las 9 son:" + horario9)
+            /* console.log("las sillas de las 9 son:" + horario9) */
         }
     }
     localStorage.setItem('horario12', horario12);
@@ -385,8 +385,8 @@ function Salas() {
         'hora_peli'
     );
 
-    console.log("Este es el id de la peli : " + id_Pelicula)
-    console.log("Este es el id del usuario : " + id_Usuario)
+/*     console.log("Este es el id de la peli : " + id_Pelicula)
+    console.log("Este es el id del usuario : " + id_Usuario) */
 
     const handleSubmit = (e) => {
         const swalWithBootstrapButtons = Swal.mixin({
@@ -418,12 +418,12 @@ function Salas() {
                             )) */
                 /* movies[0].occupied.concat(ocupadas) */
 
-                console.log("El id de la peli es: " + id_Pelicula)
+/*                 console.log("El id de la peli es: " + id_Pelicula)
                 console.log("El id del usuario es: " + id_Usuario)
                 console.log("El nombre de la peli es: " + nombre_Pelicula)
                 console.log("El valor de la peli es: " + valor_Pelicula)
                 console.log("la hora de la peli es: " + selectedMovie.hora)
-                console.log("las sillas seleccionadas son: " + selectedSeats)
+                console.log("las sillas seleccionadas son: " + selectedSeats) */
 
                 console.log(selectedSeats)
 
@@ -540,7 +540,7 @@ function Movies({ movie, onChange }) {
     movies[0].occupied=hararioalas12
     movies[0].price=valor_Pelicula
 
-    console.log(hararioalas6)
+    /* console.log(hararioalas6) */
 
     movies[1].occupied=hararioalas3
     movies[1].price=valor_Pelicula
@@ -575,9 +575,9 @@ function Movies({ movie, onChange }) {
         },
     ] */
 
-    console.log('selectedMovie.occupied')
+/*     console.log('selectedMovie.occupied')
 
-    console.log(movie.occupied)
+    console.log(movie.occupied) */
     return (
         <div className="Movies">
             <label htmlFor="movie"><strong>Selecciona el horario</strong></label>
@@ -616,6 +616,7 @@ function ShowCase() {
 
 function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
     function handleSelectedState(seat) {
+        console.log(seat)
         const isSelected = selectedSeats.includes(seat)
         if (isSelected) {
             onSelectedSeatsChange(
@@ -655,13 +656,17 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
                     {seats.map(seat => {
                         /* var isOccupied = [] */
                         const isSelected = selectedSeats.includes(seat)
-                        const isOccupied = movie.occupied.includes(seat)
+                        const isOccupied = movie.occupied.split(",").map((item)=>parseInt(item)).includes(seat)
                         
-                        console.log(isOccupied)
-                        /* console.log(isSelected) */
+                        console.log(selectedSeats)
+                        console.log(movie.occupied.split(","))
+
+                        /* console.log(isOccupied,seat)
+                        console.log(isSelected,seat) */
 
                         /* var aux9 = (movie.occupied.includes(seat))
                         const isOccupied = Object.assign([], aux9); */
+                        /* console.log(seat) */
                         return (
                             <span
                                 tabIndex="0"

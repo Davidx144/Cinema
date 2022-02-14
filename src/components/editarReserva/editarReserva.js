@@ -2,25 +2,33 @@ import { Col, Container, Row } from 'react-bootstrap';
 import './editarReserva.css'
 import BeatLoader from "react-spinners/BeatLoader"
 import React, { useState } from 'react'
+import {
+    Card,
+    CardContent,
+    FormGroup,
+    FormControlLabel,
+    ButtonGroup,
+} from "@mui/material/";
+import Checkbox from "@mui/material/Checkbox";
 
 
 var URLactualReserva = (window.location);
 var urlReserva = (URLactualReserva.pathname)
-var idsReserva = urlReserva.slice(15,39)
-var idsReserva2 = urlReserva.slice(40)
+var UrlReservaActual = urlReserva.slice(0, 15)
+var idsReserva = urlReserva.slice(15, 39)
+var idsPeliReserva = urlReserva.slice(40)
 
 /* var idssReserva = urlReserva.slice(0, 15) */
-console.log(idsReserva)
-console.log(idsReserva2)
+/* console.log(idsReserva)
+console.log(idsPeliReserva) */
 
-/* if (idssReserva === "/editarReserva/") {
+if (UrlReservaActual === "/editarReserva/") {
     var reservaInfo = (`/api/booking/${idsReserva}`)
-} */
+    var peliInfo = (`/api/info/${idsPeliReserva}`)
+}
 
-/* var reserva = [] */
-/* var peliculadeReserva = [] */
-
-/* reservasEditar()
+var reserva = []
+reservasEditar()
 async function reservasEditar(props) {
     const respuestas = await fetch(reservaInfo, {
         method: "GET",
@@ -29,60 +37,37 @@ async function reservasEditar(props) {
         }
     });
     reserva = await respuestas.json()
-    
-} */
+    /*     console.log("Reserva de la reserva :v")
+        console.log(reserva) */
+}
 
+var peliculadeReserva = []
 
-
-
-/* const LocalStorageMovie = localStorageKey => {
-    const [value, setValue] = React.useState(
-        localStorage.getItem(localStorageKey) || ''
-    );
-
-    React.useEffect(() => {
-        localStorage.setItem("Id_peli", value);
-    }, [value]);
-
-    return [value, setValue];
-}; */
-
-
-/* console.log(peliculadeReserva) */
+peliculaDeReserva()
+/* var buscarPeli = `/api/info/${peliInfo}`
+console.log(reserva)
+console.log(buscarPeli) */
+async function peliculaDeReserva(props) {
+    const respuestas = await fetch(peliInfo, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    peliculadeReserva = await respuestas.json()
+    /*     console.log("Pelicula de la reserva")
+        console.log(peliculadeReserva) */
+}
 
 const EditarReserva = () => {
-/*     const [id_Pelicula, setValue] = LocalStorageMovie(
-        'Id_peli'
-    ); */
-
-/*     peliculaDeReserva()
-    var buscarPeli = `/api/info/${id_Pelicula}`
-    console.log(reserva)
-    console.log(buscarPeli)
-
-    async function peliculaDeReserva(props) {
-        const respuestas = await fetch(buscarPeli, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
-        peliculadeReserva = await respuestas.json()
-        console.log("csdkcjklsjjcksdkc")
-
-        console.log(peliculadeReserva)
-    } */
-
-
-
-
+    var videoEmbe = ("https://www.youtube.com/embed/" + (peliculadeReserva[0].trailer).slice(-11))
     const [loading, setLoading] = useState(true)
     const cambiarEstado = () => {
         setTimeout(() => {
             setLoading(false)
         }, 1000);
     }
-    if (loading /* || reserva === []  *//* peliCargada === false  */) {
+    if (loading) {
         cambiarEstado()
         return (
             <div>
@@ -97,18 +82,50 @@ const EditarReserva = () => {
         return (
             <Container>
                 <div className='editarReserva'>
-                    <p>ssadsdsd</p>
-                    {/* <h1>{reserva[0].title}</h1> */}
+                    <h2><strong>Editar reserva</strong></h2>
+                    {/* <h1>{peliculadeReserva[0].title}</h1> */}
                     <Row>
-                        <Col sm={4}>
-                            <p>uno</p>
+                        <Col sm={6}>
+                            <h1>{reserva[0].title}</h1>
+                            <img src={peliculadeReserva[0].img} className='imag' />
+                            <h5><strong>Trailer:</strong></h5>
+                            <div className="embed-responsive">
+                                <iframe className='videoYoutube' src={videoEmbe} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
+                                </iframe>
+                            </div>
                         </Col>
                         <Col sm={6}>
-                            <p>dos</p>
+                            <div className='infoReservaActual'>
+                                {/* <br></br> */}
+                                <h3 className='h3aling'><strong>Descripcion</strong></h3>
+                                <h5>{peliculadeReserva[0].synopsis}</h5>
+                                <h4><strong>Hora de la funcion: </strong>{reserva[0].hour}</h4>
+                                <h4><strong>Valor de la funcion: </strong>{reserva[0].bookingValue}</h4>
+                                {/* <h4><strong>Sillas seleccionadas </strong>{(reserva[0].chairs).sort()}</h4> */}
+                                <h5><strong>Selecciona las sillas que quieres liberar </strong></h5>
+                                {reserva[0].chairs.sort().map((seat, i) => (
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                key={seat + i}
+                                                value={seat}
+                                                className="chkseats"
+                                            /* onChange={handleChange} */
+                                            />
+                                        }
+                                        label={seat}
+                                    />
+                                ))}
+                                <div className='h3aling'>
+                                    <button type="button" className="btn btn-danger deleteBoton " /* onClick={() => handleDeleteClick(id)} */>
+                                        liberar
+                                    </button>
+                                </div>
+                            </div>
                         </Col>
-                        <Col sm={2}>
+{/*                         <Col sm={2}>
                             <p>tres</p>
-                        </Col>
+                        </Col> */}
                     </Row>
                 </div>
 
