@@ -94,8 +94,11 @@ const App = () => {
                         icon: 'success',
                         title: 'Bien',
                         text: 'Usuarios registrado correctamente',
-                        footer: '<a href="/#deets">Inicia seccion</a>'
-                      })                  
+                        footer: '<a href="/#deets">Inicia seccion</a>',
+                      }).then(function() {
+                        window.location = "/";
+                    });
+
                 } else {
                     console.log("No guardado")
                     console.log(exitoso)

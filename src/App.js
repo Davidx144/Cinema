@@ -64,8 +64,13 @@ function App() {
             <Switch>
               {/* Todos */}
               <Route exact path="/" component={Inicio} />
-              <Route exact path="/registro" component={Reguistro} />
               <Route exact path="/info/:id" component={Info} />
+              
+              {/* Solo usuario vacio */}
+              
+              <Route exact path="/registro" component={Reguistro} />
+              
+
               {/* usuarios */}
               {(tipoUsuario === "usuario") &&
                 <Route exact path="/bookingsUser/:id" component={ReservadasUsuario} />
