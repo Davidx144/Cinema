@@ -42,11 +42,11 @@ async function reservasEditar(props) {
 }
 
 var peliculadeReserva = []
-
 peliculaDeReserva()
 /* var buscarPeli = `/api/info/${peliInfo}`
 console.log(reserva)
 console.log(buscarPeli) */
+//var sillasReserva = []
 async function peliculaDeReserva(props) {
     const respuestas = await fetch(peliInfo, {
         method: "GET",
@@ -57,9 +57,42 @@ async function peliculaDeReserva(props) {
     peliculadeReserva = await respuestas.json()
     /*     console.log("Pelicula de la reserva")
         console.log(peliculadeReserva) */
+
 }
 
+
 const EditarReserva = () => {
+
+    const [checked, setChecked] = React.useState(true);
+    const [seatsRemove, setSeatsRemove] = React.useState([]);
+
+
+    /*     var sillasReserva = reserva[0].chairs
+        console.log(sillasReserva) */
+
+    /*   var detelete = [reserva[0].chairs] */
+    const removeItem = (array, item) => {
+        const index = array.indexOf(item);
+        if (index > -1) {
+            array.splice(index, 1);
+        }
+    };
+
+    const handleChange = (e) => {
+        const seatsCopy = seatsRemove.slice();
+        if (e.target.checked) {
+            seatsCopy.push(e.target.value);
+        } else {
+            removeItem(seatsCopy, e.target.value);
+        }
+        setSeatsRemove(seatsCopy);
+        /* console.log(seatsRemove); */
+    }
+     const imprimeFuera = () =>{
+         console.log(seatsRemove)
+     }
+
+
     var videoEmbe = ("https://www.youtube.com/embed/" + (peliculadeReserva[0].trailer).slice(-11))
     const [loading, setLoading] = useState(true)
     const cambiarEstado = () => {
@@ -107,23 +140,26 @@ const EditarReserva = () => {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
+                                                /* checked={checked} */
                                                 key={seat + i}
                                                 value={seat}
                                                 className="chkseats"
-                                            /* onChange={handleChange} */
+                                                onChange={handleChange}
+                                            /* inputProps={{ 'aria-label': 'controlled' }} */
+                                            /* defaultChecked */
                                             />
                                         }
                                         label={seat}
                                     />
                                 ))}
                                 <div className='h3aling'>
-                                    <button type="button" className="btn btn-danger deleteBoton " /* onClick={() => handleDeleteClick(id)} */>
+                                    <button type="button" className="btn btn-danger deleteBoton " onClick={imprimeFuera}/* onClick={() => handleDeleteClick(id)} */>
                                         liberar
                                     </button>
                                 </div>
                             </div>
                         </Col>
-{/*                         <Col sm={2}>
+                        {/*                         <Col sm={2}>
                             <p>tres</p>
                         </Col> */}
                     </Row>
