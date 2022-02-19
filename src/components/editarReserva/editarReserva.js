@@ -10,6 +10,8 @@ import {
     ButtonGroup,
 } from "@mui/material/";
 import Checkbox from "@mui/material/Checkbox";
+import Swal from 'sweetalert2'
+
 
 
 var URLactualReserva = (window.location);
@@ -65,10 +67,10 @@ const EditarReserva = () => {
 
     const [checked, setChecked] = React.useState(true);
     const [seatsRemove, setSeatsRemove] = React.useState([]);
+    /* var reservacambiada = reserva[0].chairs */
 
-
-    /*     var sillasReserva = reserva[0].chairs
-        console.log(sillasReserva) */
+    var sillasReserva = reserva[0].chairs
+    console.log(sillasReserva)
 
     /*   var detelete = [reserva[0].chairs] */
     const removeItem = (array, item) => {
@@ -88,9 +90,107 @@ const EditarReserva = () => {
         setSeatsRemove(seatsCopy);
         /* console.log(seatsRemove); */
     }
-     const imprimeFuera = () =>{
-         console.log(seatsRemove)
-     }
+
+    const actualizarReserva = () => {
+
+        /*  */
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            /* buttonsStyling: false */
+        })
+
+        if (seatsRemove.length === sillasReserva.length) {
+            console.log("no se puede eliminar todo")
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No se pueden eliminar todas las sillas!',
+                /* footer: '<a href="">Why do I have this issue?</a>' */
+              })
+        } else {
+            swalWithBootstrapButtons.fire({
+                title: '¿Desea actualizar la reserva?',
+                text: "¡Las sillas marcadas, seran eliminadas de su reserva!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Si, actualizar.',
+                cancelButtonText: 'No, cancelar.',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    for (const i in seatsRemove) {
+                        var aja = parseInt(seatsRemove[i])
+                        var eliminar = sillasReserva.indexOf(aja)
+                        console.log(eliminar)
+                        sillasReserva.splice(eliminar, 1)
+                    }
+                    var aux1 = {
+                        chairs : sillasReserva,
+                        bookingValue: sillasReserva.length*peliculadeReserva[0].value
+                    }
+                    const updateReserva = (JSON.stringify(aux1));
+
+                    console.log("YA DIO: " + sillasReserva.length*peliculadeReserva[0].value)
+                    swalWithBootstrapButtons.fire(
+                        'Reserva actualizada',
+                        'Todas las sillas marcadas han sido liberadas.',
+                        'success'
+                    ).then(function () {
+                        console.log("YA DIO: X6546465")
+                        var reservaId= reserva[0]._id
+                        console.log(updateReserva)
+                        fetch('/api/updateBooking/' + reservaId, {
+                            method: "PUT",
+                            body: updateReserva,
+                            headers: {
+                                "Content-Type": "application/json",
+                            }
+                        });
+                        /* window.location.reload(true) */
+                        window.location = "/";
+                    });
+
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelado',
+                        'No ha pasado nada ;)',
+                        'info'
+                    )
+                }
+            })
+        }
+
+
+    }
+
+
+
+
+        /*  */
+
+/*         for (const i in seatsRemove) {
+            var aja = parseInt(seatsRemove[i])
+            var eliminar = sillasReserva.indexOf(aja)
+            console.log(eliminar)
+            sillasReserva.splice(eliminar, 1)
+        }
+        console.log("YA DIO: " + sillasReserva) */
+        /*         seatsRemove.map((i)=>{
+                    var eliminar = sillasReserva.indexOf(i)
+                    console.log(eliminar)
+                    sillasReserva.splice(eliminar,1)
+                }) */
+        /* sillasReserva.splice */
+        /*         console.log(seatsRemove)
+                console.log(sillasReserva) */
+
+    
 
 
     var videoEmbe = ("https://www.youtube.com/embed/" + (peliculadeReserva[0].trailer).slice(-11))
@@ -153,7 +253,7 @@ const EditarReserva = () => {
                                     />
                                 ))}
                                 <div className='h3aling'>
-                                    <button type="button" className="btn btn-danger deleteBoton " onClick={imprimeFuera}/* onClick={() => handleDeleteClick(id)} */>
+                                    <button type="button" className="btn btn-danger deleteBoton " onClick={actualizarReserva}/* onClick={() => handleDeleteClick(id)} */>
                                         liberar
                                     </button>
                                 </div>
