@@ -3,26 +3,16 @@ import './editarReserva.css'
 import BeatLoader from "react-spinners/BeatLoader"
 import React, { useState } from 'react'
 import {
-    Card,
-    CardContent,
-    FormGroup,
     FormControlLabel,
-    ButtonGroup,
 } from "@mui/material/";
 import Checkbox from "@mui/material/Checkbox";
 import Swal from 'sweetalert2'
-
-
 
 var URLactualReserva = (window.location);
 var urlReserva = (URLactualReserva.pathname)
 var UrlReservaActual = urlReserva.slice(0, 15)
 var idsReserva = urlReserva.slice(15, 39)
 var idsPeliReserva = urlReserva.slice(40)
-
-/* var idssReserva = urlReserva.slice(0, 15) */
-/* console.log(idsReserva)
-console.log(idsPeliReserva) */
 
 if (UrlReservaActual === "/editarReserva/") {
     var reservaInfo = (`/api/booking/${idsReserva}`)
@@ -45,10 +35,6 @@ async function reservasEditar(props) {
 
 var peliculadeReserva = []
 peliculaDeReserva()
-/* var buscarPeli = `/api/info/${peliInfo}`
-console.log(reserva)
-console.log(buscarPeli) */
-//var sillasReserva = []
 async function peliculaDeReserva(props) {
     const respuestas = await fetch(peliInfo, {
         method: "GET",
@@ -57,22 +43,12 @@ async function peliculaDeReserva(props) {
         }
     });
     peliculadeReserva = await respuestas.json()
-    /*     console.log("Pelicula de la reserva")
-        console.log(peliculadeReserva) */
-
 }
 
 
 const EditarReserva = () => {
-
-    const [checked, setChecked] = React.useState(true);
     const [seatsRemove, setSeatsRemove] = React.useState([]);
-    /* var reservacambiada = reserva[0].chairs */
-
     var sillasReserva = reserva[0].chairs
-    console.log(sillasReserva)
-
-    /*   var detelete = [reserva[0].chairs] */
     const removeItem = (array, item) => {
         const index = array.indexOf(item);
         if (index > -1) {
@@ -88,32 +64,33 @@ const EditarReserva = () => {
             removeItem(seatsCopy, e.target.value);
         }
         setSeatsRemove(seatsCopy);
-        /* console.log(seatsRemove); */
+
     }
 
     const actualizarReserva = () => {
-
-        /*  */
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
                 cancelButton: 'btn btn-danger'
             },
-            /* buttonsStyling: false */
         })
 
         if (seatsRemove.length === sillasReserva.length) {
-            console.log("no se puede eliminar todo")
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'No se pueden eliminar todas las sillas!',
-                /* footer: '<a href="">Why do I have this issue?</a>' */
-              })
-        } else {
+            })
+        }else if(seatsRemove.length ===0){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Debes seleccionar por lo menos una silla!',
+            })
+        }else {
             swalWithBootstrapButtons.fire({
                 title: '¿Desea actualizar la reserva?',
-                text: "¡Las sillas marcadas, seran eliminadas de su reserva!",
+                text: "¡Las sillas marcadas, serán eliminadas de su reserva!",
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonText: 'Si, actualizar.',
@@ -122,25 +99,21 @@ const EditarReserva = () => {
             }).then((result) => {
                 if (result.isConfirmed) {
                     for (const i in seatsRemove) {
-                        var aja = parseInt(seatsRemove[i])
-                        var eliminar = sillasReserva.indexOf(aja)
-                        console.log(eliminar)
+                        var indexSilla = parseInt(seatsRemove[i])
+                        var eliminar = sillasReserva.indexOf(indexSilla)
                         sillasReserva.splice(eliminar, 1)
                     }
                     var aux1 = {
-                        chairs : sillasReserva,
-                        bookingValue: sillasReserva.length*peliculadeReserva[0].value
+                        chairs: sillasReserva,
+                        bookingValue: sillasReserva.length * peliculadeReserva[0].value
                     }
                     const updateReserva = (JSON.stringify(aux1));
-
-                    console.log("YA DIO: " + sillasReserva.length*peliculadeReserva[0].value)
                     swalWithBootstrapButtons.fire(
                         'Reserva actualizada',
                         'Todas las sillas marcadas han sido liberadas.',
                         'success'
                     ).then(function () {
-                        console.log("YA DIO: X6546465")
-                        var reservaId= reserva[0]._id
+                        var reservaId = reserva[0]._id
                         console.log(updateReserva)
                         fetch('/api/updateBooking/' + reservaId, {
                             method: "PUT",
@@ -149,12 +122,10 @@ const EditarReserva = () => {
                                 "Content-Type": "application/json",
                             }
                         });
-                        /* window.location.reload(true) */
                         window.location = "/";
                     });
 
                 } else if (
-                    /* Read more about handling dismissals below */
                     result.dismiss === Swal.DismissReason.cancel
                 ) {
                     swalWithBootstrapButtons.fire(
@@ -165,33 +136,7 @@ const EditarReserva = () => {
                 }
             })
         }
-
-
     }
-
-
-
-
-        /*  */
-
-/*         for (const i in seatsRemove) {
-            var aja = parseInt(seatsRemove[i])
-            var eliminar = sillasReserva.indexOf(aja)
-            console.log(eliminar)
-            sillasReserva.splice(eliminar, 1)
-        }
-        console.log("YA DIO: " + sillasReserva) */
-        /*         seatsRemove.map((i)=>{
-                    var eliminar = sillasReserva.indexOf(i)
-                    console.log(eliminar)
-                    sillasReserva.splice(eliminar,1)
-                }) */
-        /* sillasReserva.splice */
-        /*         console.log(seatsRemove)
-                console.log(sillasReserva) */
-
-    
-
 
     var videoEmbe = ("https://www.youtube.com/embed/" + (peliculadeReserva[0].trailer).slice(-11))
     const [loading, setLoading] = useState(true)
@@ -229,24 +174,18 @@ const EditarReserva = () => {
                         </Col>
                         <Col sm={6}>
                             <div className='infoReservaActual'>
-                                {/* <br></br> */}
                                 <h3 className='h3aling'><strong>Descripcion</strong></h3>
                                 <h5>{peliculadeReserva[0].synopsis}</h5>
                                 <h4><strong>Hora de la funcion: </strong>{reserva[0].hour}</h4>
                                 <h4><strong>Valor de la funcion: </strong>{reserva[0].bookingValue}</h4>
-                                {/* <h4><strong>Sillas seleccionadas </strong>{(reserva[0].chairs).sort()}</h4> */}
                                 <h5><strong>Selecciona las sillas que quieres liberar </strong></h5>
                                 {reserva[0].chairs.sort().map((seat, i) => (
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                /* checked={checked} */
                                                 key={seat + i}
                                                 value={seat}
-                                                className="chkseats"
                                                 onChange={handleChange}
-                                            /* inputProps={{ 'aria-label': 'controlled' }} */
-                                            /* defaultChecked */
                                             />
                                         }
                                         label={seat}
@@ -259,16 +198,11 @@ const EditarReserva = () => {
                                 </div>
                             </div>
                         </Col>
-                        {/*                         <Col sm={2}>
-                            <p>tres</p>
-                        </Col> */}
                     </Row>
                 </div>
 
             </Container>
         );
     }
-
 }
-
 export default EditarReserva
