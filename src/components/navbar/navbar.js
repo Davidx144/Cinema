@@ -121,6 +121,8 @@ function NavbarP() {
             setUsuario(variable2)
             localStorage.setItem('nombre_usuario', perfilUsuario.name);
             localStorage.setItem('id_usuario', perfilUsuario.id);
+            localStorage.setItem('email_usuario', perfilUsuario.email);
+
 
 
             /* console.log(usuario) */

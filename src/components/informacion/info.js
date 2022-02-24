@@ -47,9 +47,33 @@ import Swal from 'sweetalert2'
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import { Boton } from '../reguistro/elementos/Formularios'
-
+import { SMTPClient } from 'emailjs';
+/* import emailjs from 'emailjs'; */
+import emailjs from '@emailjs/browser';
 
 const Infopeli = () => {
+/*     var templateParams = {
+        name: 'James',
+        notes: 'Check this out!',
+        user_email: 'david.14420@gmail.com'
+    };
+    function sendEmail(e) {
+        e.preventDefault();
+        emailjs.send('service_hswwe19',
+            'template_249901c',
+            templateParams,
+            'user_uUWNJ9j8dy0YAL3sq1nV7'
+        ).then(res => {
+            console.log("Esto fue" + res);
+        }).catch(err => console.log("Esto fueee" + err))
+    } */
+
+    /* const client = new SMTPClient({
+        user: 'user',
+        password: 'password',
+        host: 'smtp.your-email.com',
+        ssl: true,
+    }); */
 
     const [loading, setLoading] = useState(true)
     const cambiarEstado = () => {
@@ -106,6 +130,16 @@ const Infopeli = () => {
                     </Row>
 
                 </div>
+{/*                 <div>
+                    <form onSubmit={sendEmail}>
+                        <label>nombre</label>
+                        <input type='text' name='name' classname='form-control' />
+                        <label>correo</label>
+                        <input type='text' name='user_email' classname='form-control' />
+                        <input type="submit" value="Send" />
+
+                    </form>
+                </div> */}
             </Container>
         )
     }
@@ -313,7 +347,41 @@ const LocalStorageHora = localStorageKey => {
     return [value, setValue];
 };
 
+const LocalStorageNombre = localStorageKey => {
+    const [value, setValue] = React.useState(
+        localStorage.getItem(localStorageKey) || ''
+    );
 
+    React.useEffect(() => {
+        localStorage.setItem("nombre_usuario", value);
+    }, [value]);
+
+    return [value, setValue];
+};
+
+const LocalStorageEmail = localStorageKey => {
+    const [value, setValue] = React.useState(
+        localStorage.getItem(localStorageKey) || ''
+    );
+
+    React.useEffect(() => {
+        localStorage.setItem("email_usuario", value);
+    }, [value]);
+
+    return [value, setValue];
+};
+
+/* sendEmail(nombre_Pelicula) 
+function sendEmail(e){
+    emailjs.sendForm('service_hswwe19',
+    'template_249901c',
+    e.target,
+    'user_uUWNJ9j8dy0YAL3sq1nV7'
+    ).then(res=>{
+        console.log("Esto fue"+ res);
+    }).catch(err=> console.log("Esto fue"+err))
+    
+} */
 
 const LocalStorageHorario12 = localStorageKey => {
     const [value, setValue] = React.useState(
@@ -363,6 +431,7 @@ const LocalStorageHorario9 = localStorageKey => {
     return [value, setValue];
 };
 
+
 function Salas() {
 
     const [id_Pelicula, setValue] = LocalStorageMovie(
@@ -385,8 +454,16 @@ function Salas() {
         'hora_peli'
     );
 
-/*     console.log("Este es el id de la peli : " + id_Pelicula)
-    console.log("Este es el id del usuario : " + id_Usuario) */
+    const [nombreUsuario, setValueNombreUsuario] = LocalStorageNombre(
+        'nombre_usuario'
+    );
+
+    const [emailusuario, setValueEmail] = LocalStorageEmail(
+        'email_usuario'
+    );
+
+    /*     console.log("Este es el id de la peli : " + id_Pelicula)
+        console.log("Este es el id del usuario : " + id_Usuario) */
 
     const handleSubmit = (e) => {
         const swalWithBootstrapButtons = Swal.mixin({
@@ -407,7 +484,7 @@ function Salas() {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                console.log(selectedList)
+                /* console.log(selectedList) */
                 /* let ocupadas = [] */
                 /*           var Aux = []
                           movies[0].lista.map(movie => (
@@ -418,14 +495,17 @@ function Salas() {
                             )) */
                 /* movies[0].occupied.concat(ocupadas) */
 
-/*                 console.log("El id de la peli es: " + id_Pelicula)
-                console.log("El id del usuario es: " + id_Usuario)
-                console.log("El nombre de la peli es: " + nombre_Pelicula)
-                console.log("El valor de la peli es: " + valor_Pelicula)
-                console.log("la hora de la peli es: " + selectedMovie.hora)
-                console.log("las sillas seleccionadas son: " + selectedSeats) */
+                /*                 console.log("El id de la peli es: " + id_Pelicula)
+                                console.log("El id del usuario es: " + id_Usuario)
+                                console.log("El nombre de la peli es: " + nombre_Pelicula)
+                                console.log("El valor de la peli es: " + valor_Pelicula)
+                                console.log("la hora de la peli es: " + selectedMovie.hora)
+                                console.log("las sillas seleccionadas son: " + selectedSeats) */
 
-                console.log(selectedSeats)
+                
+
+
+
 
                 var reservaPelicula = {
                     id_movie: id_Pelicula,
@@ -438,10 +518,39 @@ function Salas() {
                 };
 
 
+                var body_email= {
+                    chairs: selectedSeats,
+                    name: nombreUsuario,
+                    email: emailusuario,
+                    hour: selectedMovie.hora,
+                    bookingValue: valor_Pelicula * selectedSeats.length,
+                    title: nombre_Pelicula,
+                }
+                sendEmail()
+                function sendEmail() {
+                    /* e.preventDefault(); */
+                    /* emailjs.sendForm(e) */
+                    emailjs.send('service_hswwe19',
+                        'template_249901c',
+                        /* e.target, */
+                        body_email,
+                        /* {name: e.name,
+                        user_email: e.user_email
+                        }, */
+                        'user_uUWNJ9j8dy0YAL3sq1nV7'
+                    ).then(res => {
+                        console.log("Esto fue" + res);
+                    }).catch(err => console.log("Esto fueee" + err))
+                }
+
+                console.log(body_email)
                 const caragarReserva = JSON.stringify(reservaPelicula);
+
+
 
                 reguistarReserva();
                 async function reguistarReserva() {
+                    /* sendEmail(caragarReserva) */
                     const respuesta = await fetch('/api/registerBooking', {
                         method: "POST",
                         body: caragarReserva,
@@ -482,7 +591,7 @@ function Salas() {
         <div className="Salas">
             <div className="App">
                 <Movies
-                
+
                     movie={selectedMovie}
                     onChange={movie => {
                         setSelectedSeats([])
@@ -513,71 +622,71 @@ function Salas() {
 
 
 function Movies({ movie, onChange }) {
-    
-   
+
+
 
     const [hararioalas12, setValueHorario12] = LocalStorageHorario12(
         'horario12'
     );
-    
+
     const [hararioalas3, setValueHorario3] = LocalStorageHorario3(
         'horario3'
     );
-    
+
     const [hararioalas6, setValueHorario6] = LocalStorageHorario6(
         'horario6'
     );
-    
+
     const [hararioalas9, setValueHorario9] = LocalStorageHorario9(
         'horario9'
     );
-    
+
     const [valor_Pelicula, setValueValorPelicula] = LocalStorageValor(
         'valor_peli'
     );
 
     var aux = hararioalas6
-    movies[0].occupied=hararioalas12
-    movies[0].price=valor_Pelicula
+    movies[0].occupied = hararioalas12
+    movies[0].price = valor_Pelicula
 
     /* console.log(hararioalas6) */
 
-    movies[1].occupied=hararioalas3
-    movies[1].price=valor_Pelicula
+    movies[1].occupied = hararioalas3
+    movies[1].price = valor_Pelicula
 
-    movies[2].occupied=aux
-    movies[2].price=valor_Pelicula
+    movies[2].occupied = aux
+    movies[2].price = valor_Pelicula
 
-    movies[3].occupied=hararioalas9
-    movies[3].price=valor_Pelicula
+    movies[3].occupied = hararioalas9
+    movies[3].price = valor_Pelicula
 
+
+    /*     const movies4 = [
+            {
+                price: valor_Pelicula,
+                occupied: hararioalas12,
+                hora: "12:00 PM",
+            },
+            {
+                price: valor_Pelicula,
+                occupied: hararioalas3,
+                hora: "3:00 PM",
+            },
+            {
+                price: valor_Pelicula,
+                occupied: hararioalas6,
+                hora: "6:00 PM",
+            },
+            {
+                price: valor_Pelicula,
+                occupied: hararioalas9,
+                hora: "9:00 PM",
+            },
+        ] */
+
+    /*     console.log('selectedMovie.occupied')
     
-/*     const movies4 = [
-        {
-            price: valor_Pelicula,
-            occupied: hararioalas12,
-            hora: "12:00 PM",
-        },
-        {
-            price: valor_Pelicula,
-            occupied: hararioalas3,
-            hora: "3:00 PM",
-        },
-        {
-            price: valor_Pelicula,
-            occupied: hararioalas6,
-            hora: "6:00 PM",
-        },
-        {
-            price: valor_Pelicula,
-            occupied: hararioalas9,
-            hora: "9:00 PM",
-        },
-    ] */
-
-/*     console.log('selectedMovie.occupied')
-
-    console.log(movie.occupied) */
+        console.log(movie.occupied) */
     return (
         <div className="Movies">
             <label htmlFor="movie"><strong>Selecciona el horario</strong></label>
@@ -616,7 +725,7 @@ function ShowCase() {
 
 function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
     function handleSelectedState(seat) {
-        console.log(seat)
+        /* console.log(seat) */
         const isSelected = selectedSeats.includes(seat)
         if (isSelected) {
             onSelectedSeatsChange(
@@ -645,21 +754,21 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
         )
     } else {
 
-        
+
         return (
-    
-    
+
+
             <div className="Cinema">
                 <div className="screen" />
-    
+
                 <div className="seats">
                     {seats.map(seat => {
                         /* var isOccupied = [] */
                         const isSelected = selectedSeats.includes(seat)
-                        const isOccupied = movie.occupied.split(",").map((item)=>parseInt(item)).includes(seat)
-                        
-                        console.log(selectedSeats)
-                        console.log(movie.occupied.split(","))
+                        const isOccupied = movie.occupied.split(",").map((item) => parseInt(item)).includes(seat)
+
+                        /* console.log(selectedSeats)
+                        console.log(movie.occupied.split(",")) */
 
                         /* console.log(isOccupied,seat)
                         console.log(isSelected,seat) */

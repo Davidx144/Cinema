@@ -6,6 +6,7 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.16.7",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
+    "@emailjs/browser": "^3.4.0",
     "@emotion/styled": "^11.6.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
@@ -23,6 +24,7 @@
     "class-utils": "^0.3.6",
     "clsx": "^1.1.1",
     "cucumber": "*",
+    "emailjs": "^3.7.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",
     "json-watch": "^1.0.2",
