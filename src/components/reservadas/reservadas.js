@@ -8,9 +8,43 @@ import Swal from 'sweetalert2'
 import BeatLoader from "react-spinners/BeatLoader"
 import EditarReserva from "../editarReserva/editarReserva";
 /* import { BiAlarm } from "react-icons/bi"; */
+import emailjs from '@emailjs/browser';
 
+
+const LocalStorageNombre = localStorageKey => {
+    const [value, setValue] = React.useState(
+        localStorage.getItem(localStorageKey) || ''
+    );
+
+    React.useEffect(() => {
+        localStorage.setItem("nombre_usuario", value);
+    }, [value]);
+
+    return [value, setValue];
+};
+
+const LocalStorageEmail = localStorageKey => {
+    const [value, setValue] = React.useState(
+        localStorage.getItem(localStorageKey) || ''
+    );
+
+    React.useEffect(() => {
+        localStorage.setItem("email_usuario", value);
+    }, [value]);
+
+    return [value, setValue];
+};
 
 const ReservadasUsuario = () => {
+
+    const [nombreUsuario, setValueNombreUsuario] = LocalStorageNombre(
+        'nombre_usuario'
+    );
+
+    const [emailusuario, setValueEmail] = LocalStorageEmail(
+        'email_usuario'
+    );
+
     /* listaPeliculaas(); */
     const [loadinga, setLoading] = useState(true)
     const cambiarEstado = () => {
@@ -25,14 +59,14 @@ const ReservadasUsuario = () => {
 
     /* const [contacts, setContacts] = useState(listaDePeliculaas); */
 
-    const handleEditClick = (reservaId,movieId) => {
+    const handleEditClick = (reservaId, movieId) => {
         console.log(reservaId)
         /* return (<EditarReserva reserva={reservaId}></EditarReserva>) */
         /* alert('gg') */
-        window.location.assign(`/editarReserva/` + (reservaId)+("/")+(movieId))
+        window.location.assign(`/editarReserva/` + (reservaId) + ("/") + (movieId))
     }
 
-    const handleDeleteClick = (reservaId) => {
+    const handleDeleteClick = (reservaId, tituloPeli, horaPeli) => {
         console.log(reservaId)
 
         /*  */
@@ -54,17 +88,39 @@ const ReservadasUsuario = () => {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
+                var body_email = {
+                    name: nombreUsuario,
+                    email: emailusuario,
+                    title: tituloPeli,
+                    hour: horaPeli,
+                }
+                sendEmail()
+                function sendEmail() {
+                    emailjs.send('service_p8ggm3o',
+                        'template_nzb8uty',
+                        body_email,
+                        'user_uWUrSMAEt8LcbPa7531Oa'
+                    ).then(res => {
+                        console.log("Esto fue" + res);
+                    }).catch(err => console.log("Esto fueee" + err))
+                }
+
                 swalWithBootstrapButtons.fire(
                     'Reserva borrada',
                     'Todos los registros han sido eliminados.',
                     'success'
                 ).then(function () {
+
+
                     fetch('/api/deleteBooking/' + reservaId, {
                         method: "DELETE",
                         headers: {
                             "Content-Type": "application/json",
                         }
                     });
+
+
+
                     window.location.reload(true)
                     /* window.location = "/"; */
                 });

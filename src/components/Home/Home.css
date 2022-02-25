@@ -195,9 +195,26 @@ input[type=number] {
     background-color: #3c39ed; 
     border-radius: 20px;
     border-color: #577ec5e1;
+    /* position: -webkit-sticky; */
+    /* position: sticky; */
+    /* top: 20px; */
+    /* position: absolute; */
+    /* position:relative; */
+/* top: 400px; */
+   /*  bottom: 30px; */
+   /*  bottom: 1.5em; */
+   position:inherit;
+   bottom: 10px; left: 0px;
     
 }
 .botonR:hover{
     background-color: rgb(97, 50, 224);
     border-color: #352591e1;
+}
+
+.grid-img{
+    height:45%;
+}
+.card-body{
+    height:55%;
 }

@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from './componentes/Input';
 import Swal from 'sweetalert2'
+import emailjs from '@emailjs/browser';
+
 
 
 const App = () => {
@@ -43,7 +45,7 @@ const App = () => {
 
     const onChangeTerminos = (e) => {
         cambiarTerminos(e.target.checked);
-    }   
+    }
     const onSubmit = (e) => {
         e.preventDefault();
         if (
@@ -74,28 +76,56 @@ const App = () => {
                 bookings: [],
             };
 
-            
+
             const caragarUsuario = JSON.stringify(user);
             console.log(caragarUsuario);
             reguistarUsuario();
-            async function reguistarUsuario(){
+            async function reguistarUsuario() {
                 const respuesta = await fetch('/api/register', {
-                    method: "POST",            
+                    method: "POST",
                     body: caragarUsuario,
-                    headers:{
-                         "Content-Type": "application/json" ,
+                    headers: {
+                        "Content-Type": "application/json",
                     }
                 });
                 const exitoso = await respuesta.json();
                 if (exitoso.succes === true) {
                     console.log("Guardado")
                     console.log(exitoso)
+
+                    var eje = exitoso
+                    console.log("sadsfsfs")
+                    console.log(eje.user)
+
+                    var body_email = {
+                        name: exitoso.user.firstname,
+                        email: exitoso.user.email,
+                    }
+                    console.log(body_email)
+                    sendEmail()
+                    function sendEmail() {
+                        /* e.preventDefault(); */
+                        /* emailjs.sendForm(e) */
+                        emailjs.send('service_hswwe19',
+                            'template_czeuykn',
+                            /* e.target, */
+                            body_email,
+                            /* {name: e.name,
+                            user_email: e.user_email
+                            }, */
+                            /* Hola  */
+                            'user_uUWNJ9j8dy0YAL3sq1nV7'
+                        ).then(res => {
+                            console.log("Esto fue" + res);
+                        }).catch(err => console.log("Esto fueee" + err))
+                    }
+
                     Swal.fire({
                         icon: 'success',
                         title: 'Bien',
                         text: 'Usuarios registrado correctamente',
                         footer: '<a href="/#deets">Inicia seccion</a>',
-                      }).then(function() {
+                    }).then(function () {
                         window.location = "/";
                     });
 
@@ -107,7 +137,7 @@ const App = () => {
                         title: 'Oops...',
                         text: 'Parase que el usuario ya existe',
                         footer: '<a href="/#deets">Inicia seccion</a>'
-                      })
+                    })
                 }
             }
             cambiarFormularioValido(true);
@@ -126,7 +156,7 @@ const App = () => {
     const validar = () => {
     }
     return (
-        
+
         <main>
             <div className="container ">
                 <Formulario action="" onSubmit={onSubmit}>

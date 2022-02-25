@@ -37,11 +37,12 @@ const AgregarPelicula = () => {
     }
 
     console.log(colourOptions)
-    const { register, handleSubmit } = useForm([{horarios:['11:00','9:00']}]);
+    const { register, handleSubmit } = useForm([{ horarios: ['11:00', '9:00'] }]);
     const onSubmit = (data) => {
+        console.log(data)
         /* data.preventDefault(); */
         /* alert(JSON.stringify(data)); */
-        const data2 = {hours:["12:00 PM","3:00 PM","6:00 PM", "9:00 PM"]}
+        const data2 = { hours: ["12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM"] }
 
         const data3 = Object.assign({}, data, data2)
         console.log(data.title);
@@ -113,7 +114,7 @@ const AgregarPelicula = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-row">
                         <Row>
-                            <Col sm={6}>
+                            <Col sm={7}>
                                 <div>
                                     <label for="">Titulo</label >
                                     <input {...register("title")} type="text" /* className="form-control"  */ id="validationCustom01" placeholder="Titulo de la pelicula" className='select form-control' /* defaultValue={"3D"} */ required />
@@ -121,7 +122,7 @@ const AgregarPelicula = () => {
                             </Col>
 
 
-                            <Col sm={4}>
+                            <Col sm={5}>
                                 <div>
 
                                     {/* <label class="form-label select-label">Example label</label> */}
@@ -186,13 +187,13 @@ const AgregarPelicula = () => {
                                 </div>
                             </Col>
 
-                            <Col sm={2}>
+                            {/*                             <Col sm={2}>
                                 <div>
                                     <label for="">Hora</label>
                                     <input {...register("hour")} type="time" id="validationCustom01" placeholder="Titulo de la pelicula" className='select form-control"' required />
                                 </div>
-                            </Col>
-                            
+                            </Col> */}
+
                             <Col sm={4}>
                                 <div>
                                     <label >Formato</label>
@@ -244,6 +245,21 @@ const AgregarPelicula = () => {
                                     <textarea {...register("synopsis")} type="textarea" /* className="form-control"  */ className='form-control' id="" placeholder="Descripcion de la pelicula" rows="4" required />
                                 </div>
                             </Col>
+                            <div className="row justify-content-around">
+                                    <Col sm={2}>
+                                        <div>
+                                            <label >¿En cartelera?</label>
+                                            <select {...register("cartelera")} className='select'>
+                                                <option value="SI">
+                                                    Si
+                                                </option>
+                                                <option value="NO">
+                                                    No
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </Col>
+                                </div>
                         </Row>
 
                     </div>

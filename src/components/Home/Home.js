@@ -181,6 +181,7 @@ function showListedElements() {
     <div className="row form-group">
       {
         listaDePeliculas.map((i, f) => (
+          i.cartelera === "SI" &&
           <Listcards key={i._id} img={i.img} Titulo={i.title} Genero={i.gender} Duracion={i.duration} Formato={i.format} Sinopcis={i.synopsis} Horario={i.hour} Valor={i.value} id={i._id} />
         ))
       }
@@ -193,6 +194,7 @@ function showMoreElements() {
     <div className="row ">
       {
         listaDePeliculas.map((i, f) => (
+          i.cartelera === "SI" &&
           <Gridcards key={i._id} img={i.img} Titulo={i.title} Genero={i.gender} Duracion={i.duration} Formato={i.format} id={i._id} />
         ))
       }

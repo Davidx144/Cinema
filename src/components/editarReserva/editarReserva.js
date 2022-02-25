@@ -7,6 +7,8 @@ import {
 } from "@mui/material/";
 import Checkbox from "@mui/material/Checkbox";
 import Swal from 'sweetalert2'
+import emailjs from '@emailjs/browser';
+
 
 var URLactualReserva = (window.location);
 var urlReserva = (URLactualReserva.pathname)
@@ -45,8 +47,40 @@ async function peliculaDeReserva(props) {
     peliculadeReserva = await respuestas.json()
 }
 
+const LocalStorageNombre = localStorageKey => {
+    const [value, setValue] = React.useState(
+        localStorage.getItem(localStorageKey) || ''
+    );
+
+    React.useEffect(() => {
+        localStorage.setItem("nombre_usuario", value);
+    }, [value]);
+
+    return [value, setValue];
+};
+
+const LocalStorageEmail = localStorageKey => {
+    const [value, setValue] = React.useState(
+        localStorage.getItem(localStorageKey) || ''
+    );
+
+    React.useEffect(() => {
+        localStorage.setItem("email_usuario", value);
+    }, [value]);
+
+    return [value, setValue];
+};
 
 const EditarReserva = () => {
+
+    const [nombreUsuario, setValueNombreUsuario] = LocalStorageNombre(
+        'nombre_usuario'
+    );
+
+    const [emailusuario, setValueEmail] = LocalStorageEmail(
+        'email_usuario'
+    );
+
     const [seatsRemove, setSeatsRemove] = React.useState([]);
     var sillasReserva = reserva[0].chairs
     const removeItem = (array, item) => {
@@ -98,6 +132,9 @@ const EditarReserva = () => {
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
+
+                    
+
                     for (const i in seatsRemove) {
                         var indexSilla = parseInt(seatsRemove[i])
                         var eliminar = sillasReserva.indexOf(indexSilla)
@@ -107,6 +144,28 @@ const EditarReserva = () => {
                         chairs: sillasReserva,
                         bookingValue: sillasReserva.length * peliculadeReserva[0].value
                     }
+
+                    var newvalue = (sillasReserva.length * peliculadeReserva[0].value).toString()
+                    var body_email = {
+                        name: nombreUsuario,
+                        email: emailusuario,
+                        title: peliculadeReserva[0].title,
+                        chairs: sillasReserva,
+                        value: newvalue,
+                        hour: reserva[0].hour
+                    }
+                    console.log(body_email)
+                    sendEmail()
+                    function sendEmail() {
+                        emailjs.send('service_p8ggm3o',
+                            'template_ge2qocs',
+                            body_email,
+                            'user_uWUrSMAEt8LcbPa7531Oa'
+                        ).then(res => {
+                            console.log("Esto fue" + res);
+                        }).catch(err => console.log("Esto fueee" + err))
+                    }
+
                     const updateReserva = (JSON.stringify(aux1));
                     swalWithBootstrapButtons.fire(
                         'Reserva actualizada',

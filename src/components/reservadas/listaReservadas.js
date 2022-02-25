@@ -16,7 +16,7 @@ const ListarPeliculas = ({ title,chairs, id,hour,bookingValue, id_movie,handleEd
         >
           Editar
         </button>
-        <button type="button" className="btn btn-danger deleteBoton" onClick={() => handleDeleteClick(id)}>
+        <button type="button" className="btn btn-danger deleteBoton" onClick={() => handleDeleteClick(id,title,hour)}>
           Eliminar
         </button>
       </td>

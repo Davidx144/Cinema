@@ -194,8 +194,6 @@ let horario6 = []
 let Aux9 = []
 let horario9 = []
 
-
-
 infoReservas()
 async function infoReservas(props) {
     const respuestas = await fetch(peliculasParaReserva, {
@@ -250,9 +248,6 @@ async function infoReservas(props) {
         console.log(horario6)
     }
 } */
-
-
-
 
 /* const horario6 = reservasActual.map */
 
