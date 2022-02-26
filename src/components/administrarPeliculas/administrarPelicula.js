@@ -107,6 +107,7 @@ const EliminarPelicula = () => {
                                 <tr>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Genero</th>
+                                    <th scope="col">En Cartelera</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -116,6 +117,7 @@ const EliminarPelicula = () => {
                                             /* contact={i.title,i.gender} */
                                             title={i.title}
                                             gender={i.gender}
+                                            cartelera={i.cartelera}
                                             id={i._id}
                                             handleDeleteClick={handleDeleteClick}
                                             handleEditClick={handleEditClick}

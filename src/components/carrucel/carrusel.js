@@ -18,7 +18,7 @@ const Carrusel = () => {
                         <img
                             className="d-block w-100"
                             src={peli1}
-                            alt="First slide"
+                            /* alt="First slide" */
                         />
                         <Carousel.Caption>
                             <h3>Eternals</h3>
@@ -29,7 +29,7 @@ const Carrusel = () => {
                         <img
                             className="d-block w-100"
                             src={peli2}
-                            alt="Second slide"
+                            /* alt="Second slide" */
                         />
                         <Carousel.Caption>
                             <h3>Venom: Let There Be Carnage</h3>
@@ -41,7 +41,7 @@ const Carrusel = () => {
                             href="/info/87"
                             className="d-block w-100"
                             src={peli3}
-                            alt="Third slide"
+                            /* alt="Third slide" */
                         />
                         <Carousel.Caption>
                             <h3>Dune</h3>

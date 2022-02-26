@@ -1,44 +1,3 @@
-//agregar la reserva
-/*     const onSubmit = (data) => {
-        console.log(data.title);
-        console.log(data);
-        const newPelicula = (JSON.stringify(data));
-        console.log(newPelicula)
- 
-        registerMovie();
-        async function registerMovie() {
-            const respuesta = await fetch('/api/registerMovie', {
-                method: "POST",
-                body: newPelicula,
-                headers: {
-                    "Content-Type": "application/json",
-                }
-            });
-            const exitoso = await respuesta.json();
-            if (exitoso.succes === true) {
-                console.log("Guardado")
-                console.log(exitoso)
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Bien',
-                    text: 'Pelicula registrada correctamente',
-                    footer: '<a href="/#deets">Inicia seccion</a>'
-                }).then(function () {
-                    window.location = "/";
-                });
-            } else {
-                console.log("No guardado")
-                console.log(exitoso)
-                Swal.fire({
-                    href: "/",
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Parase que la pelicula ya existe',
-                    footer: '<a href="/#deets">Inicia seccion</a>'
-                })
-            }
-        }
-    }; */
 import "./info.css"
 import BeatLoader from "react-spinners/BeatLoader"
 import { Container, Row } from "react-bootstrap";
@@ -48,33 +7,26 @@ import React, { useState } from 'react'
 import clsx from 'clsx'
 import { Boton } from '../reguistro/elementos/Formularios'
 import { SMTPClient } from 'emailjs';
-/* import emailjs from 'emailjs'; */
 import emailjs from '@emailjs/browser';
 
+/* const LocalStorageUser = localStorageKey => {
+    const [value, setValue] = React.useState(
+      localStorage.getItem(localStorageKey) || 'Usuario'
+    );
+  
+    React.useEffect(() => {
+      localStorage.setItem("nombre_usuario", value);
+    }, [value]);
+  
+    return [value, setValue];
+  }; */
+
 const Infopeli = () => {
-/*     var templateParams = {
-        name: 'James',
-        notes: 'Check this out!',
-        user_email: 'david.14420@gmail.com'
-    };
-    function sendEmail(e) {
-        e.preventDefault();
-        emailjs.send('service_hswwe19',
-            'template_249901c',
-            templateParams,
-            'user_uUWNJ9j8dy0YAL3sq1nV7'
-        ).then(res => {
-            console.log("Esto fue" + res);
-        }).catch(err => console.log("Esto fueee" + err))
-    } */
 
-    /* const client = new SMTPClient({
-        user: 'user',
-        password: 'password',
-        host: 'smtp.your-email.com',
-        ssl: true,
-    }); */
-
+/*     const [nombreUsuario, setValue] = LocalStorageUser(
+        'nombre_usuario'
+      );
+ */
     const [loading, setLoading] = useState(true)
     const cambiarEstado = () => {
         setTimeout(() => {
@@ -460,6 +412,15 @@ function Salas() {
     /*     console.log("Este es el id de la peli : " + id_Pelicula)
         console.log("Este es el id del usuario : " + id_Usuario) */
 
+        const handleSubmit2 = (e) => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Parece que no has iniciado sección',
+                footer: '<a href="/registro">¿Aún no tienes cuenta? ¡Registrate!</a>'
+              })
+        }
+
     const handleSubmit = (e) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -608,7 +569,12 @@ function Salas() {
                     </span>
                 </p>
                 <div>
+                    {nombreUsuario==="Usuario" &&
+                    <Boton onClick={handleSubmit2} >Inicio</Boton>
+                    }
+                    {nombreUsuario!="Usuario" &&
                     <Boton onClick={handleSubmit} >Reservar</Boton>
+                    }
                 </div>
             </div>
         </div>

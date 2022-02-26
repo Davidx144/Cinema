@@ -1,10 +1,11 @@
 import React from "react";
 
-const ListarPeliculas = ({ title,gender, id, handleEditClick, handleDeleteClick }) => {
+const ListarPeliculas = ({ title,gender, id, cartelera,handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
       <td>{title}</td>
       <td>{gender}</td>
+      <td>{cartelera}</td>
       <td>
         <button href={`/editar/`}
           type="button" className="btn btn-warning editBoton" 
