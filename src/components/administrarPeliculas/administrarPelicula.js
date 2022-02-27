@@ -27,57 +27,84 @@ const EliminarPelicula = () => {
     const handleEditClick = (peliID) => {
         console.log(peliID)
         /* alert('gg') */
-        window.location.assign(`/editar/`+(peliID))
+        window.location.assign(`/editar/` + (peliID))
     }
 
     const handleDeleteClick = (peliID) => {
+        var reservasActual = []
         console.log(peliID)
+        var reservasPeli = (`/api/bookingsMovie/${peliID}`)
 
         /*  */
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            /* buttonsStyling: false */
-        })
+        infoReservas()
+        async function infoReservas(props) {
+            const respuestas = await fetch(reservasPeli, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+            reservasActual = await respuestas.json()
 
-        swalWithBootstrapButtons.fire({
-            title: '¿Desea eliminar la película?',
-            text: "¡La película se borrará completamente de la base de datos, incluidas sus reservas!",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Si, borrar.',
-            cancelButtonText: 'No, cancelar.',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-                swalWithBootstrapButtons.fire(
-                    'Película borrada',
-                    'Todos los registros han sido eliminados.',
-                    'success'
-                ).then(function () {
-                    fetch('api/delete/'+peliID, {
-                        method: "DELETE",
-                        headers: {
-                            "Content-Type": "application/json",
-                        }
-                    });
-                    window.location.reload(true)
-                    /* window.location = "/"; */
-                });
+            if (reservasActual.length === 0) {
+                console.log("AQUI NO HAY RESERVAS")
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    /* buttonsStyling: false */
+                })
 
-            } else if (
-                /* Read more about handling dismissals below */
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Cancelado',
-                    'No ha pasado nada ;)',
-                    'info'
-                )
+                swalWithBootstrapButtons.fire({
+                    title: '¿Desea eliminar la película?',
+                    text: "¡La película se borrará completamente de la base de datos!",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Si, borrar.',
+                    cancelButtonText: 'No, cancelar.',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        swalWithBootstrapButtons.fire(
+                            'Película borrada',
+                            'Todos los registros han sido eliminados.',
+                            'success'
+                        ).then(function () {
+                            fetch('api/delete/' + peliID, {
+                                method: "DELETE",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                }
+                            });
+                            window.location.reload(true)
+                            /* window.location = "/"; */
+                        });
+
+                    } else if (
+                        /* Read more about handling dismissals below */
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons.fire(
+                            'Cancelado',
+                            'No ha pasado nada ;)',
+                            'info'
+                        )
+                    }
+                })
+            } else {
+                console.log("NO SE PUEDE BORRAR")
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '¡No se pueden borrar películas con reservas activas! :(',
+                    /* footer: '<a href="">Why do I have this issue?</a>' */
+                  })
             }
-        })
+        }
+
+        /*  */
+
 
         /*  */
 
