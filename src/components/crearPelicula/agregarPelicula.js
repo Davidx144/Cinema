@@ -68,7 +68,7 @@ const AgregarPelicula = () => {
                     icon: 'success',
                     title: 'Bien',
                     text: 'Pelicula registrada correctamente',
-                    footer: '<a href="/#deets">Inicia seccion</a>'
+                    /* footer: '<a href="/#deets">Inicia seccion</a>' */
                 }).then(function () {
                     window.location = "/";
                 });
@@ -80,7 +80,7 @@ const AgregarPelicula = () => {
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Parase que la pelicula ya existe',
-                    footer: '<a href="/#deets">Inicia seccion</a>'
+                    /* footer: '<a href="/#deets">Inicia seccion</a>' */
                 })
             }
         }

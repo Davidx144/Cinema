@@ -232,7 +232,7 @@ function NavbarP() {
                             <Modal show={show}
                                 onHide={handleClose} >
                                 <Modal.Header closeButton >
-                                    <Modal.Title > Inicia Sección o Registrate </Modal.Title> </Modal.Header>
+                                    <Modal.Title > Inicia sección o registrate </Modal.Title> </Modal.Header>
                                 <Modal.Body >
                                     <form className="form" onSubmit={handleSubmit} autoComplete="off">
                                         <div className="mb-2">

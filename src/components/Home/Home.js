@@ -31,6 +31,10 @@ const LocalStorageUser = localStorageKey => {
 
 function Home() {
 
+  function filtrar(e) {
+    alert(e.ejemplo)
+  }
+
   const [nombreUsuario, setValue] = LocalStorageUser(
     'nombre_usuario'
   );
@@ -55,19 +59,19 @@ function Home() {
     setRange(e.target.value);
     /* console.log(e.target.value) */
   }
-  if (loading){
+  if (loading) {
     cambiarEstado()
-    return(
+    return (
       <div>
-      <Container className='loading'>
-        <BeatLoader 
-          size={15}
-        />
-      </Container>
+        <Container className='loading'>
+          <BeatLoader
+            size={15}
+          />
+        </Container>
       </div>
-      
+
     )
-  }else{
+  } else {
     return (
       <div id="carteleraHome" >
         {/* {listaPeliculas()} */}
@@ -78,75 +82,59 @@ function Home() {
             <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" className="shape-fill"></path>
           </svg>
         </div>
-  
+
         <p className='saludo'>
-         {/*  Hola {nombreUsuario} */}
-          <span class="badge rounded-pill bg-light text-dark"> Hola {nombreUsuario} </span>
+          {/*  Hola {nombreUsuario} */}
+          <h5><span class="badge rounded-pill bg-light text-dark"> Hola {nombreUsuario} </span></h5>
         </p>
-        <div className="container ">
-          {/* Filtro */}
-          <div className="terms col-4 mb-6 d-lg-block" >
-            <span className="space">  </span>
-            <div>
-              <label className="mb-2"><strong>Busca por palabra clave:</strong></label>
-              <input placeholder="..." type="text" className="form-control" />
+        {/* Filtro */}
+        {/* <div className="container ">
+          <form >
+            <div className="terms col-4 mb-6 d-lg-block " >
+              <span className="space">  </span>
+              <div>
+                <label className="mb-2"><strong>Busca por palabra clave:</strong></label>
+                <input placeholder="..." type="text" className="form-control eje" for="ejemplo"/>
+              </div>
+
+              <span className="space">  </span>
+              <select className="form-select" aria-label="Default select example" defaultValue="0">
+                <option value="0">Formato</option>
+                <option value="2D">2D</option>
+                <option value="3D">3D</option>
+                <option value="Surround">Surround</option>
+              </select>
+              <span className="space">  </span>
+
+              <select className="form-select" aria-label="Default select example" defaultValue="0">
+                <option value="0">Genero</option>
+                <option value="1">Drama</option>
+                <option value="2">Terror</option>
+                <option value="3">Comedia</option>
+                <option value="4">Acción</option>
+                <option value="5">Suspenso</option>
+                <option value="6">Aventura</option>
+                <option value="7">Ficción</option>
+                <option value="8">Ciencis </option>
+                <option value="9">Marvel</option>
+              </select>
+              <br></br>
+              <button type="submit" className=" form btn btn-primary format" onClick={filtrar}> Aplicar Filtros</button>
             </div>
-  
-            <span className="space">  </span>
-            <select className="form-select" aria-label="Default select example" defaultValue="0">
-              <option value="0">Formato</option>
-              <option value="2D">2D</option>
-              <option value="3D">3D</option>
-              <option value="Surround">Surround</option>
-            </select>
-            <span className="space">  </span>
-  
-            <select className="form-select" aria-label="Default select example" defaultValue="0">
-              <option value="0">Genero</option>
-              <option value="1">Drama</option>
-              <option value="2">Terror</option>
-              <option value="3">Comedia</option>
-              <option value="4">Acción</option>
-              <option value="5">Suspenso</option>
-              <option value="6">Aventura</option>
-              <option value="7">Ficción</option>
-              <option value="8">Ciencis </option>
-              <option value="9">Marvel</option>
-  
-  
-            </select>
-            <span className="space">  </span>
-            <span className="space">  </span>
-  
-            <MDBRange
-              value={range}
-              min='1000'
-              max='20000'
-              defult-value='5000'
-              step='1000'
-              id='customRange3'
-              label='Valor máximo de la boletería: '
-              onChange={onChange}
-              h-100 ="true"
-            />
-  
-            <span className="space">  </span>
-  
-            <button type="submit" className=" form btn btn-primary format"> Aplicar Filtros</button>
-            <span className="space">  </span>
-  
-          </div>
-        </div>
+          </form>
+        </div> */}
+
+
         <br></br>
         <div className="container mb-3 d-none d-lg-block">
           <label className='formato'><h4><strong>Formato: </strong></h4></label>
           <span className="space">  </span>
-  
+
           <button type="submit" className="btn btn-primary format" onClick={() => changeView()}>
             {buttonName}
           </button>
         </div>
-  
+
         <div>
           <div className="container ">
             <div>

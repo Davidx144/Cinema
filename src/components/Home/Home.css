@@ -218,3 +218,7 @@ input[type=number] {
 .card-body{
     height:55%;
 }
+
+.grid-size{
+    height: 150px;
+}
