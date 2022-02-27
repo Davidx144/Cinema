@@ -61,12 +61,24 @@ const Infopeli = () => {
                                     {peliculaActual[0].synopsis}
                                 </p>
                             </div>
-                            <div>
+{/*                             <div>
                                 <h5> <strong>Genero:</strong> {peliculaActual[0].gender}  <strong>Duracion:</strong>  {peliculaActual[0].duration}  </h5>
+                            </div> */}
+                            <div className="infoPeli">
+<div>
+                                <h5><span class="badge bg-secondary">Genero:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].gender}</span>  {/* <span class="badge bg-secondary">Duracion:</span>  <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].duration} Minutos </span>  */} </h5>
                             </div>
                             <div>
-                                <h5>{/* <strong> Hora:</strong> {peliculaActual[0].hour}  */}<strong>Formato:</strong>{peliculaActual[0].format}  <strong> Valor:</strong>  {peliculaActual[0].value}</h5>
+                                <h5>{/* <span class="badge bg-secondary">Genero:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].gender}</span>  */} <span class="badge bg-secondary">Duracion:</span>  <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].duration} Minutos </span>  </h5>
                             </div>
+                            <div>
+                                <h5><span class="badge bg-secondary">Formato:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].format}  </span> {/* <span class="badge bg-secondary">Valor:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].value}$ Pesos</span>  */}</h5>
+                            </div>
+                            <div>
+                                <h5><span class="badge bg-secondary">Valor:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].value}$ Pesos</span> </h5>
+                            </div>
+                            </div>
+                            
                         </Col>
                         <Col sm={6}>
                             <Salas></Salas>
