@@ -8,6 +8,8 @@ import clsx from 'clsx'
 import { Boton } from '../reguistro/elementos/Formularios'
 import { SMTPClient } from 'emailjs';
 import emailjs from '@emailjs/browser';
+import image from '../../assert/503.jpg'
+
 
 /* const LocalStorageUser = localStorageKey => {
     const [value, setValue] = React.useState(
@@ -23,10 +25,10 @@ import emailjs from '@emailjs/browser';
 
 const Infopeli = () => {
 
-/*     const [nombreUsuario, setValue] = LocalStorageUser(
-        'nombre_usuario'
-      );
- */
+    /*     const [nombreUsuario, setValue] = LocalStorageUser(
+            'nombre_usuario'
+          );
+     */
     const [loading, setLoading] = useState(true)
     const cambiarEstado = () => {
         setTimeout(() => {
@@ -61,24 +63,24 @@ const Infopeli = () => {
                                     {peliculaActual[0].synopsis}
                                 </p>
                             </div>
-{/*                             <div>
+                            {/*                             <div>
                                 <h5> <strong>Genero:</strong> {peliculaActual[0].gender}  <strong>Duracion:</strong>  {peliculaActual[0].duration}  </h5>
                             </div> */}
                             <div className="infoPeli">
-                            <div>
-                                <h5>{/* <span class="badge bg-secondary">Genero:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].gender}</span>  */} <span class="badge bg-secondary">Duracion:</span>  <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].duration} Minutos </span>  </h5>
+                                <div>
+                                    <h5>{/* <span class="badge bg-secondary">Genero:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].gender}</span>  */} <span class="badge bg-secondary">Duracion:</span>  <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].duration} Minutos </span>  </h5>
+                                </div>
+                                <div>
+                                    <h5><span class="badge bg-secondary">Valor:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].value}$ Pesos</span> </h5>
+                                </div>
+                                <div>
+                                    <h5><span class="badge bg-secondary">Genero:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].gender}</span>  {/* <span class="badge bg-secondary">Duracion:</span>  <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].duration} Minutos </span>  */} </h5>
+                                </div>
+                                <div>
+                                    <h5><span class="badge bg-secondary">Formato:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].format}  </span> {/* <span class="badge bg-secondary">Valor:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].value}$ Pesos</span>  */}</h5>
+                                </div>
                             </div>
-                            <div>
-                                <h5><span class="badge bg-secondary">Valor:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].value}$ Pesos</span> </h5>
-                            </div>
-<div>
-                                <h5><span class="badge bg-secondary">Genero:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].gender}</span>  {/* <span class="badge bg-secondary">Duracion:</span>  <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].duration} Minutos </span>  */} </h5>
-                            </div>
-                            <div>
-                                <h5><span class="badge bg-secondary">Formato:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].format}  </span> {/* <span class="badge bg-secondary">Valor:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].value}$ Pesos</span>  */}</h5>
-                            </div>
-                            </div>
-                            
+
                         </Col>
                         <Col sm={6}>
                             <Salas></Salas>
@@ -94,7 +96,7 @@ const Infopeli = () => {
                     </Row>
 
                 </div>
-{/*                 <div>
+                {/*                 <div>
                     <form onSubmit={sendEmail}>
                         <label>nombre</label>
                         <input type='text' name='name' classname='form-control' />
@@ -127,6 +129,7 @@ async function infoPelicula(props) {
             "Content-Type": "application/json",
         }
     });
+    /* if(respuestas.cartelera==="SI"){} */
     peliculaActual = await respuestas.json()
 
 
@@ -136,6 +139,8 @@ async function infoPelicula(props) {
     localStorage.setItem('valor_peli', peliculaActual[0].value);
     localStorage.setItem('hora_peli', peliculaActual[0].hour);
     localStorage.setItem('Id_peli', peliculaActual[0]._id);
+    /* localStorage.setItem('cartelera', peliculaActual[0].cartelera); */
+
 
 }
 
@@ -424,14 +429,14 @@ function Salas() {
     /*     console.log("Este es el id de la peli : " + id_Pelicula)
         console.log("Este es el id del usuario : " + id_Usuario) */
 
-        const handleSubmit2 = (e) => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Parece que no has iniciado sección',
-                footer: '<a href="/registro">¿Aún no tienes cuenta? ¡Registrate!</a>'
-              })
-        }
+    const handleSubmit2 = (e) => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Parece que no has iniciado sección',
+            footer: '<a href="/registro">¿Aún no tienes cuenta? ¡Registrate!</a>'
+        })
+    }
 
     const handleSubmit = (e) => {
         const swalWithBootstrapButtons = Swal.mixin({
@@ -470,7 +475,7 @@ function Salas() {
                                 console.log("la hora de la peli es: " + selectedMovie.hora)
                                 console.log("las sillas seleccionadas son: " + selectedSeats) */
 
-                
+
 
 
 
@@ -486,7 +491,7 @@ function Salas() {
                 };
 
 
-                var body_email= {
+                var body_email = {
                     chairs: selectedSeats,
                     name: nombreUsuario,
                     email: emailusuario,
@@ -554,43 +559,59 @@ function Salas() {
     const [selectedMovie, setSelectedMovie] = useState(movies[0])
     const [selectedSeats, setSelectedSeats] = useState([])
 
+    if (peliculaActual[0].cartelera === "SI") {
+        return (
+            <div className="Salas">
+                <div className="App">
+                    <Movies
 
-    return (
-        <div className="Salas">
-            <div className="App">
-                <Movies
+                        movie={selectedMovie}
+                        onChange={movie => {
+                            setSelectedSeats([])
+                            setSelectedMovie(movie)
+                        }}
+                    />
+                    <ShowCase />
+                    <Cinema
+                        movie={selectedMovie}
+                        selectedSeats={selectedSeats}
+                        onSelectedSeatsChange={selectedSeats => setSelectedSeats(selectedSeats)}
+                    />
 
-                    movie={selectedMovie}
-                    onChange={movie => {
-                        setSelectedSeats([])
-                        setSelectedMovie(movie)
-                    }}
-                />
-                <ShowCase />
-                <Cinema
-                    movie={selectedMovie}
-                    selectedSeats={selectedSeats}
-                    onSelectedSeatsChange={selectedSeats => setSelectedSeats(selectedSeats)}
-                />
-
-                <p className="info">
-                    Tienes seleccionado <span className="count">{selectedSeats.length}</span>{' '}
-                    puestos, por un precio de{' '}
-                    <span className="total">
-                        {selectedSeats.length * selectedMovie.price}$
-                    </span>
-                </p>
-                <div>
-                    {nombreUsuario==="Usuario" &&
-                    <Boton onClick={handleSubmit2} >Inicio</Boton>
-                    }
-                    {nombreUsuario!="Usuario" &&
-                    <Boton onClick={handleSubmit} >Reservar</Boton>
-                    }
+                    <p className="info">
+                        Tienes seleccionado <span className="count">{selectedSeats.length}</span>{' '}
+                        puestos, por un precio de{' '}
+                        <span className="total">
+                            {selectedSeats.length * selectedMovie.price}$
+                        </span>
+                    </p>
+                    <div>
+                        {nombreUsuario === "Usuario" &&
+                            <Boton onClick={handleSubmit2} >Inicio</Boton>
+                        }
+                        {nombreUsuario != "Usuario" &&
+                            <Boton onClick={handleSubmit} >Reservar</Boton>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return (
+            <div className="Salas">
+                <div className="App">
+                    <div className='NotFund'>
+                        <h3><strong>Parece que la película no se encuentra disponible.</strong></h3>
+                        <img className="card-img-top" src={image} alt="Card cap" href="/" />
+                        <br></br>
+                        <a href={"/"} className="btn btn-primary botonR" >Volver al inicio</a>
+                    </div>
+
+                </div>
+            </div>
+        )
+    }
+
 }
 
 

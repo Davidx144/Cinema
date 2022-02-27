@@ -235,8 +235,8 @@ const EditarReserva = () => {
                             <div className='infoReservaActual'>
                                 <h3 className='h3aling'><strong>Descripcion</strong></h3>
                                 <h5>{peliculadeReserva[0].synopsis}</h5>
-                                <h4><strong>Hora de la funcion: </strong>{reserva[0].hour}</h4>
-                                <h4><strong>Valor de la funcion: </strong>{reserva[0].bookingValue}</h4>
+                                <h4><strong>Hora de la funcion: </strong> <span class="badge rounded-pill bg-dark">{reserva[0].hour}</span></h4>
+                                <h4><strong>Valor de la funcion: </strong> <span class="badge rounded-pill bg-dark">{reserva[0].bookingValue}$ </span></h4>
                                 <h5><strong>Selecciona las sillas que quieres liberar </strong></h5>
                                 {reserva[0].chairs.sort().map((seat, i) => (
                                     <FormControlLabel
@@ -252,7 +252,7 @@ const EditarReserva = () => {
                                 ))}
                                 <div className='h3aling'>
                                     <button type="button" className="btn btn-danger deleteBoton " onClick={actualizarReserva}/* onClick={() => handleDeleteClick(id)} */>
-                                        liberar
+                                        Liberar
                                     </button>
                                 </div>
                             </div>
