@@ -58,7 +58,6 @@ const EditarPelicula = () => {
                     icon: 'success',
                     title: 'Bien',
                     text: 'Pelicula modificada correctamente',
-                    footer: '<a href="/#deets">Inicia seccion</a>'
                 }).then(function () {
                     window.location = "/";
                 });
@@ -70,7 +69,6 @@ const EditarPelicula = () => {
                     icon: 'error',
                     title: 'Oops...',
                     text: 'paso algo raro',
-                    footer: '<a href="/#deets">Inicia seccion</a>'
                 })
             }
         }

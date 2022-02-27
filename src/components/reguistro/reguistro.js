@@ -184,7 +184,7 @@ const App = () => {
                         cambiarEstado={cambiarDocumento}
                         tipo="text"
                         label="Número de documento"
-                        placeholder="Coloca tu numero de documento"
+                        placeholder="Introduzca su numero de documento"
                         name="documento"
                         leyendaError="El documento solo puede contener numeros."
                         expresionRegular={expresiones.documento}
@@ -194,7 +194,7 @@ const App = () => {
                         cambiarEstado={cambiarNombre}
                         tipo="text"
                         label="Nombres"
-                        placeholder="Coloque su nombre"
+                        placeholder="Introduzca su nombre"
                         name="nombre"
                         leyendaError="El nombre solo puede contener letras y espacios."
                         expresionRegular={expresiones.nombre}
@@ -204,7 +204,7 @@ const App = () => {
                         cambiarEstado={cambiarApellido}
                         tipo="text"
                         label="Apellidos"
-                        placeholder="Coloque su apellido"
+                        placeholder="Introduzca su apellido"
                         name="apellido"
                         leyendaError="El apellido solo puede contener letras y espacios."
                         expresionRegular={expresiones.nombre}
@@ -228,7 +228,7 @@ const App = () => {
                         tipo="password"
                         label="Contraseña"
                         name="passwordU"
-                        leyendaError="La contraseña tiene que ser minimo de 5 caracteres, mayusculas, minusculas y numeros.    "
+                        leyendaError="La contraseña debe que ser minimo de 5 caracteres, mayusculas, minusculas y numeros.    "
                         expresionRegular={expresiones.password}
                     />
                     <Input

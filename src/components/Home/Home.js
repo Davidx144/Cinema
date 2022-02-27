@@ -80,7 +80,8 @@ function Home() {
         </div>
   
         <p className='saludo'>
-          Hola {nombreUsuario}
+         {/*  Hola {nombreUsuario} */}
+          <span class="badge rounded-pill bg-light text-dark"> Hola {nombreUsuario} </span>
         </p>
         <div className="container ">
           {/* Filtro */}
