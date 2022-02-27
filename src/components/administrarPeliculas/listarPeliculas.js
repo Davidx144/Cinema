@@ -1,10 +1,10 @@
 import React from "react";
 
-const ListarPeliculas = ({ title,gender, id, cartelera,handleEditClick, handleDeleteClick }) => {
+const ListarPeliculas = ({ title,relevant , id, cartelera,handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
       <td>{title}</td>
-      <td>{gender}</td>
+      <td>{relevant }</td>
       <td>{cartelera}</td>
       <td>
         <button href={`/editar/`}

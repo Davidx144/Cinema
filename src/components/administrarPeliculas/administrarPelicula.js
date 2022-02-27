@@ -133,7 +133,7 @@ const EliminarPelicula = () => {
                             <thead className="thead-dark">
                                 <tr>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Genero</th>
+                                    <th scope="col">Destacada</th>
                                     <th scope="col">En Cartelera</th>
                                 </tr>
                             </thead>
@@ -143,7 +143,7 @@ const EliminarPelicula = () => {
                                         <ListarPeliculas
                                             /* contact={i.title,i.gender} */
                                             title={i.title}
-                                            gender={i.gender}
+                                            relevant={i.relevant}
                                             cartelera={i.cartelera}
                                             id={i._id}
                                             handleDeleteClick={handleDeleteClick}

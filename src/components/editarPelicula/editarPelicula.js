@@ -214,6 +214,19 @@ const EditarPelicula = () => {
                                             </select>
                                         </div>
                                     </Col>
+                                    <Col sm={2}>
+                                    <div>
+                                        <label >¿Destacada?</label>
+                                        <select {...register("relevant")} className='select' defaultValue={peliculaActualEdit[0].relevant}>
+                                            <option value="NO">
+                                                No
+                                            </option>
+                                            <option value="SI">
+                                                Si
+                                            </option>
+                                        </select>
+                                    </div>
+                                </Col>
                                 </div>
                             </Row>
 

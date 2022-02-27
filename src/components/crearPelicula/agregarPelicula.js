@@ -246,20 +246,33 @@ const AgregarPelicula = () => {
                                 </div>
                             </Col>
                             <div className="row justify-content-around">
-                                    <Col sm={2}>
-                                        <div>
-                                            <label >¿En cartelera?</label>
-                                            <select {...register("cartelera")} className='select'>
-                                                <option value="SI">
-                                                    Si
-                                                </option>
-                                                <option value="NO">
-                                                    No
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </Col>
-                                </div>
+                                <Col sm={2}>
+                                    <div>
+                                        <label >¿En cartelera?</label>
+                                        <select {...register("cartelera")} className='select'>
+                                            <option value="SI">
+                                                Si
+                                            </option>
+                                            <option value="NO">
+                                                No
+                                            </option>
+                                        </select>
+                                    </div>
+                                </Col>
+                                <Col sm={2}>
+                                    <div>
+                                        <label >¿Destacada?</label>
+                                        <select {...register("relevant")} className='select'>
+                                            <option value="NO">
+                                                No
+                                            </option>
+                                            <option value="SI">
+                                                Si
+                                            </option>
+                                        </select>
+                                    </div>
+                                </Col>
+                            </div>
                         </Row>
 
                     </div>
