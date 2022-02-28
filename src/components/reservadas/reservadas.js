@@ -49,16 +49,16 @@ const ReservadasUsuario = () => {
     }
 
 
-    console.log('listaDereservas')
-    console.log(reservasDelUsuario)
+    /* console.log('listaDereservas')
+    console.log(reservasDelUsuario) */
 
     const handleEditClick = (reservaId, movieId) => {
-        console.log(reservaId)
+        /* console.log(reservaId) */
         window.location.assign(`/editarReserva/` + (reservaId) + ("/") + (movieId))
     }
 
     const handleDeleteClick = (reservaId, tituloPeli, horaPeli) => {
-        console.log(reservaId)
+        /* console.log(reservaId) */
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -124,12 +124,12 @@ const ReservadasUsuario = () => {
         })
 
     };
-    console.log(reservasDelUsuario)
+    /* console.log(reservasDelUsuario) */
 
 
     if (loadinga) {
         cambiarEstado()
-        console.log('esto es ' + reservasDelUsuario)
+        /* console.log('esto es ' + reservasDelUsuario) */
         return (
             <div>
                 <Container className='loading'>
@@ -159,11 +159,11 @@ const ReservadasUsuario = () => {
                 <Row>
                     {reservasDelUsuario.map((i) => (
                         <Col sm={3}>
-                            <div class="card-reserva">
-                                <div class="card-header-reserva">
+                            <div className="card-reserva">
+                                <div className="card-header-reserva">
                                     <h5><strong>{i.title}</strong></h5>
                                 </div>
-                                <div class="card-body-reserva">
+                                <div className="card-body-reserva">
                                     <p><strong>Sillas: </strong>{i.chairs+"."}</p>
                                     <p><strong>Hora: </strong>{i.hour}</p>
                                     <p><strong>Valor: </strong>{i.bookingValue}$</p>
@@ -192,11 +192,11 @@ var urlreserva = (URLactual.pathname)
 var idsUserReservas = urlreserva.slice(14)
 var idsUser = urlreserva.slice(0, 14)
 
-console.log("este" + idsUser)
+/* console.log("este" + idsUser) */
 if (idsUser === "/bookingsUser/") {
     var apiReservas = (`/api/bookingsUser/${idsUserReservas}`)
 }
-console.log("hola" + apiReservas)
+/* console.log("hola" + apiReservas) */
 
 var reservasDelUsuario = []
 reservasUsuario()
@@ -208,6 +208,6 @@ async function reservasUsuario(props) {
         }
     });
     reservasDelUsuario = await respuestas.json()
-    console.log(reservasDelUsuario)
+    /* console.log(reservasDelUsuario) */
 }
 export default ReservadasUsuario;

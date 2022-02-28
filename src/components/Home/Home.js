@@ -64,7 +64,7 @@ function Home() {
         </div>
 
         <p className='saludo'>
-          <h5><span class="badge rounded-pill bg-light text-dark"> Hola {nombreUsuario} </span></h5>
+          <h5><span className="badge rounded-pill bg-light text-dark"> Hola {nombreUsuario} </span></h5>
         </p>
         {/* Filtro */}
         {/* <div className="container ">

@@ -12,7 +12,6 @@ var urlEditar = (URLeditactual.pathname)
 
 var idsEditable = urlEditar.slice(0, 8)
 var idsParam = urlEditar.slice(8)
-console.log("estooooo: " + idsParam)
 if (idsEditable === "/editar/") {
     var idActualEdit = (`/api/info/${idsParam}`)
     var idActualToEdit = (`/api/update/${idsParam}`)
@@ -27,16 +26,13 @@ async function infoPeliculaEdit(props) {
         }
     });
     peliculaActualEdit = await respuestas.json()
-    console.log(peliculaActualEdit[0])
 }
 
 const EditarPelicula = () => {
 
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        console.log(data.title);
         const newPelicula = (JSON.stringify(data));
-        console.log(newPelicula)
 
         updateMovie();
         async function updateMovie() {
@@ -49,8 +45,6 @@ const EditarPelicula = () => {
             });
             const exitoso = await respuesta.json();
             if (exitoso.update === true) {
-                console.log("Guardado")
-                console.log(exitoso)
                 Swal.fire({
                     icon: 'success',
                     title: 'Bien',
@@ -59,8 +53,6 @@ const EditarPelicula = () => {
                     window.location = "/";
                 });
             } else {
-                console.log("No guardado")
-                console.log(exitoso)
                 Swal.fire({
                     href: "/",
                     icon: 'error',
@@ -70,8 +62,6 @@ const EditarPelicula = () => {
             }
         }
     };
-
-    console.log(peliculaActualEdit)
 
     const [loading, setLoading] = useState(true)
     const cambiarEstado = () => {

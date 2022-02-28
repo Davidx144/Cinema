@@ -13,18 +13,12 @@ const EliminarPelicula = () => {
             setLoading(false)
         }, 1000);
     }
-
-
-    console.log('listaDePeliculas')
-    console.log(listaDePeliculaas)
     const handleEditClick = (peliID) => {
-        console.log(peliID)
         window.location.assign(`/editar/` + (peliID))
     }
 
     const handleDeleteClick = (peliID) => {
         var reservasActual = []
-        console.log(peliID)
         var reservasPeli = (`/api/bookingsMovie/${peliID}`)
 
         infoReservas()
@@ -38,7 +32,6 @@ const EliminarPelicula = () => {
             reservasActual = await respuestas.json()
 
             if (reservasActual.length === 0) {
-                console.log("AQUI NO HAY RESERVAS")
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-success',
@@ -81,7 +74,6 @@ const EliminarPelicula = () => {
                     }
                 })
             } else {
-                console.log("NO SE PUEDE BORRAR")
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -91,12 +83,9 @@ const EliminarPelicula = () => {
         }
 
     };
-    console.log(listaDePeliculaas)
-
 
     if (listaDePeliculaas === [] || loading) {
         cambiarEstado()
-        console.log('esto es ' + listaDePeliculaas)
         return (
             <div>
                 <Container className='loading'>

@@ -8,14 +8,10 @@ const AgregarPelicula = () => {
   
     const { register, handleSubmit } = useForm([{ horarios: ['11:00', '9:00'] }]);
     const onSubmit = (data) => {
-        console.log(data)
         const data2 = { hours: ["12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM"] }
 
         const data3 = Object.assign({}, data, data2)
-        console.log(data.title)
-        console.log(data3);
         const newPelicula = (JSON.stringify(data3));
-        console.log(newPelicula)
 
         registerMovie();
         async function registerMovie() {
@@ -28,8 +24,6 @@ const AgregarPelicula = () => {
             });
             const exitoso = await respuesta.json();
             if (exitoso.succes === true) {
-                console.log("Guardado")
-                console.log(exitoso)
                 Swal.fire({
                     icon: 'success',
                     title: 'Bien',
@@ -38,8 +32,6 @@ const AgregarPelicula = () => {
                     window.location = "/";
                 });
             } else {
-                console.log("No guardado")
-                console.log(exitoso)
                 Swal.fire({
                     href: "/",
                     icon: 'error',

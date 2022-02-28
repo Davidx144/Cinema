@@ -153,7 +153,6 @@ const EditarReserva = () => {
                         value: newvalue,
                         hour: reserva[0].hour
                     }
-                    console.log(body_email)
                     sendEmail()
                     function sendEmail() {
                         emailjs.send('service_p8ggm3o',
@@ -172,7 +171,6 @@ const EditarReserva = () => {
                         'success'
                     ).then(function () {
                         var reservaId = reserva[0]._id
-                        console.log(updateReserva)
                         fetch('/api/updateBooking/' + reservaId, {
                             method: "PUT",
                             body: updateReserva,
@@ -233,8 +231,8 @@ const EditarReserva = () => {
                             <div className='infoReservaActual'>
                                 <h3 className='h3aling'><strong>Descripcion</strong></h3>
                                 <h5>{peliculadeReserva[0].synopsis}</h5>
-                                <h4><strong>Hora de la funcion: </strong> <span class="badge rounded-pill bg-dark">{reserva[0].hour}</span></h4>
-                                <h4><strong>Valor de la funcion: </strong> <span class="badge rounded-pill bg-dark">{reserva[0].bookingValue}$ </span></h4>
+                                <h4><strong>Hora de la funcion: </strong> <span className="badge rounded-pill bg-dark">{reserva[0].hour}</span></h4>
+                                <h4><strong>Valor de la funcion: </strong> <span className="badge rounded-pill bg-dark">{reserva[0].bookingValue}$ </span></h4>
                                 <h5><strong>Selecciona las sillas que quieres liberar </strong></h5>
                                 {reserva[0].chairs.sort().map((seat, i) => (
                                     <FormControlLabel

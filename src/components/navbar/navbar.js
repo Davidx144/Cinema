@@ -58,8 +58,6 @@ function NavbarP() {
                 });
 
             } else {
-                console.log("No encontrado")
-                console.log(exitoso)
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -79,9 +77,9 @@ function NavbarP() {
         const { name, value } = e.target;
         setUser({ ...user, [name]: value });
     };
-    const [usuario, setUsuario] = useState({
+/*     const [usuario, setUsuario] = useState({
         name: "",
-    })
+    }) */
     const [tipoUsuario, setTipoUsuario] = useState({
         tipo: "",
     })
@@ -96,14 +94,12 @@ function NavbarP() {
         });
         const perfilUsuario = await respuesta.json();
         if (perfilUsuario.error === true) {
-            console.log("Aun no ingresa")
-            console.log(usuario)
 
         } else {
             var variable = (perfilUsuario.type)
             setTipoUsuario(variable)
-            var variable2 = (perfilUsuario.name)
-            setUsuario(variable2)
+            /* var variable2 = (perfilUsuario.name) */
+            /* setUsuario(variable2) */
             localStorage.setItem('nombre_usuario', perfilUsuario.name);
             localStorage.setItem('id_usuario', perfilUsuario.id);
             localStorage.setItem('email_usuario', perfilUsuario.email);

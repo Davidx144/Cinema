@@ -57,7 +57,6 @@ const App = () => {
             documento.valido === 'true' &&
             terminos
         ) {
-            console.log('ENVIADOOO');
             var no = nombre.campo;
             var ap = apellido.campo;
             var doc = documento.campo;
@@ -78,7 +77,6 @@ const App = () => {
 
 
             const caragarUsuario = JSON.stringify(user);
-            console.log(caragarUsuario);
             reguistarUsuario();
             async function reguistarUsuario() {
                 const respuesta = await fetch('/api/register', {
@@ -90,8 +88,6 @@ const App = () => {
                 });
                 const exitoso = await respuesta.json();
                 if (exitoso.succes === true) {
-                    console.log("Guardado")
-                    console.log(exitoso)
 
                     var eje = exitoso
                     console.log("sadsfsfs")
