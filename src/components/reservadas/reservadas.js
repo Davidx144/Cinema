@@ -9,6 +9,7 @@ import BeatLoader from "react-spinners/BeatLoader"
 import EditarReserva from "../editarReserva/editarReserva";
 /* import { BiAlarm } from "react-icons/bi"; */
 import emailjs from '@emailjs/browser';
+import image from '../../assert/User-research.png'
 
 
 
@@ -144,7 +145,7 @@ const ReservadasUsuario = () => {
     console.log(reservasDelUsuario)
 
 
-    if (reservasDelUsuario === [] || loadinga) {
+    if (loadinga) {
         cambiarEstado()
         console.log('esto es ' + reservasDelUsuario)
         return (
@@ -156,7 +157,21 @@ const ReservadasUsuario = () => {
                 </Container>
             </div>
         )
-    } else {
+    } else if(reservasDelUsuario.length===0 ){
+        return(
+            <div>
+                <Container>
+                <div className='NotFundReserva'>
+                    <h3><strong>Parece no tienes reservas actualmente</strong></h3>
+                    <img className="card-img-top" src={image} alt="Card cap" href="/" />
+                    <br></br>
+                    <a href={"/"} className="btn btn-primary botonR" >Volver al inicio</a>
+                </div>
+            </Container>
+            </div>
+        )
+    }
+    else{
         return (
             <Container>
                 <Row>

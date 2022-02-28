@@ -35,7 +35,16 @@ border-color: #d69a2be1;
 color: aliceblue;
 }
 
+.NotFundReserva{
+  background-color: rgba(204, 202, 199, 0.74);
+  padding: 30px;
+  margin: 30px;
+  max-width: 500px;
+  /* max-height: 700px; */
 
+  align-items: center;
+  margin: auto;
+}
 .card-reserva {
   width: 300px;
   border-radius: 10px;

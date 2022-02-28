@@ -187,9 +187,9 @@ input[type=number] {
     border-left-style: solid;
     border-right-style: solid;
     
-    -webkit-box-shadow: 10px 10px 20px -6px rgba(209,16,68,1);
+    /* -webkit-box-shadow: 10px 10px 20px -6px rgba(209,16,68,1);
 -moz-box-shadow: 10px 10px 20px -6px rgba(209,16,68,1);
-box-shadow: 10px 10px 20px -6px rgba(209,16,68,1);
+box-shadow: 10px 10px 20px -6px rgba(209,16,68,1); */
 
 
     /* -webkit-box-shadow: 35px 36px 46px -8px rgba(93,105,212,0.61);
@@ -203,9 +203,9 @@ box-shadow: 35px 36px 46px -8px rgba(93,105,212,0.61); */
     height:45%;
     border-left-style: solid;
     border-right-style: solid;
-    -webkit-box-shadow: 10px 24px 20px -6px rgba(209,16,68,1);
+    /* -webkit-box-shadow: 10px 24px 20px -6px rgba(209,16,68,1);
 -moz-box-shadow: 10px 24px 20px -6px rgba(209,16,68,1);
-box-shadow: 10px 24px 20px -6px rgba(209,16,68,1);
+box-shadow: 10px 24px 20px -6px rgba(209,16,68,1); */
     /* -webkit-box-shadow: 35px 36px 46px -8px rgba(93,105,212,0.61);
 -moz-box-shadow: 35px 36px 46px -8px rgba(93,105,212,0.61);
 box-shadow: 35px 36px 46px -8px rgba(93,105,212,0.61);

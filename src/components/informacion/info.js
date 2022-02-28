@@ -8,7 +8,10 @@ import clsx from 'clsx'
 import { Boton } from '../reguistro/elementos/Formularios'
 import { SMTPClient } from 'emailjs';
 import emailjs from '@emailjs/browser';
-import image from '../../assert/503.jpg'
+/* import image from '../../assert/503.jpg' */
+import image from '../../assert/503-Error.png'
+import image2 from '../../assert/Movie-Night.png'
+
 
 
 /* const LocalStorageUser = localStorageKey => {
@@ -88,12 +91,20 @@ const Infopeli = () => {
                         </Col>
                     </Row>
                     <br></br>
-                    <Row>
-                        <div className="embed-responsive">
-                            <iframe className='videoYoutube' src={videoEmbe} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
-                            </iframe>
-                        </div>
-                    </Row>
+                    {/* <Row>
+                    <Col sm={6} col-md-offset-2> */}
+                            {/* <div className="imagenCine">
+                                <img className="card-img-top" src={image2} alt="Card cap" href="/" />
+                            </div> 
+                        </Col>
+                        <Col sm={6}>*/}
+                            <div className="embed-responsive videoY ">
+                                <iframe className='videoYoutube' src={videoEmbe} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
+                                </iframe>
+                            </div>
+                        {/* </Col>
+                        
+                    </Row> */}
 
                 </div>
                 {/*                 <div>

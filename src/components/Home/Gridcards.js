@@ -8,7 +8,7 @@ const Gridcards = props => {
                 <img className="card-img-top grid-img" src={props.img} alt="Card cap" />
                 {/* <div className="card-body bg-dark "> */}
                 <div className="card-body gridColor ">
-                    <div className='grid-size'>
+                    <div className='grid-size' >
                     <h6 className="card-text text-align-left aaa">{/* <span class="badge bg-secondary">Titulo:</span><strong>Titulo:</strong>  */}<strong>{props.Titulo}</strong></h6>
                     {/* <p className="card-text text-align-left"><strong>Genero:</strong> {props.Genero}</p> <span class="badge bg-secondary">Secondary</span> */}
                     <p className="card-text text-align-left aaa"><span class="badge bg-secondary">Duracion:</span> <span class="badge  bg-info text-dark">{props.Duracion} minutos</span></p>
