@@ -5,8 +5,8 @@ import peli4 from '../../assert/peliculas/peli4.jpg';
 import peli5 from '../../assert/peliculas/peli5.jpg';
 import peli6 from '../../assert/peliculas/peli6.jpg';
 import peli7 from '../../assert/peliculas/peli7.jpg';
-import peli8 from '../../assert/peliculas/peli8.jpg';
-import peli9 from '../../assert/peliculas/peli9.jpg'; */
+import peli8 from '../../assert/peliculas/peli8.jpg';*/
+import peli9 from '../../assert/peliculas/peli9.jpg';
 
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -179,7 +179,7 @@ function showListedElements() {
 }
 
 function showMoreElements() {
-  return (
+  return (    
     <div className="row ">
       {
         listaDePeliculas.map((i, f) => (
