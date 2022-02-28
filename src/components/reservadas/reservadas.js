@@ -3,12 +3,13 @@ import "./reservadas.css";
 /* import data from "./mock-data.json"; */
 import ListaReservadas from "./listaReservadas";
 /* import EditableRow from "./EditableRow"; */
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Swal from 'sweetalert2'
 import BeatLoader from "react-spinners/BeatLoader"
 import EditarReserva from "../editarReserva/editarReserva";
 /* import { BiAlarm } from "react-icons/bi"; */
 import emailjs from '@emailjs/browser';
+
 
 
 const LocalStorageNombre = localStorageKey => {
@@ -158,8 +159,50 @@ const ReservadasUsuario = () => {
     } else {
         return (
             <Container>
-                <div className="app-container-delete">
-                    <form /* onSubmit={handleEditFormSubmit} */>
+                <Row>
+                    {reservasDelUsuario.map((i) => (
+                        <Col sm={3}>
+                            <div class="card-reserva">
+                                <div class="card-header-reserva">
+                                    <h5><strong>{i.title}</strong></h5>
+                                </div>
+                                <div class="card-body-reserva">
+                                    <p><strong>Sillas: </strong>{i.chairs+"."}</p>
+                                    <p><strong>Hora: </strong>{i.hour}</p>
+                                    <p><strong>Valor: </strong>{i.bookingValue}$</p>
+                                    <button href={`/editar/`}
+                                        type="button" className="btn btn-warning editBoton"
+                                        onClick={(event) => handleEditClick(i._id, i.id_movie)}
+                                    >
+                                        Editar
+                                    </button>
+                                    <button type="button" className="btn btn-danger deleteBoton" onClick={() => handleDeleteClick(i._id, i.title, i.hour)}>
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </div>
+                        </Col>
+                        
+                    ))}
+                </Row>
+                {/* <ul className="lista1">
+                    <li>
+                        <div class="card-reserva">
+                            <div class="card-header-reserva"></div>
+                            <div class="card-body-reserva"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card-reserva">
+                            <div class="card-header-reserva"></div>
+                            <div class="card-body-reserva"></div>
+                        </div>
+                    </li>
+                </ul> */}
+
+
+                {/* <div className="app-container-delete">
+                    <form >
                         <table className="table table-striped">
                             <thead className="thead-dark">
                                 <tr>
@@ -173,7 +216,7 @@ const ReservadasUsuario = () => {
                                 {reservasDelUsuario.map((i) => (
                                     <Fragment>
                                         <ListaReservadas
-                                            /* contact={i.title,i.gender} */
+                                            
                                             title={i.title}
                                             chairs={i.chairs}
                                             id={i._id}
@@ -189,7 +232,7 @@ const ReservadasUsuario = () => {
                             </tbody>
                         </table>
                     </form>
-                </div>
+                </div> */}
             </Container>
         );
     }

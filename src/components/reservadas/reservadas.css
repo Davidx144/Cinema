@@ -34,3 +34,48 @@ background-color: rgb(235, 179, 57);
 border-color: #d69a2be1;
 color: aliceblue;
 }
+
+
+.card-reserva {
+  width: 300px;
+  border-radius: 10px;
+  margin: 20px;
+  background: #f6f2d7c4;
+  overflow: hidden;
+}
+.card-header-reserva {
+  height: 55px;
+  border: 2px solid #836602;
+  border-bottom: 2px dotted #836602;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+}
+.card-header-reserva:before, .card-header-reserva:after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.548);
+  border-radius: 100%;
+  bottom: -12px;
+  border: 2px solid #836602;
+  box-sizing: border-box;
+}
+.card-header-reserva:before { 
+  left: -13px;
+}
+.card-header-reserva:after {
+  right: -13px;
+}
+.card-body-reserva {
+  height: 170px;
+  border: 2px solid #836602;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+}
+
+.lista1{
+  display:inline;
+  padding-left:3px;
+  padding-right:3px;
+}
