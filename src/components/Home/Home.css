@@ -34,9 +34,6 @@
 
 body {
     background-image: radial-gradient(circle at -11.24% 85.36%, #78635f 0, #775d5b 8.33%, #745556 16.67%, #714d52 25%, #6d444f 33.33%, #683a4c 41.67%, #613049 50%, #592648 58.33%, #4f1e48 66.67%, #441849 75%, #38144b 83.33%, #29134d 91.67%, #13134f 100%);
-    /* background-image: radial-gradient(circle at -20.71% 50%, #f97b86 0, #eb7387 10%, #d96a85 20%, #c46081 30%, #ad567a 40%, #934b6f 50%, #7a4063 60%, #653758 70%, #522f4e 80%, #432944 90%, #36233c 100%); */
-    /* background: rgb(34, 100, 195);
-    background: linear-gradient(0deg, rgba(34, 100, 195, 0.3984944319524685) 0%, rgba(148, 30, 30, 0.6225840678068102) 100%); */
 }
 
 body.custom-shape-divider-top-1636681532 {
@@ -51,8 +48,6 @@ body.custom-shape-divider-top-1636681532 {
 body.custom-shape-divider-top-1636681532 svg {
     position: relative;
     display: block;
-    /* width: calc(100% + 1.3px);
-    height: 143px; */
 }
 
 .custom-shape-divider-top-1636681532 .shape-fill {

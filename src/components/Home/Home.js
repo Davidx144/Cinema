@@ -1,19 +1,8 @@
-/* import peli1 from '../../assert/peliculas/peli1.jpg';
-import peli2 from '../../assert/peliculas/peli2.jpg';
-import peli3 from '../../assert/peliculas/peli3.jpg';
-import peli4 from '../../assert/peliculas/peli4.jpg';
-import peli5 from '../../assert/peliculas/peli5.jpg';
-import peli6 from '../../assert/peliculas/peli6.jpg';
-import peli7 from '../../assert/peliculas/peli7.jpg';
-import peli8 from '../../assert/peliculas/peli8.jpg';*/
-import peli9 from '../../assert/peliculas/peli9.jpg';
-
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState/* , Component  */ } from 'react';
+import React, { useState} from 'react';
 import Gridcards from './Gridcards';
 import Listcards from './Listcards';
-import { MDBRange } from 'mdb-react-ui-kit';
 import BeatLoader from "react-spinners/BeatLoader"
 import { Container } from 'react-bootstrap';
 
@@ -31,11 +20,7 @@ const LocalStorageUser = localStorageKey => {
 
 function Home() {
 
-  function filtrar(e) {
-    alert(e.ejemplo)
-  }
-
-  const [nombreUsuario, setValue] = LocalStorageUser(
+  const [nombreUsuario] = LocalStorageUser(
     'nombre_usuario'
   );
 
@@ -54,11 +39,6 @@ function Home() {
     setButtonName(showListView ? "Listado" : "Cuadricula")
   }
 
-  const [range, setRange] = useState(5000);
-  const onChange = (e) => {
-    setRange(e.target.value);
-    /* console.log(e.target.value) */
-  }
   if (loading) {
     cambiarEstado()
     return (
@@ -84,7 +64,6 @@ function Home() {
         </div>
 
         <p className='saludo'>
-          {/*  Hola {nombreUsuario} */}
           <h5><span class="badge rounded-pill bg-light text-dark"> Hola {nombreUsuario} </span></h5>
         </p>
         {/* Filtro */}
@@ -148,8 +127,6 @@ function Home() {
     )
   }
 }
-
-/* let datosCargados = false */
 
 listaPeliculas();
 let listaDePeliculas = []

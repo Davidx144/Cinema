@@ -11,7 +11,6 @@ const Listcards = props => {
                     <p className="card-text text-align-left"><strong>Duracion:</strong> {props.Duracion} minutos </p>
                     <p className="card-text text-align-left"><strong>Sinopcis:</strong> {props.Sinopcis}</p>
                     <p className="card-text text-align-left"><strong>Formato:</strong> {props.Formato}</p>
-                    {/* <p className="card-text text-align-left"><strong>Horario:</strong> {props.Horario}</p> */}
                     <p className="card-text text-align-left"><strong>Valor:</strong> {props.Valor}</p>
                      
                     <a href={`/info/`+(props.id)} className="btn btn-primary botonR">Reservar</a>

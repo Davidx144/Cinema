@@ -1,8 +1,7 @@
 import './editarPelicula.css'
 import { Container, Row } from "react-bootstrap";
-import { /*Button, FormGroup, Form, Label,   FormText  Input,*/ Col } from 'reactstrap';
+import { Col } from 'reactstrap';
 import { useForm } from "react-hook-form";
-/* import { select } from 'react-bootstrap'; */
 import Swal from 'sweetalert2'
 import BeatLoader from "react-spinners/BeatLoader"
 import { useState } from "react"
@@ -19,7 +18,7 @@ if (idsEditable === "/editar/") {
     var idActualToEdit = (`/api/update/${idsParam}`)
 }
 infoPeliculaEdit()
-let peliculaActualEdit = [/* { title: "Peli a editar" } */]
+let peliculaActualEdit = []
 async function infoPeliculaEdit(props) {
     const respuestas = await fetch(idActualEdit, {
         method: "GET",
@@ -35,8 +34,6 @@ const EditarPelicula = () => {
 
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        /* data.preventDefault(); */
-        /* alert(JSON.stringify(data)); */
         console.log(data.title);
         const newPelicula = (JSON.stringify(data));
         console.log(newPelicula)
@@ -83,7 +80,7 @@ const EditarPelicula = () => {
         }, 1000);
     }
 
-    if (loading /*|| peliculaActual === []*//* peliCargada === false */) {
+    if (loading) {
         cambiarEstado()
         return (
             <div>
@@ -107,7 +104,7 @@ const EditarPelicula = () => {
                                 <Col sm={7}>
                                     <div>
                                         <label for="">Titulo</label >
-                                        <input {...register("title")} type="text" /* className="form-control"  */ id="validationCustom01" placeholder="Titulo de la pelicula" className='select form-control' defaultValue={peliculaActualEdit[0].title} required />
+                                        <input {...register("title")} type="text" id="validationCustom01" placeholder="Titulo de la pelicula" className='select form-control' defaultValue={peliculaActualEdit[0].title} required />
                                     </div>
                                 </Col>
 
@@ -167,35 +164,35 @@ const EditarPelicula = () => {
                                 <Col sm={4}>
                                     <div>
                                         <label for="">Precio</label>
-                                        <input {...register("value")} type="number" /* className="form-control"  */ id="" placeholder="Precio" className='select form-control' defaultValue={peliculaActualEdit[0].value} required />
+                                        <input {...register("value")} type="number" id="" placeholder="Precio" className='select form-control' defaultValue={peliculaActualEdit[0].value} required />
                                     </div>
                                 </Col>
 
                                 <Col sm={4}>
                                     <div>
                                         <label for="">Duraccion</label>
-                                        <input {...register("duration")} type="number" /* className="form-control"  */ id="" placeholder="Duraccion en minutos" className='select form-control' defaultValue={peliculaActualEdit[0].duration} required />
+                                        <input {...register("duration")} type="number" id="" placeholder="Duraccion en minutos" className='select form-control' defaultValue={peliculaActualEdit[0].duration} required />
                                     </div>
                                 </Col>
 
                                 <Col sm={6}>
                                     <div>
                                         <label for="">Imagen</label>
-                                        <textarea {...register("img")} type="textarea" /* className="form-control" */ className='form-control' id="" placeholder="Link de la Imagen" rows="2" defaultValue={peliculaActualEdit[0].img} required />
+                                        <textarea {...register("img")} type="textarea"  className='form-control' id="" placeholder="Link de la Imagen" rows="2" defaultValue={peliculaActualEdit[0].img} required />
                                     </div>
                                 </Col>
 
                                 <Col sm={6}>
                                     <div>
                                         <label for="">Trailer</label>
-                                        <textarea {...register("trailer")} type="textarea" /* className="form-control" */ className='form-control' id="" placeholder="Link del trailer" rows="2" defaultValue={peliculaActualEdit[0].trailer} required />
+                                        <textarea {...register("trailer")} type="textarea"  className='form-control' id="" placeholder="Link del trailer" rows="2" defaultValue={peliculaActualEdit[0].trailer} required />
                                     </div>
                                 </Col>
 
                                 <Col sm={12}>
                                     <div>
                                         <label for="">Descripcion</label>
-                                        <textarea {...register("synopsis")} type="textarea" /* className="form-control"  */ className='form-control' id="" placeholder="Descripcion de la pelicula" rows="4" defaultValue={peliculaActualEdit[0].synopsis} required />
+                                        <textarea {...register("synopsis")} type="textarea"  className='form-control' id="" placeholder="Descripcion de la pelicula" rows="4" defaultValue={peliculaActualEdit[0].synopsis} required />
                                     </div>
                                 </Col>
                                 <div className="row justify-content-around">

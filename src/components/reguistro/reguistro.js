@@ -104,16 +104,9 @@ const App = () => {
                     console.log(body_email)
                     sendEmail()
                     function sendEmail() {
-                        /* e.preventDefault(); */
-                        /* emailjs.sendForm(e) */
                         emailjs.send('service_hswwe19',
                             'template_czeuykn',
-                            /* e.target, */
                             body_email,
-                            /* {name: e.name,
-                            user_email: e.user_email
-                            }, */
-                            /* Hola  */
                             'user_uUWNJ9j8dy0YAL3sq1nV7'
                         ).then(res => {
                             console.log("Esto fue" + res);

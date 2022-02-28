@@ -2,7 +2,6 @@ import { Container } from 'react-bootstrap';
 import React, { useState } from 'react'
 import BeatLoader from "react-spinners/BeatLoader"
 import './notFound.css'
-/* import image from '../../assert/concepto.webp' */
 import image from '../../assert/2488756.jpg'
 
 
@@ -15,7 +14,7 @@ const NotFound = () => {
             setLoading(false)
         }, 400);
     }
-    if (loading /* || reserva === []  *//* peliCargada === false  */) {
+    if (loading ) {
         cambiarEstado()
         return (
             <div>

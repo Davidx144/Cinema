@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import "./info.css"
 import BeatLoader from "react-spinners/BeatLoader"
 import { Container, Row } from "react-bootstrap";
@@ -6,39 +7,17 @@ import Swal from 'sweetalert2'
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import { Boton } from '../reguistro/elementos/Formularios'
-import { SMTPClient } from 'emailjs';
 import emailjs from '@emailjs/browser';
-/* import image from '../../assert/503.jpg' */
 import image from '../../assert/503-Error.png'
-import image2 from '../../assert/Movie-Night.png'
-
-
-
-/* const LocalStorageUser = localStorageKey => {
-    const [value, setValue] = React.useState(
-      localStorage.getItem(localStorageKey) || 'Usuario'
-    );
-  
-    React.useEffect(() => {
-      localStorage.setItem("nombre_usuario", value);
-    }, [value]);
-  
-    return [value, setValue];
-  }; */
 
 const Infopeli = () => {
-
-    /*     const [nombreUsuario, setValue] = LocalStorageUser(
-            'nombre_usuario'
-          );
-     */
     const [loading, setLoading] = useState(true)
     const cambiarEstado = () => {
         setTimeout(() => {
             setLoading(false)
         }, 1000);
     }
-    if (loading /*|| peliculaActual === []*//* peliCargada === false */) {
+    if (loading) {
         cambiarEstado()
         return (
             <div>
@@ -51,7 +30,6 @@ const Infopeli = () => {
         )
     } else {
         var videoEmbe = ("https://www.youtube.com/embed/" + (peliculaActual[0].trailer).slice(-11))
-        /* console.log(videoEmbe) */
         return (
             <Container >
                 <div className='infoPelic'>
@@ -66,21 +44,18 @@ const Infopeli = () => {
                                     {peliculaActual[0].synopsis}
                                 </p>
                             </div>
-                            {/*                             <div>
-                                <h5> <strong>Genero:</strong> {peliculaActual[0].gender}  <strong>Duracion:</strong>  {peliculaActual[0].duration}  </h5>
-                            </div> */}
                             <div className="infoPeli">
                                 <div>
-                                    <h5>{/* <span class="badge bg-secondary">Genero:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].gender}</span>  */} <span class="badge bg-secondary">Duracion:</span>  <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].duration} Minutos </span>  </h5>
+                                    <h5> <span class="badge bg-secondary">Duracion:</span>  <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].duration} Minutos </span>  </h5>
                                 </div>
                                 <div>
                                     <h5><span class="badge bg-secondary">Valor:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].value}$ Pesos</span> </h5>
                                 </div>
                                 <div>
-                                    <h5><span class="badge bg-secondary">Genero:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].gender}</span>  {/* <span class="badge bg-secondary">Duracion:</span>  <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].duration} Minutos </span>  */} </h5>
+                                    <h5><span class="badge bg-secondary">Genero:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].gender}</span> </h5>
                                 </div>
                                 <div>
-                                    <h5><span class="badge bg-secondary">Formato:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].format}  </span> {/* <span class="badge bg-secondary">Valor:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].value}$ Pesos</span>  */}</h5>
+                                    <h5><span class="badge bg-secondary">Formato:</span> <span class="badge rounded-pill bg-light text-dark">{peliculaActual[0].format}  </span> </h5>
                                 </div>
                             </div>
 
@@ -91,32 +66,12 @@ const Infopeli = () => {
                         </Col>
                     </Row>
                     <br></br>
-                    {/* <Row>
-                    <Col sm={6} col-md-offset-2> */}
-                            {/* <div className="imagenCine">
-                                <img className="card-img-top" src={image2} alt="Card cap" href="/" />
-                            </div> 
-                        </Col>
-                        <Col sm={6}>*/}
                             <div className="embed-responsive videoY ">
                                 <iframe className='videoYoutube' src={videoEmbe} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
                                 </iframe>
                             </div>
-                        {/* </Col>
-                        
-                    </Row> */}
 
                 </div>
-                {/*                 <div>
-                    <form onSubmit={sendEmail}>
-                        <label>nombre</label>
-                        <input type='text' name='name' classname='form-control' />
-                        <label>correo</label>
-                        <input type='text' name='user_email' classname='form-control' />
-                        <input type="submit" value="Send" />
-
-                    </form>
-                </div> */}
             </Container>
         )
     }
@@ -126,7 +81,6 @@ var URLactual = (window.location);
 var url = (URLactual.pathname)
 var ids = url.slice(6)
 var idss = url.slice(0, 6)
-/* console.log(url) */
 if (idss === "/info/") {
     var apiInfo = (`/api/info/${ids}`)
 }
@@ -140,19 +94,12 @@ async function infoPelicula(props) {
             "Content-Type": "application/json",
         }
     });
-    /* if(respuestas.cartelera==="SI"){} */
     peliculaActual = await respuestas.json()
-
-
-    /* console.log(peliculaActual[0]) */
 
     localStorage.setItem('nombre_peli', peliculaActual[0].title);
     localStorage.setItem('valor_peli', peliculaActual[0].value);
     localStorage.setItem('hora_peli', peliculaActual[0].hour);
     localStorage.setItem('Id_peli', peliculaActual[0]._id);
-    /* localStorage.setItem('cartelera', peliculaActual[0].cartelera); */
-
-
 }
 
 if (idss === "/info/") {
@@ -160,7 +107,6 @@ if (idss === "/info/") {
 }
 
 let reservasActual = []
-/* let horariode6 = [] */
 
 let Aux12 = []
 let horario12 = []
@@ -183,29 +129,22 @@ async function infoReservas(props) {
         }
     });
     reservasActual = await respuestas.json()
-
-    /* .then(function () { */
     for (var i = 0; i < (reservasActual.length); i++) {
-        /* console.log(i) */
         if (reservasActual[i].hour === "12:00 PM") {
             Aux12 = horario12.concat(reservasActual[i].chairs)
             horario12 = (Aux12)
-            /* console.log("las sillas de las 12 son:" + horario12) */
 
         } else if (reservasActual[i].hour === "3:00 PM") {
             Aux3 = horario3.concat(reservasActual[i].chairs)
             horario3 = (Aux3)
-            /* console.log("las sillas de las 3 son:" + horario3) */
 
         } else if (reservasActual[i].hour === "6:00 PM") {
             Aux6 = horario6.concat(reservasActual[i].chairs)
             horario6 = (Aux6)
-            /* console.log("las sillas de las 6 son:" + horario6) */
 
         } else if (reservasActual[i].hour === "9:00 PM") {
             Aux9 = horario9.concat(reservasActual[i].chairs)
             horario9 = (Aux9)
-            /* console.log("las sillas de las 9 son:" + horario9) */
         }
     }
     localStorage.setItem('horario12', horario12);
@@ -213,25 +152,8 @@ async function infoReservas(props) {
     localStorage.setItem('horario6', horario6);
     localStorage.setItem('horario9', horario9);
 
-    /* }) */
-    /* const eli = (reservasActual.length)
-    console.log(reservasActual.length) */
+
 }
-/* reservasActual.map(reserva => (
-    dividirHora(reserva)
-)) */
-
-/* function dividirHora(reser) {
-    if (reser.hour === "6:00 PM") {
-        Aux6 = horario6.concat(reser.chairs)
-        horario6 = (Aux6)
-        console.log(horario6)
-    }
-} */
-
-/* const horario6 = reservasActual.map */
-
-
 
 //la sala visual
 
@@ -310,17 +232,6 @@ const LocalStorageValor = localStorageKey => {
     return [value, setValue];
 };
 
-const LocalStorageHora = localStorageKey => {
-    const [value, setValue] = React.useState(
-        localStorage.getItem(localStorageKey) || ''
-    );
-
-    React.useEffect(() => {
-        localStorage.setItem("hora_peli", value);
-    }, [value]);
-
-    return [value, setValue];
-};
 
 const LocalStorageNombre = localStorageKey => {
     const [value, setValue] = React.useState(
@@ -345,18 +256,6 @@ const LocalStorageEmail = localStorageKey => {
 
     return [value, setValue];
 };
-
-/* sendEmail(nombre_Pelicula) 
-function sendEmail(e){
-    emailjs.sendForm('service_hswwe19',
-    'template_249901c',
-    e.target,
-    'user_uUWNJ9j8dy0YAL3sq1nV7'
-    ).then(res=>{
-        console.log("Esto fue"+ res);
-    }).catch(err=> console.log("Esto fue"+err))
-    
-} */
 
 const LocalStorageHorario12 = localStorageKey => {
     const [value, setValue] = React.useState(
@@ -409,36 +308,32 @@ const LocalStorageHorario9 = localStorageKey => {
 
 function Salas() {
 
-    const [id_Pelicula, setValue] = LocalStorageMovie(
+    const [id_Pelicula] = LocalStorageMovie(
         'Id_peli'
     );
 
-    const [id_Usuario, setValueUser] = LocalStorageUser(
+    const [id_Usuario] = LocalStorageUser(
         'id_usuario'
     );
 
-    const [nombre_Pelicula, setValueNombrePelicula] = LocalStorageNombrePeli(
+    const [nombre_Pelicula] = LocalStorageNombrePeli(
         'nombre_peli'
     );
 
-    const [valor_Pelicula, setValueValorPelicula] = LocalStorageValor(
+    const [valor_Pelicula] = LocalStorageValor(
         'valor_peli'
     );
 
-    const [hora_Pelicula, setValueHoraPeli] = LocalStorageHora(
-        'hora_peli'
-    );
 
-    const [nombreUsuario, setValueNombreUsuario] = LocalStorageNombre(
+
+    const [nombreUsuario] = LocalStorageNombre(
         'nombre_usuario'
     );
 
-    const [emailusuario, setValueEmail] = LocalStorageEmail(
+    const [emailusuario] = LocalStorageEmail(
         'email_usuario'
     );
 
-    /*     console.log("Este es el id de la peli : " + id_Pelicula)
-        console.log("Este es el id del usuario : " + id_Usuario) */
 
     const handleSubmit2 = (e) => {
         Swal.fire({
@@ -468,29 +363,6 @@ function Salas() {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                /* console.log(selectedList) */
-                /* let ocupadas = [] */
-                /*           var Aux = []
-                          movies[0].lista.map(movie => (
-                            console.log(movie[1]),
-                            Aux = ocupadas.concat(movie[1]),
-                            ocupadas = Aux
-                            
-                            )) */
-                /* movies[0].occupied.concat(ocupadas) */
-
-                /*                 console.log("El id de la peli es: " + id_Pelicula)
-                                console.log("El id del usuario es: " + id_Usuario)
-                                console.log("El nombre de la peli es: " + nombre_Pelicula)
-                                console.log("El valor de la peli es: " + valor_Pelicula)
-                                console.log("la hora de la peli es: " + selectedMovie.hora)
-                                console.log("las sillas seleccionadas son: " + selectedSeats) */
-
-
-
-
-
-
                 var reservaPelicula = {
                     id_movie: id_Pelicula,
                     id_user: id_Usuario,
@@ -512,15 +384,9 @@ function Salas() {
                 }
                 sendEmail()
                 function sendEmail() {
-                    /* e.preventDefault(); */
-                    /* emailjs.sendForm(e) */
                     emailjs.send('service_hswwe19',
                         'template_249901c',
-                        /* e.target, */
                         body_email,
-                        /* {name: e.name,
-                        user_email: e.user_email
-                        }, */
                         'user_uUWNJ9j8dy0YAL3sq1nV7'
                     ).then(res => {
                         console.log("Esto fue" + res);
@@ -535,16 +401,16 @@ function Salas() {
                 reguistarReserva();
                 async function reguistarReserva() {
                     /* sendEmail(caragarReserva) */
-                    const respuesta = await fetch('/api/registerBooking', {
+                    /* const respuesta = await  */fetch('/api/registerBooking', {
                         method: "POST",
                         body: caragarReserva,
                         headers: {
                             "Content-Type": "application/json",
                         }
                     });
-                    const exitoso = await respuesta.json();
+                    /* const exitoso = await respuesta.json(); */
                 }
-
+                
                 swalWithBootstrapButtons.fire(
                     'Reservado!',
                     'Tus boletas se han reservado.',
@@ -565,7 +431,6 @@ function Salas() {
         })
     }
 
-    const [selectedList, setSelectedList] = useState(movies[0].lista)
 
     const [selectedMovie, setSelectedMovie] = useState(movies[0])
     const [selectedSeats, setSelectedSeats] = useState([])
@@ -600,7 +465,7 @@ function Salas() {
                         {nombreUsuario === "Usuario" &&
                             <Boton onClick={handleSubmit2} >Inicio</Boton>
                         }
-                        {nombreUsuario != "Usuario" &&
+                        {nombreUsuario !== "Usuario" &&
                             <Boton onClick={handleSubmit} >Reservar</Boton>
                         }
                     </div>
@@ -630,32 +495,29 @@ function Movies({ movie, onChange }) {
 
 
 
-    const [hararioalas12, setValueHorario12] = LocalStorageHorario12(
+    const [hararioalas12] = LocalStorageHorario12(
         'horario12'
     );
 
-    const [hararioalas3, setValueHorario3] = LocalStorageHorario3(
+    const [hararioalas3] = LocalStorageHorario3(
         'horario3'
     );
 
-    const [hararioalas6, setValueHorario6] = LocalStorageHorario6(
+    const [hararioalas6] = LocalStorageHorario6(
         'horario6'
     );
 
-    const [hararioalas9, setValueHorario9] = LocalStorageHorario9(
+    const [hararioalas9] = LocalStorageHorario9(
         'horario9'
     );
 
-    const [valor_Pelicula, setValueValorPelicula] = LocalStorageValor(
+    const [valor_Pelicula] = LocalStorageValor(
         'valor_peli'
     );
 
     var aux = hararioalas6
     movies[0].occupied = hararioalas12
     movies[0].price = valor_Pelicula
-
-    /* console.log(hararioalas6) */
-
     movies[1].occupied = hararioalas3
     movies[1].price = valor_Pelicula
 
@@ -666,32 +528,7 @@ function Movies({ movie, onChange }) {
     movies[3].price = valor_Pelicula
 
 
-    /*     const movies4 = [
-            {
-                price: valor_Pelicula,
-                occupied: hararioalas12,
-                hora: "12:00 PM",
-            },
-            {
-                price: valor_Pelicula,
-                occupied: hararioalas3,
-                hora: "3:00 PM",
-            },
-            {
-                price: valor_Pelicula,
-                occupied: hararioalas6,
-                hora: "6:00 PM",
-            },
-            {
-                price: valor_Pelicula,
-                occupied: hararioalas9,
-                hora: "9:00 PM",
-            },
-        ] */
-
-    /*     console.log('selectedMovie.occupied')
-    
-        console.log(movie.occupied) */
+   
     return (
         <div className="Movies">
             <label htmlFor="movie"><strong>Selecciona el horario</strong></label>
@@ -704,7 +541,7 @@ function Movies({ movie, onChange }) {
             >
                 {movies.map(movie => (
                     <option key={movie.hora} value={movie.hora}>
-                        {movie.hora} {/* (${movie.price}) */}
+                        {movie.hora} 
                     </option>
                 ))}
             </select>
@@ -730,7 +567,6 @@ function ShowCase() {
 
 function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
     function handleSelectedState(seat) {
-        /* console.log(seat) */
         const isSelected = selectedSeats.includes(seat)
         if (isSelected) {
             onSelectedSeatsChange(
@@ -746,7 +582,7 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
             setLoading(false)
         }, 1000);
     }
-    if (loading /*|| peliculaActual === []*//* peliCargada === false */) {
+    if (loading) {
         cambiarEstado()
         return (
             <div>
@@ -768,19 +604,8 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
 
                 <div className="seats">
                     {seats.map(seat => {
-                        /* var isOccupied = [] */
                         const isSelected = selectedSeats.includes(seat)
                         const isOccupied = movie.occupied.split(",").map((item) => parseInt(item)).includes(seat)
-
-                        /* console.log(selectedSeats)
-                        console.log(movie.occupied.split(",")) */
-
-                        /* console.log(isOccupied,seat)
-                        console.log(isSelected,seat) */
-
-                        /* var aux9 = (movie.occupied.includes(seat))
-                        const isOccupied = Object.assign([], aux9); */
-                        /* console.log(seat) */
                         return (
                             <span
                                 tabIndex="0"

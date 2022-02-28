@@ -1,11 +1,4 @@
 import React from "react";
-/*     {
-      "id": 2,
-      "title": "Coda, Señales del Corazón",
-      "hour": "3:00AM",
-      "chairs": "1",
-      "bookingValue": "2.000 Mil"
-    }, */
 const EditableRow = ({
   editFormData,
   handleEditFormChange,

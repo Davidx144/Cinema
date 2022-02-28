@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react";
 import "./reservas.css";
-import data from "./mock-data.json";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import { Container } from "react-bootstrap";
@@ -34,8 +33,6 @@ async function reservasUsuario(props) {
 }
 
 const Reservas = () => {
-
-    /* data=reservasDelUsuario */
     const [contacts, setContacts] = useState(reservasDelUsuario);
 
 
@@ -101,7 +98,7 @@ const Reservas = () => {
             setLoading(false)
         }, 1000);
     }
-    if (loading /*|| peliculaActual === []*//* peliCargada === false */) {
+    if (loading) {
         cambiarEstado()
         return (
             <div>

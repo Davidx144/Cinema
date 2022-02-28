@@ -1,16 +1,12 @@
 import React, { useState, Fragment } from "react";
 import "./administrarPelicula.css";
-/* import data from "./mock-data.json"; */
 import ListarPeliculas from "./listarPeliculas";
-/* import EditableRow from "./EditableRow"; */
 import { Container } from "react-bootstrap";
 import Swal from 'sweetalert2'
 import BeatLoader from "react-spinners/BeatLoader"
-/* import { BiAlarm } from "react-icons/bi"; */
 
 
 const EliminarPelicula = () => {
-    /* listaPeliculaas(); */
     const [loading, setLoading] = useState(true)
     const cambiarEstado = () => {
         setTimeout(() => {
@@ -21,12 +17,8 @@ const EliminarPelicula = () => {
 
     console.log('listaDePeliculas')
     console.log(listaDePeliculaas)
-
-    /* const [contacts, setContacts] = useState(listaDePeliculaas); */
-
     const handleEditClick = (peliID) => {
         console.log(peliID)
-        /* alert('gg') */
         window.location.assign(`/editar/` + (peliID))
     }
 
@@ -35,7 +27,6 @@ const EliminarPelicula = () => {
         console.log(peliID)
         var reservasPeli = (`/api/bookingsMovie/${peliID}`)
 
-        /*  */
         infoReservas()
         async function infoReservas(props) {
             const respuestas = await fetch(reservasPeli, {
@@ -53,7 +44,6 @@ const EliminarPelicula = () => {
                         confirmButton: 'btn btn-success',
                         cancelButton: 'btn btn-danger'
                     },
-                    /* buttonsStyling: false */
                 })
 
                 swalWithBootstrapButtons.fire({
@@ -78,11 +68,9 @@ const EliminarPelicula = () => {
                                 }
                             });
                             window.location.reload(true)
-                            /* window.location = "/"; */
                         });
 
                     } else if (
-                        /* Read more about handling dismissals below */
                         result.dismiss === Swal.DismissReason.cancel
                     ) {
                         swalWithBootstrapButtons.fire(
@@ -98,15 +86,9 @@ const EliminarPelicula = () => {
                     icon: 'error',
                     title: 'Oops...',
                     text: '¡No se pueden borrar películas con reservas activas! :(',
-                    /* footer: '<a href="">Why do I have this issue?</a>' */
                   })
             }
         }
-
-        /*  */
-
-
-        /*  */
 
     };
     console.log(listaDePeliculaas)
@@ -128,7 +110,7 @@ const EliminarPelicula = () => {
         return (
             <Container>
                 <div className="app-container-delete">
-                    <form /* onSubmit={handleEditFormSubmit} */>
+                    <form >
                         <table className="table table-striped">
                             <thead className="thead-dark">
                                 <tr>
@@ -141,7 +123,6 @@ const EliminarPelicula = () => {
                                 {listaDePeliculaas.map((i) => (
                                     <Fragment>
                                         <ListarPeliculas
-                                            /* contact={i.title,i.gender} */
                                             title={i.title}
                                             relevant={i.relevant}
                                             cartelera={i.cartelera}

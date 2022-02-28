@@ -1,6 +1,6 @@
 import './navbar.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container, NavDropdown, Modal, Button, /* Form */ } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Modal, Button } from 'react-bootstrap';
 import icono from "../../assert/logoP.png";
 import { BiLogIn } from 'react-icons/bi';
 import '../reguistro/reguistro.css';
@@ -48,20 +48,14 @@ function NavbarP() {
             });
             const exitoso = await respuesta.json();
             if (exitoso.isAuth === true) {
-                /*                 console.log("Iniciado")
-                                console.log(exitoso) */
                 Swal.fire({
                     icon: 'success',
                     title: 'Bienvenido',
                     text: 'Disfruta de las mejores peliculas',
                 }).then(function () {
-                    /* perfil() */
-                    /* localStorage.setItem('nombre_usuario', exitoso.name); */
                     localStorage.setItem('id_usuario', exitoso.id);
                     window.location = "/";
                 });
-                /* handleClose()
-                setTimeout(window.location.reload(true), 500); */
 
             } else {
                 console.log("No encontrado")
@@ -101,31 +95,18 @@ function NavbarP() {
             }
         });
         const perfilUsuario = await respuesta.json();
-        /* console.log(exitoso) */
-        /* return (exitoso) */
         if (perfilUsuario.error === true) {
             console.log("Aun no ingresa")
             console.log(usuario)
-            /* console.log(exitoso) */
 
         } else {
-            /*             console.log("Usuario ingresado")
-                        console.log(exitoso)
-                        console.log("Bienbenido ", exitoso.name)
-                        console.log("El tipo de usuario es", exitoso.type)
-                        console.log("aa", tipoUsuario.type) */
             var variable = (perfilUsuario.type)
             setTipoUsuario(variable)
-            /* console.log(tipoUsuario) */
             var variable2 = (perfilUsuario.name)
             setUsuario(variable2)
             localStorage.setItem('nombre_usuario', perfilUsuario.name);
             localStorage.setItem('id_usuario', perfilUsuario.id);
             localStorage.setItem('email_usuario', perfilUsuario.email);
-
-
-
-            /* console.log(usuario) */
         }
     }
     async function logout() {
@@ -134,7 +115,6 @@ function NavbarP() {
                 confirmButton: 'btn btn-success',
                 cancelButton: 'btn btn-danger'
             },
-            /* buttonsStyling: false */
         })
 
         swalWithBootstrapButtons.fire({
@@ -163,7 +143,6 @@ function NavbarP() {
                 });
 
             } else if (
-                /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel
             ) {
                 swalWithBootstrapButtons.fire(
@@ -175,12 +154,12 @@ function NavbarP() {
         })
 
     }
-    const [id_Usuario, setValueUser] = LocalStorageUser(
+    const [id_Usuario] = LocalStorageUser(
         'id_usuario'
     );
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" position="fixed" /* className='navbar fixed-top navbar-light bg-light' */>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" position="fixed" >
             <Container >
                 <Navbar.Brand href="/" >
                     <img alt=""
@@ -190,7 +169,7 @@ function NavbarP() {
                         className="d-inline-block align-top" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav" /* logear */>
+                <Navbar.Collapse id="responsive-navbar-nav" >
                     <Nav className="me-auto " >
                         {/* Todos */}
                         <Nav.Link href="/#carteleraHome" className='botonesNav' >Cartelera </Nav.Link>
@@ -205,8 +184,6 @@ function NavbarP() {
                         {/* Admin */}
                         {tipoUsuario === "Admin" &&
                             <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" className='botonesNav'>
-
-                                {/* <NavDropdown.Item href="/editarPeliculas" > Editar películas </NavDropdown.Item> */}
                                 <NavDropdown.Item href="/administrarPelicula" > Editar / Eliminar</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="/agregar" > Agregar películas
@@ -222,11 +199,11 @@ function NavbarP() {
                         }
                         {/* para usuario */}
                         {tipoUsuario === "usuario" &&
-                            <Nav.Link /* href="#" */ onClick={logout} className='botonesNav'> <BiLogIn />  Salir </Nav.Link>
+                            <Nav.Link onClick={logout} className='botonesNav'> <BiLogIn />  Salir </Nav.Link>
                         }
                         {/* Para admin */}
                         {tipoUsuario === "Admin" &&
-                            <Nav.Link /* href="#" */ onClick={logout} className='botonesNav'> <BiLogIn />  Salir </Nav.Link>
+                            <Nav.Link onClick={logout} className='botonesNav'> <BiLogIn />  Salir </Nav.Link>
                         }
                         <>
                             <Modal show={show}

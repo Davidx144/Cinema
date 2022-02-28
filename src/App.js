@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import {
-  /* BrowserRouter as */ Router,
+  Router,
   Switch,
   Route,
 } from "react-router-dom";
@@ -13,8 +13,6 @@ import Footer from "./components/footer/footer";
 import NavbarP from './components/navbar/navbar';
 import Inicio from './components/carrucel/carrusel';
 import Home from './components/Home/Home';
-import Reservas from './components/reservas/reservas'
-/* import Salas from './components/salas/salas' */
 import AgregarPelicula from './components/crearPelicula/agregarPelicula';
 import Info from "./components/informacion/info"
 import AdministrarPelicula from './components/administrarPeliculas/administrarPelicula';
@@ -43,7 +41,6 @@ function App() {
     });
     const perfilUsuario = await respuesta.json();
     if (perfilUsuario.error === true) {
-      console.log("Aun no ingresa")
     } else {
       var variable = (perfilUsuario.type)
       setTipoUsuario(variable)

@@ -60,7 +60,6 @@
  .cards{
   border-left: 10px;
   padding: auto;
-  /* display:block; */
   margin: 10px;
   position: relative;
 }
@@ -75,8 +74,6 @@
 
 .header .navbar {
   background-color: transparent !important;
-  /* margin-bottom: 80px; */
-  /* position: fixed; */
 }
 
 

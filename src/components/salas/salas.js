@@ -80,58 +80,6 @@ export default function App() {
   console.log("Este es el id de la peli : "+id_Pelicula)
   console.log("Este es el id del usuario : "+id_Usuario)
 
- /*  const handleSubmit = (e) => {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      
-    })
-
-    swalWithBootstrapButtons.fire({
-      title: '¿Seguro quiere reservar?',
-      text: "Después de aceptar se harán las reservas correspondientes",
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, Reserva!',    
-      cancelButtonText: 'No, cancelar',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log(selectedList)
-        let ocupadas = []
-        var Aux = []
-        movies[0].lista.map(movie => (
-          console.log(movie[1]),
-          Aux = ocupadas.concat(movie[1]),
-          ocupadas = Aux
-          
-          ))
-        movies[0].occupied.concat(ocupadas)
-        console.log(ocupadas)
-
-        console.log(selectedSeats)
-        swalWithBootstrapButtons.fire(
-          'Reservado!',
-          'Tus boletas se han reservado.',
-          'success'
-        ).then(function () {
-          window.location = "/";
-      });
-      } else if (
-        
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelado',
-          'No se realizó la reserva',
-          'error'
-        )
-      }
-    })
-  } */
-
   const [selectedList, setSelectedList] = useState(movies[0].lista)
 
   const [selectedMovie, setSelectedMovie] = useState(movies[0])

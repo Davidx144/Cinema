@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Col, Container, Row } from 'react-bootstrap';
 import './editarReserva.css'
 import BeatLoader from "react-spinners/BeatLoader"
@@ -31,8 +32,6 @@ async function reservasEditar(props) {
         }
     });
     reserva = await respuestas.json()
-    /*     console.log("Reserva de la reserva :v")
-        console.log(reserva) */
 }
 
 var peliculadeReserva = []
@@ -73,11 +72,11 @@ const LocalStorageEmail = localStorageKey => {
 
 const EditarReserva = () => {
 
-    const [nombreUsuario, setValueNombreUsuario] = LocalStorageNombre(
+    const [nombreUsuario] = LocalStorageNombre(
         'nombre_usuario'
     );
 
-    const [emailusuario, setValueEmail] = LocalStorageEmail(
+    const [emailusuario] = LocalStorageEmail(
         'email_usuario'
     );
 
@@ -220,7 +219,6 @@ const EditarReserva = () => {
             <Container>
                 <div className='editarReserva'>
                     <h2><strong>Editar reserva</strong></h2>
-                    {/* <h1>{peliculadeReserva[0].title}</h1> */}
                     <Row>
                         <Col sm={6}>
                             <h1>{reserva[0].title}</h1>
@@ -251,7 +249,7 @@ const EditarReserva = () => {
                                     />
                                 ))}
                                 <div className='h3aling'>
-                                    <button type="button" className="btn btn-danger deleteBoton " onClick={actualizarReserva}/* onClick={() => handleDeleteClick(id)} */>
+                                    <button type="button" className="btn btn-danger deleteBoton " onClick={actualizarReserva}>
                                         Liberar
                                     </button>
                                 </div>

@@ -1,13 +1,8 @@
-import React, { useState, Fragment } from "react";
+import React, { useState} from "react";
 import "./reservadas.css";
-/* import data from "./mock-data.json"; */
-import ListaReservadas from "./listaReservadas";
-/* import EditableRow from "./EditableRow"; */
 import { Container, Row, Col } from "react-bootstrap";
 import Swal from 'sweetalert2'
 import BeatLoader from "react-spinners/BeatLoader"
-import EditarReserva from "../editarReserva/editarReserva";
-/* import { BiAlarm } from "react-icons/bi"; */
 import emailjs from '@emailjs/browser';
 import image from '../../assert/User-research.png'
 
@@ -39,15 +34,13 @@ const LocalStorageEmail = localStorageKey => {
 
 const ReservadasUsuario = () => {
 
-    const [nombreUsuario, setValueNombreUsuario] = LocalStorageNombre(
+    const [nombreUsuario] = LocalStorageNombre(
         'nombre_usuario'
     );
 
-    const [emailusuario, setValueEmail] = LocalStorageEmail(
+    const [emailusuario] = LocalStorageEmail(
         'email_usuario'
     );
-
-    /* listaPeliculaas(); */
     const [loadinga, setLoading] = useState(true)
     const cambiarEstado = () => {
         setTimeout(() => {
@@ -59,25 +52,18 @@ const ReservadasUsuario = () => {
     console.log('listaDereservas')
     console.log(reservasDelUsuario)
 
-    /* const [contacts, setContacts] = useState(listaDePeliculaas); */
-
     const handleEditClick = (reservaId, movieId) => {
         console.log(reservaId)
-        /* return (<EditarReserva reserva={reservaId}></EditarReserva>) */
-        /* alert('gg') */
         window.location.assign(`/editarReserva/` + (reservaId) + ("/") + (movieId))
     }
 
     const handleDeleteClick = (reservaId, tituloPeli, horaPeli) => {
         console.log(reservaId)
-
-        /*  */
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
                 cancelButton: 'btn btn-danger'
             },
-            /* buttonsStyling: false */
         })
 
         swalWithBootstrapButtons.fire({
@@ -124,11 +110,9 @@ const ReservadasUsuario = () => {
 
 
                     window.location.reload(true)
-                    /* window.location = "/"; */
                 });
 
             } else if (
-                /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel
             ) {
                 swalWithBootstrapButtons.fire(
@@ -138,8 +122,6 @@ const ReservadasUsuario = () => {
                 )
             }
         })
-
-        /*  */
 
     };
     console.log(reservasDelUsuario)
@@ -200,54 +182,6 @@ const ReservadasUsuario = () => {
                         
                     ))}
                 </Row>
-                {/* <ul className="lista1">
-                    <li>
-                        <div class="card-reserva">
-                            <div class="card-header-reserva"></div>
-                            <div class="card-body-reserva"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="card-reserva">
-                            <div class="card-header-reserva"></div>
-                            <div class="card-body-reserva"></div>
-                        </div>
-                    </li>
-                </ul> */}
-
-
-                {/* <div className="app-container-delete">
-                    <form >
-                        <table className="table table-striped">
-                            <thead className="thead-dark">
-                                <tr>
-                                    <th scope="col">Titulo</th>
-                                    <th scope="col">Sillas</th>
-                                    <th scope="col">Hora</th>
-                                    <th scope="col">Valor</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {reservasDelUsuario.map((i) => (
-                                    <Fragment>
-                                        <ListaReservadas
-                                            
-                                            title={i.title}
-                                            chairs={i.chairs}
-                                            id={i._id}
-                                            hour={i.hour}
-                                            id_movie={i.id_movie}
-                                            bookingValue={i.bookingValue}
-                                            handleDeleteClick={handleDeleteClick}
-                                            handleEditClick={handleEditClick}
-
-                                        />
-                                    </Fragment>
-                                ))}
-                            </tbody>
-                        </table>
-                    </form>
-                </div> */}
             </Container>
         );
     }
@@ -264,7 +198,7 @@ if (idsUser === "/bookingsUser/") {
 }
 console.log("hola" + apiReservas)
 
-var reservasDelUsuario = [/* {title:"El Closet",hour:"3:00 PM",chairs:[0,1,6],bookingValue:"23400"},{title:"Scream La Película",hour:"12:00 PM",chairs:[1,3],bookingValue:"7800"} */]
+var reservasDelUsuario = []
 reservasUsuario()
 async function reservasUsuario(props) {
     const respuestas = await fetch(apiReservas, {
@@ -275,9 +209,5 @@ async function reservasUsuario(props) {
     });
     reservasDelUsuario = await respuestas.json()
     console.log(reservasDelUsuario)
-
 }
-
-
-
 export default ReservadasUsuario;
