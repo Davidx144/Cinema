@@ -1,0 +1,21 @@
+.editarReserva {
+    background-color: rgba(204, 202, 199, 0.74);
+    padding: 30px;
+    margin: 30px;
+}
+
+.infoReservaActual{
+    background-color: rgba(241, 239, 236, 0.842);
+    padding: 30px;
+    margin: 30px;
+    text-align: left;
+    border-radius: 15px;
+}
+
+.h3aling{
+    text-align: center;
+}
+
+.videoYoutube{
+    max-width:fit-content;
+}

@@ -60,7 +60,6 @@
  .cards{
   border-left: 10px;
   padding: auto;
-  /* display:block; */
   margin: 10px;
   position: relative;
 }
@@ -69,11 +68,14 @@
   background: url("../src/assert/cinema.jpg") no-repeat center;
   background-size: cover;
   min-height: 100vh;
+  
 }
+
+
 .header .navbar {
   background-color: transparent !important;
-  /* position: fixed; */
 }
+
 
 .Modal.Footer{
   position: center;

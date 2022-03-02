@@ -1,37 +1,30 @@
 [
     {
       "id": 1,
-      "fullName": "Riesgo Bajo Cero",
-      "address": "10:00AM",
-      "phoneNumber": "2",
-      "email": "12.000 Mil"
+      "title": "Riesgo Bajo Cero",
+      "hour": "10:00AM",
+      "chairs": "2",
+      "bookingValue": "12.000 Mil"
     },
     {
       "id": 2,
-      "fullName": "Coda, Señales del Corazón",
-      "address": "3:00AM",
-      "phoneNumber": "1",
-      "email": "2.000 Mil"
+      "title": "Riesgo Bajo Cero",
+      "hour": "10:00AM",
+      "chairs": "2",
+      "bookingValue": "12.000 Mil"
     },
     {
       "id": 3,
-      "fullName": "Peter: El Demonio",
-      "address": "3:00AM",
-      "phoneNumber": "1",
-      "email": "4.000 Mil"
+      "title": "Riesgo Bajo Cero",
+      "hour": "10:00AM",
+      "chairs": "0",
+      "bookingValue": "12.000 Mil"
     },
     {
       "id": 4,
-      "fullName": "La Familia Monster 2",
-      "address": "10:00AM",
-      "phoneNumber": "5",
-      "email": "30.000 Mil"
-    },
-    {
-      "id": 5,
-      "fullName": "El Misterio De Soho",
-      "address": "1:00 PM",
-      "phoneNumber": "2",
-      "email": "10.000 Mil"
+      "title": "Riesgo Bajo Cero",
+      "hour": "10:00AM",
+      "chairs": "2",
+      "bookingValue": "12.000 Mil"
     }
   ]

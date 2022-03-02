@@ -19,3 +19,31 @@
     margin: auto;
     margin-top: 10px;
 }
+.botonesNav:hover{
+    border-radius: 15px;
+}
+
+.botonesNav:hover{
+    background-color: rgb(75, 37, 180);
+    border-radius: 15px;
+    /* transition: background-color .5s; */
+    /* transition: border-radius .3s; */
+
+}
+
+/* .botonesNav:hover::after{
+    border-radius: 15px;
+} */
+
+/* .navF{
+    position: fixed;
+} */
+/* .botonesNav:unhover{
+    background-color: rgb(218, 146, 51);
+    border-radius: 15px;
+} */
+
+/* .botonesNav:focus{
+    background-color: rgb(218, 146, 51);
+    border-radius: 15px;
+} */

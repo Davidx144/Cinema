@@ -1,6 +1,6 @@
 import './navbar.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container, NavDropdown, Modal, Button, /* Form */ } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Modal, Button } from 'react-bootstrap';
 import icono from "../../assert/logoP.png";
 import { BiLogIn } from 'react-icons/bi';
 import '../reguistro/reguistro.css';
@@ -10,7 +10,20 @@ import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Label } from 'reactstrap';
 
+const LocalStorageUser = localStorageKey => {
+    const [value, setValue] = React.useState(
+        localStorage.getItem(localStorageKey) || ''
+    );
+
+    React.useEffect(() => {
+        localStorage.setItem("id_usuario", value);
+    }, [value]);
+
+    return [value, setValue];
+};
+
 function NavbarP() {
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -24,8 +37,8 @@ function NavbarP() {
         };
         const loginUser = JSON.stringify(LoginUser);
 
-        conectar();
-        async function conectar() {
+        logear();
+        async function logear() {
             const respuesta = await fetch('/api/login', {
                 method: "POST",
                 body: loginUser,
@@ -35,19 +48,16 @@ function NavbarP() {
             });
             const exitoso = await respuesta.json();
             if (exitoso.isAuth === true) {
-                /*                 console.log("Iniciado")
-                                console.log(exitoso) */
                 Swal.fire({
                     icon: 'success',
                     title: 'Bienvenido',
                     text: 'Disfruta de las mejores peliculas',
-                })
-                handleClose()
-                setTimeout(window.location.reload(true), 500);
+                }).then(function () {
+                    localStorage.setItem('id_usuario', exitoso.id);
+                    window.location = "/";
+                });
 
             } else {
-                console.log("No encontrado")
-                console.log(exitoso)
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -67,9 +77,9 @@ function NavbarP() {
         const { name, value } = e.target;
         setUser({ ...user, [name]: value });
     };
-    const [usuario, setUsuario] = useState({
+/*     const [usuario, setUsuario] = useState({
         name: "",
-    })
+    }) */
     const [tipoUsuario, setTipoUsuario] = useState({
         tipo: "",
     })
@@ -82,40 +92,70 @@ function NavbarP() {
                 "Content-Type": "application/json",
             }
         });
-        const exitoso = await respuesta.json();
-        console.log(exitoso)
-        /* return (exitoso) */
-        if (exitoso.error === true) {
-            console.log("Aun no ingresa")
-            /* console.log(exitoso) */
+        const perfilUsuario = await respuesta.json();
+        if (perfilUsuario.error === true) {
 
         } else {
-            /*             console.log("Usuario ingresado")
-                        console.log(exitoso)
-                        console.log("Bienbenido ", exitoso.name)
-                        console.log("El tipo de usuario es", exitoso.type)
-                        console.log("aa", tipoUsuario.type) */
-            var variable = (exitoso.type)
+            var variable = (perfilUsuario.type)
             setTipoUsuario(variable)
-            console.log(tipoUsuario)
-            var variable2 = (exitoso.name)
-            setUsuario(variable2)
-            console.log(usuario)
+            /* var variable2 = (perfilUsuario.name) */
+            /* setUsuario(variable2) */
+            localStorage.setItem('nombre_usuario', perfilUsuario.name);
+            localStorage.setItem('id_usuario', perfilUsuario.id);
+            localStorage.setItem('email_usuario', perfilUsuario.email);
         }
     }
     async function logout() {
-        fetch('api/logout', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: '¿Desea salir?',
+            text: "¡Se cerrará la sesión actual!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Si, cerrar.',
+            cancelButtonText: 'No, cancelar.',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                    'Sesión cerrada',
+                    'Esperamos verte de nuevo.',
+                    'success'
+                ).then(function () {
+                    fetch('api/logout', {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        }
+                    });
+                    localStorage.clear();
+                    window.location = "/";
+                });
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'Sigue disfrutando de las mejores películas ;)',
+                    'info'
+                )
             }
-        });
-        setTimeout(window.location.reload(true), 500);
-        alert("A cerrado sección satisfactoriamente");
+        })
+
     }
+    const [id_Usuario] = LocalStorageUser(
+        'id_usuario'
+    );
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" position="fixed">
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" position="fixed" >
             <Container >
                 <Navbar.Brand href="/" >
                     <img alt=""
@@ -125,25 +165,25 @@ function NavbarP() {
                         className="d-inline-block align-top" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav" conectar>
-                    <Nav className="me-auto" >
+                <Navbar.Collapse id="responsive-navbar-nav" >
+                    <Nav className="me-auto " >
                         {/* Todos */}
-                        <Nav.Link href="/#carteleraHome" >Cartelera </Nav.Link>
+                        <Nav.Link href="/#carteleraHome" className='botonesNav' >Cartelera </Nav.Link>
                         {/* Usuario */}
                         {(tipoUsuario === "usuario") &&
-                            <Nav.Link href="/reservas" > Lista de reservas </Nav.Link>
+
+                            <Nav.Link href={"/bookingsUser/" + (id_Usuario)} className='botonesNav' > Lista de reservas </Nav.Link>
                         }
                         {(tipoUsuario === "Admin") &&
-                            <Nav.Link href="/reservas" > Lista de reservas </Nav.Link>
+                            <Nav.Link href={"/bookingsUser/" + (id_Usuario)} className='botonesNav'> Lista de reservas </Nav.Link>
                         }
                         {/* Admin */}
                         {tipoUsuario === "Admin" &&
-                            <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" >
+                            <NavDropdown title="Administra peliculas" id="collasible-nav-dropdown" className='botonesNav'>
+                                <NavDropdown.Item href="/administrarPelicula" > Editar / Eliminar</NavDropdown.Item>
+                                <NavDropdown.Divider />
                                 <NavDropdown.Item href="/agregar" > Agregar películas
                                 </NavDropdown.Item>
-                                <NavDropdown.Item href="/eliminar" > Eliminar películas</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="/historial" > Historial </NavDropdown.Item>
 
                             </NavDropdown >
                         }
@@ -151,21 +191,21 @@ function NavbarP() {
                     <Nav>
                         {/* Sin iniciar */}
                         {tipoUsuario.tipo === "" &&
-                            <Nav.Link href="#deets" onClick={handleShow} > <BiLogIn /> Iniciar </Nav.Link>
+                            <Nav.Link href="#deets" onClick={handleShow} className='botonesNav'> <BiLogIn /> Iniciar </Nav.Link>
                         }
                         {/* para usuario */}
                         {tipoUsuario === "usuario" &&
-                            <Nav.Link href="#" onClick={logout} > <BiLogIn />  Salir </Nav.Link>
+                            <Nav.Link onClick={logout} className='botonesNav'> <BiLogIn />  Salir </Nav.Link>
                         }
                         {/* Para admin */}
                         {tipoUsuario === "Admin" &&
-                            <Nav.Link href="#" onClick={logout}> <BiLogIn />  Salir </Nav.Link>
+                            <Nav.Link onClick={logout} className='botonesNav'> <BiLogIn />  Salir </Nav.Link>
                         }
                         <>
                             <Modal show={show}
                                 onHide={handleClose} >
                                 <Modal.Header closeButton >
-                                    <Modal.Title > Inicia Sección o Registrate </Modal.Title> </Modal.Header>
+                                    <Modal.Title > Inicia sección o registrate </Modal.Title> </Modal.Header>
                                 <Modal.Body >
                                     <form className="form" onSubmit={handleSubmit} autoComplete="off">
                                         <div className="mb-2">

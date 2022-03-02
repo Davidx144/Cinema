@@ -1,0 +1,90 @@
+.app-container-delete {
+    /* background-color: antiquewhite; */
+    background-color: rgba(204, 202, 199, 0.836);
+  }
+    @media (max-width: 600px) {
+      .app-container {
+        background-color: antiquewhite;
+        width: 20em;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
+
+.editBoton{
+    background-color: rgb(97, 50, 224);
+    border-color: #352591e1;
+    color: aliceblue;
+}
+
+.editBoton:hover{
+  background-color: rgb(185, 160, 255);
+  border-color: #352591e1;
+  color: aliceblue;
+}
+
+.deleteBoton{
+  background-color: rgb(237, 88, 38);
+  border-color: #dd3e22e1;
+  color: aliceblue;
+}
+
+.deleteBoton:hover{
+background-color: rgb(235, 179, 57);
+border-color: #d69a2be1;
+color: aliceblue;
+}
+
+.NotFundReserva{
+  background-color: rgba(204, 202, 199, 0.74);
+  padding: 30px;
+  margin: 30px;
+  max-width: 500px;
+  /* max-height: 700px; */
+
+  align-items: center;
+  margin: auto;
+}
+.card-reserva {
+  width: 300px;
+  border-radius: 10px;
+  margin: 20px;
+  background: #f6f2d7c4;
+  overflow: hidden;
+}
+.card-header-reserva {
+  height: 55px;
+  border: 2px solid #836602;
+  border-bottom: 2px dotted #836602;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+}
+.card-header-reserva:before, .card-header-reserva:after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.548);
+  border-radius: 100%;
+  bottom: -12px;
+  border: 2px solid #836602;
+  box-sizing: border-box;
+}
+.card-header-reserva:before { 
+  left: -13px;
+}
+.card-header-reserva:after {
+  right: -13px;
+}
+.card-body-reserva {
+  height: 170px;
+  border: 2px solid #836602;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+}
+
+.lista1{
+  display:inline;
+  padding-left:3px;
+  padding-right:3px;
+}

@@ -1,22 +1,51 @@
 import React, { useState, Fragment } from "react";
 import "./reservas.css";
-import data from "./mock-data.json";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import { Container } from "react-bootstrap";
+import Swal from 'sweetalert2'
+import BeatLoader from "react-spinners/BeatLoader"
+
+
+var URLactual = (window.location);
+var urlreserva = (URLactual.pathname)
+var idsUserReservas = urlreserva.slice(14)
+var idsUser = urlreserva.slice(0, 14)
+
+console.log("este"+idsUser)
+if (idsUser === "/bookingsUser/") {
+    var apiReservas = (`/api/bookingsUser/${idsUserReservas}`)
+}
+console.log("hola"+apiReservas)
+
+var reservasDelUsuario =[{title:"El Closet",hour:"3:00 PM",chairs:[0,1,6],bookingValue:"23400"},{title:"Scream La Película",hour:"12:00 PM",chairs:[1,3],bookingValue:"7800"}]
+reservasUsuario()
+async function reservasUsuario(props) {
+    const respuestas = await fetch(apiReservas, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    reservasDelUsuario = await respuestas.json()
+    console.log(reservasDelUsuario)
+
+}
 
 const Reservas = () => {
-    const [contacts, setContacts] = useState(data);
+    const [contacts, setContacts] = useState(reservasDelUsuario);
+
+
     const [editFormData, setEditFormData] = useState({
-        fullName: "",
-        address: "",
-        phoneNumber: "",
-        email: "",
+        title: "",
+        hour: "",
+        chairs: [],
+        bookingValue: "",
     });
     const [editContactId, setEditContactId] = useState(null);
     const handleEditFormChange = (event) => {
         event.preventDefault();
-        const fieldName = event.target.getAttribute("name");
+        const fieldName = event.target.getAttribute("title");
         const fieldValue = event.target.value;
         const newFormData = { ...editFormData };
         newFormData[fieldName] = fieldValue;
@@ -26,10 +55,10 @@ const Reservas = () => {
         event.preventDefault();
         const editedContact = {
             id: editContactId,
-            fullName: editFormData.fullName,
-            address: editFormData.address,
-            phoneNumber: editFormData.phoneNumber,
-            email: editFormData.email,
+            title: editFormData.title,
+            hour: editFormData.hour,
+            chairs: editFormData.chairs,
+            bookingValue: editFormData.bookingValue,
         };
         const newContacts = [...contacts];
         const index = contacts.findIndex((contact) => contact.id === editContactId);
@@ -41,10 +70,10 @@ const Reservas = () => {
         event.preventDefault();
         setEditContactId(contact.id);
         const formValues = {
-            fullName: contact.fullName,
-            address: contact.address,
-            phoneNumber: contact.phoneNumber,
-            email: contact.email,
+            title: contact.title,
+            hour: contact.hour,
+            chairs: contact.chairs,
+            bookingValue: contact.bookingValue,
         };
         setEditFormData(formValues);
     };
@@ -52,48 +81,75 @@ const Reservas = () => {
         setEditContactId(null);
     };
     const handleDeleteClick = (contactId) => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Bienvenido',
+            text: 'Disfruta de las mejores peliculas',
+        })
         const newContacts = [...contacts];
         const index = contacts.findIndex((contact) => contact.id === contactId);
         newContacts.splice(index, 1);
         setContacts(newContacts);
     };
-    return (
-        <Container>
-            <div className="app-container">
-                <form onSubmit={handleEditFormSubmit}>
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Horario</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {contacts.map((contact) => (
-                                <Fragment>
-                                    {editContactId === contact.id ? (
-                                        <EditableRow
-                                            editFormData={editFormData}
-                                            handleEditFormChange={handleEditFormChange}
-                                            handleCancelClick={handleCancelClick}
-                                        />
-                                    ) : (
-                                        <ReadOnlyRow
-                                            contact={contact}
-                                            handleEditClick={handleEditClick}
-                                            handleDeleteClick={handleDeleteClick}
-                                        />
-                                    )}
-                                </Fragment>
-                            ))}
-                        </tbody>
-                    </table>
-                </form>
+
+    const [loading, setLoading] = useState(true)
+    const cambiarEstado = () => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000);
+    }
+    if (loading) {
+        cambiarEstado()
+        return (
+            <div>
+                <Container className='loading'>
+                    <BeatLoader
+                        size={15}
+                    />
+                </Container>
             </div>
-        </Container>
-    );
+        )
+    } else {
+
+        return (
+            <Container>
+                <div className="app-container">
+                    <form onSubmit={handleEditFormSubmit}>
+                        <table className="table table-striped">
+                            <thead className="thead-dark">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Horario</th>
+                                    <th scope="col">Sillas</th>
+                                    <th scope="col">Valor</th>
+                                    <th scope="col">Acción</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {contacts.map((contact) => (
+                                    <Fragment>
+                                        {editContactId === contact.id ? (
+                                            <EditableRow
+                                                editFormData={editFormData}
+                                                handleEditFormChange={handleEditFormChange}
+                                                handleCancelClick={handleCancelClick}
+                                            />
+                                        ) : (
+                                            <ReadOnlyRow
+                                                contact={contact}
+                                                handleEditClick={handleEditClick}
+                                                handleDeleteClick={handleDeleteClick}
+                                            />
+                                        )}
+                                    </Fragment>
+                                ))}
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </Container>
+        );
+    }
 };
 export default Reservas;

@@ -1,3 +1,53 @@
+.infoPelic {
+    background-color: rgba(204, 202, 199, 0.74);
+    padding: 30px;
+    margin: 30px;
+}
+
+.imag{
+    max-width: 410px;
+    /* max-height: 50px; */
+    width: 28rem;
+    padding: 10px;
+}
+.videoYoutube{
+  /*   width:35rem; 
+    height:20rem;  */
+    width:560px;
+    height:315px;
+  }
+
+@media (max-width: 500px) {
+  .imag{
+    /* background-color: antiquewhite; */
+    width: 19em;
+    /* max-width: 250px; */
+    align-items: center;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .videoYoutube{
+    /*   width:35rem; 
+      height:20rem;  */
+      max-width: 250px;
+      height:215px;
+    }
+}
+@media (max-width: 500px){
+  .Salas{
+      background-color: #bb2626;
+      max-width: 280px;
+      height: 580px;
+      align-items: center;
+      text-align: center;
+      display: flex;
+      margin: auto;
+  }
+}
+
+
+
+/* Salas */
 @import url('https://fonts.googleapis.com/css?family=Exo+2&display=swap');
 
 *,
@@ -39,20 +89,11 @@ this.App {
     /* flex-flow: column; */
     
 }
-@media (max-width: 768px){
-    .Salas{
-        background-color: #bb2626;
-        width: 280px;
-        height: 580px;
-        align-items: center;
-        text-align: center;
-        display: flex;
-        margin: auto;
-    }
-}
+
 
 .Movies {
   margin-bottom: 24px;
+  color: darkgray;
 }
 
 .Movies select {
@@ -174,3 +215,8 @@ this.App {
 .info .total {
   color: #7bc47f;
 }
+
+/* .infoPeli{
+  text-align: left;
+  margin-left: 33%;
+} */
